@@ -1,0 +1,10 @@
+{
+  "name": "parrot-bot",
+  "version": "1.0.0",
+  "description": "A multifonctionnal discord bot, features will be added as the bot is being",
+  "main": "index.js",
+  "repository": "https://github.com/TacticsCH/parrot-bot.git",
+  "author": "Melvynx & TacticsCH",
+  "license": "MIT",
+  "private": true
+}
