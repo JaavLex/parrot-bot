@@ -4,16 +4,15 @@ const {
   Collection
 } = require('discord.js');
 const config = require('./config.json');
-const secrets = require('./secrets.json');
-const fs = require("fs");
+const fs = require('fs');
+const { token } = require('./secrets.json');
 const client = new Client();
 client.commands = new Collection();
 client.aliases = new Collection();
 client.categories = fs.readdirSync("./commands/");
-const handler = require(`./handler/handler.js`)(client);
+const handler = require(`./handler/handler.js`);
 
-
-
+handler();
 
 client.on("message", async message => {
   if (message.author.bot || !message.content.startsWith(config.prefix)) return;
@@ -33,4 +32,4 @@ client.once('ready', () => {
   console.info('The bot is running.');
 });
 
-client.login(secrets.token);
+client.login(token);
