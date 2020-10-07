@@ -1,12 +1,10 @@
-const {
-    Client,
-    RichEmbed,
-    Collection
-} = require("discord.js");
-const client = new Discord.Client();
+const {Client, RichEmbed, Collection} = require('discord.js');
+const config = require('./config.json');
+
+const client = new Client();
 
 client.once('ready', () => {
-  console.log('The bot is running.');
+  console.info('The bot is running.');
 });
 
-client.login('your-token-goes-here');
+client.login(config.token);
