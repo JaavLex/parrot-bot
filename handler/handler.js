@@ -19,10 +19,12 @@ function handler(client) {
         continue;
       }
 
-      if (pull.aliases && Array.isArray(pull))
+      if (pull.aliases && Array.isArray(pull)) {
         pull.aliases.forEach(alias => client.aliases.set(alias, pull.name));
+      }
     }
   });
-  console.log(table.toString());
+  console.info(table.toString());
 }
+
 module.exports = handler;
