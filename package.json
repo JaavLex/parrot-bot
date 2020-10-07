@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "ascii-table": "0.0.9",
     "discord.js": "^12.3.1"
   }
 }
