@@ -4,9 +4,10 @@ const {
 const ascii = require('ascii-table');
 const table = new ascii().setHeading('Command', 'Status');
 
-module.exports = client => {
-    readdirSync('./commands/').forEach(dir => {
-        const commandsFolder = readdirSync(`./commands/${dir}/`).filter(file =>
+function handler(client) {
+...
+}
+module.exports = handler;
             file.endsWith('.js'),
         );
 
