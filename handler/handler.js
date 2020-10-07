@@ -1,6 +1,4 @@
-const {
-    readdirSync
-} = require('fs');
+const {readdirSync} = require('fs');
 const ascii = require('ascii-table');
 const table = new ascii().setHeading('Command', 'Status');
 
@@ -8,9 +6,7 @@ function handler(client) {
   readdirSync('./commands/').forEach(dir => {
     const commandsFolder = readdirSync(`./commands/${dir}/`).filter(file =>
       file.endsWith('.js'),
-});
-module.exports = handler;
-        
+    );
 
     for (let file of commandsFolder) {
       let pull = require(`../commands/${dir}/${file}`);
@@ -28,4 +24,5 @@ module.exports = handler;
     }
   });
   console.log(table.toString());
-};
+}
+module.exports = handler;
