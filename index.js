@@ -16,20 +16,12 @@ const handler = require(`./handler/handler.js`)(client);
 
 
 client.on("message", async message => {
-  const prefix = config.prefix;
+  if (message.author.bot || !message.content.startsWith(config.prefix)) return;
 
-  if (message.author.bot) return;
-  if (!message.guild) return;
-  if (!message.content.startsWith(prefix)) return;
-  if (!message.member) message.member = await message.guild.fetchMember(message);
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g).shift().toLowerCase();
 
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const argsLowerCase = args.shift().toLowerCase();
-
-  if (argsLowerCase.length === 0) return;
-
-  let command = client.commands.get(argsLowerCase);
-  if (!command) command = client.commands.get(client.aliases.get(argsLowerCase));
+  let command = client.commands.get(args);
+  if (!command) command = client.commands.get(client.aliases.get(args));
 
   if (command)
     command.run(client, message, args);

@@ -6,8 +6,8 @@ const table = new ascii().setHeading('Command', 'Status');
 
 module.exports = client => {
     readdirSync('./commands/').forEach(dir => {
-        const commands = readdirSync(`./commands/${dir}/`).filter(f =>
-            f.endsWith('.js'),
+        const commandsFolder = readdirSync(`./commands/${dir}/`).filter(file =>
+            file.endsWith('.js'),
         );
 
         for (let file of commands) {
