@@ -19,8 +19,6 @@ client.on('message', async message => {
     .slice(prefix.length)
     .trim()
     .split(/ +/g)
-    .shift()
-    .toLowerCase();
 
   let command = client.commands.get(args);
 
