@@ -21,7 +21,9 @@ client.on("message", async message => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g).shift().toLowerCase();
 
   let command = client.commands.get(args);
-  if (!command) command = client.commands.get(client.aliases.get(args));
+  if (!command) {
+    command = client.commands.get(client.aliases.get(args));
+  }
 
   if (command)
     command.run(client, message, args);
