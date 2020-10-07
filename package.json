@@ -6,5 +6,8 @@
   "repository": "https://github.com/TacticsCH/parrot-bot.git",
   "author": "Melvynx & TacticsCH",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "discord.js": "^12.3.1"
+  }
 }
