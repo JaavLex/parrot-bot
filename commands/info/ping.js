@@ -1,4 +1,4 @@
-const {MessageEmbed} = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 async function run(client, message, args) {
   const waitingMessage = await message.channel.send(

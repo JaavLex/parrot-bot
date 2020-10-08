@@ -1,4 +1,4 @@
-const {readdirSync} = require('fs');
+const { readdirSync } = require('fs');
 const ascii = require('ascii-table');
 const table = new ascii().setHeading('Command', 'Status');
 
