@@ -1,13 +1,11 @@
-const {
-  MessageEmbed
-} = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 async function run(client, message, args) {
   const waitingMessage = await message.channel.send(
     new MessageEmbed()
-    .setColor('#ff9900')
-    .setTitle('🌐 Latency 🌐')
-    .addField('✍️ Pinging ...', 'Results will be delivered shortly !'),
+      .setColor('#ff9900')
+      .setTitle('🌐 Latency 🌐')
+      .addField('✍️ Pinging ...', 'Results will be delivered shortly !'),
   );
 
   const pingMessage = new MessageEmbed()

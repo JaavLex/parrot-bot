@@ -1,12 +1,6 @@
-const {
-  MessageEmbed
-} = require('discord.js');
-const {
-  stripIndents
-} = require('common-tags');
-const {
-  prefix
-} = require('../../config.json');
+const { MessageEmbed } = require('discord.js');
+const { stripIndents } = require('common-tags');
+const { prefix } = require('../../config.json');
 
 async function run(client, message, args) {
   if (args[0]) {
@@ -37,7 +31,7 @@ async function run(client, message, args) {
     const info = client.categories
       .map(
         cat =>
-        stripIndents `**${cat[0].toUpperCase() + cat.slice(1)}** \n${commands(
+          stripIndents`**${cat[0].toUpperCase() + cat.slice(1)}** \n${commands(
             cat,
           )}`,
       )
