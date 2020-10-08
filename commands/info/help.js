@@ -5,8 +5,8 @@ function getAllCommands(client, message) {
   const embed = new MessageEmbed()
     .setColor('#32CD32')
     .setTitle('**Command list :**')
-    .setFooter(
-      `Type ${prefix}help [commandname] to have more info on a specific command.`,
+    .addField(
+      `To know usage of one command use \`${prefix}/help\` <command> 😁`,
     )
     .setThumbnail(
       'https://i2.wp.com/thesecuritynoob.com/wp-content/uploads/2020/02/632px-Parrot_Logo.png?fit=632%2C599&ssl=1',
@@ -14,28 +14,25 @@ function getAllCommands(client, message) {
     .setTimestamp();
 
   function commandsListToString(category) {
-    return (
-      '```css\n' +
-      client.commands
-        .filter(cmd => cmd.category === category)
-        .map(cmd => cmd.name)
-        .join(' | ') +
-      '\n```'
-    );
+    const commandsByCategory = client.commands
+      .filter(command => command.category === category)
+      .map(c => c.name);
+
+    if (!commandsByCategory.length) {
+      return '⚠️ no command with this category';
+    }
+
+    return '```css\n' + commandsByCategory.join(' | ') + '\n```';
   }
 
-  function cat(category) {
+  client.categories.map(category => {
     embed.addField(
       '> ' + category.toUpperCase() || '-',
       commandsListToString(category) || '-',
     );
-  }
+  });
 
-  const info = client.categories
-    .map(cat)
-    .reduce((string, category) => string + '\n' + category);
-
-  return message.channel.send(embed);
+  message.channel.send(embed);
 }
 
 // function getSingleCommand(client, message, input) {
@@ -64,11 +61,11 @@ function getAllCommands(client, message) {
 // }
 
 async function run(client, message, args) {
-  // if (args[0]) {
-  //   return getSingleCommand(client, message, args[0]);
-  // } else {
-  return getAllCommands(client, message);
-  // }
+  if (args[0]) {
+    getSingleCommand(client, message, args[0]);
+  } else {
+    getAllCommands(client, message);
+  }
 }
 
 const helpCommand = {
