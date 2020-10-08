@@ -1,18 +1,16 @@
 async function onMessage(message) {
- if (message.author.bot || !message.content.startsWith(prefix)) return;
+  if (message.author.bot || !message.content.startsWith(prefix)) return;
 
-  const args = message.content
-    .slice(prefix.length)
-    .trim()
-    .split(/ +/g)
-  const cmd = args.shift().toLowerCase();
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
 
-  let command = client.commands.get(cmd);
+  const command = args.shift().toLowerCase();
 
-  if (!command) {
-    command = client.commands.get(client.aliases.get(cmd));
+  let clientCommand = client.commands.get(command);
+
+  if (!clientCommand) {
+    clientCommand = client.commands.get(client.aliases.get(command));
   } else {
-    command.run(client, message, args);
+    clientCommand.run(client, message, args);
   }
 }
 
