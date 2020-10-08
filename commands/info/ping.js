@@ -12,11 +12,11 @@ async function run(client, message, args) {
     .setTitle('🌐 Latency 🌐')
     .addField(
       '🤖 Bot Latency :',
-      `**${Math.floor(msg.createdAt - message.createdAt)}** ms`,
+      `**${Math.floor(waitingMessage.createdAt - message.createdAt)}** ms`,
     )
     .addField('📄 API Latency :', `**${Math.round(client.ws.ping)}** ms`)
     .setTimestamp();
-  msg.edit(newmsg);
+  waitingMessage.edit(pingMessage);
 }
 
 const pingCommand = {
