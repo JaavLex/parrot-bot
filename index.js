@@ -1,6 +1,14 @@
-const {Client, RichEmbed, Collection} = require('discord.js');
-const {prefix} = require('./config.json');
-const {token} = require('./secrets.json');
+const {
+  Client,
+  RichEmbed,
+  Collection
+} = require('discord.js');
+const {
+  prefix
+} = require('./config.json');
+const {
+  token
+} = require('./secrets.json');
 const handler = require(`./handler/handler.js`);
 const fs = require('fs');
 
@@ -10,7 +18,7 @@ client.commands = new Collection();
 client.aliases = new Collection();
 client.categories = fs.readdirSync('./commands/');
 
-handler();
+handler(client);
 
 client.on('message', async message => {
   if (message.author.bot || !message.content.startsWith(prefix)) return;
