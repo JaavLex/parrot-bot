@@ -1,4 +1,4 @@
-async function onMessage(message) {
+async function onMessage(message, client, prefix) {
   if (message.author.bot || !message.content.startsWith(prefix)) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
