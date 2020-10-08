@@ -1,16 +1,19 @@
-const {
-  Client,
-  MessageEmbed,
-  Collection
-} = require('discord.js');
-const {
-  prefix
-} = require('./config.json');
-const {
-  token
-} = require('./secrets.json');
+// load .env variables
+require('dotenv').config();
+const {Client, RichEmbed, Collection} = require('discord.js');
+const {prefix} = require('./config.json');
+
 const handler = require(`./handler/handler.js`);
 const fs = require('fs');
+const onMessage = require('./handler/message');
+
+const discordToken = process.env.DISCORD_TOKEN;
+
+if (!discordToken) {
+  throw '⭕️ .env: DISCORD_TOKEN is missing.';
+}
+
+console.info('ℹ️ server bot starting.');
 
 const client = new Client();
 
@@ -20,27 +23,10 @@ client.categories = fs.readdirSync('./commands/');
 
 handler(client);
 
-client.on('message', async message => {
-
-  if (message.author.bot || !message.content.startsWith(prefix)) return;
-
-  const args = message.content
-    .slice(prefix.length)
-    .trim()
-    .split(/ +/g)
-  const cmd = args.shift().toLowerCase();
-
-  let command = client.commands.get(cmd);
-
-  if (!command) {
-    command = client.commands.get(client.aliases.get(cmd));
-  } else {
-    command.run(client, message, args);
-  }
-});
+client.on('message', onMessage);
 
 client.once('ready', () => {
-  console.info('The bot is running.');
+  console.info('✨ The bot is running.');
 });
 
-client.login(token);
+client.login(discordToken);
