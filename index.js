@@ -10,8 +10,10 @@ const {throws} = require('assert');
 const discordToken = process.env.DISCORD_TOKEN;
 
 if (!discordToken) {
-  throw 'DISCORD_TOKEN is missing .env file.';
+  throw '⭕️ .env: DISCORD_TOKEN is missing.';
 }
+
+console.info('ℹ️ server bot starting.');
 
 const client = new Client();
 
@@ -24,7 +26,7 @@ handler(client);
 client.on('message', onMessage);
 
 client.once('ready', () => {
-  console.info('The bot is running.');
+  console.info('✨ The bot is running.');
 });
 
 client.login(discordToken);
