@@ -7,6 +7,7 @@ async function run(client, message, args) {
       .setTitle('Latency')
       .addField('✍️ Pinging ...', 'Results will be delivered shortly !'),
   );
+  
   const pingMessage = new MessageEmbed()
     .setColor('#ff9900')
     .setTitle('🌐 Latency 🌐')
@@ -16,6 +17,7 @@ async function run(client, message, args) {
     )
     .addField('📄 API Latency :', `**${Math.round(client.ws.ping)}** ms`)
     .setTimestamp();
+  
   waitingMessage.edit(pingMessage);
 }
 
