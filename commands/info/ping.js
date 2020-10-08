@@ -7,7 +7,7 @@ async function run(client, message, args) {
       .setTitle('Latency')
       .addField('✍️ Pinging ...', 'Results will be delivered shortly !'),
   );
-  const newmsg = new MessageEmbed()
+  const pingMessage = new MessageEmbed()
     .setColor('#ff9900')
     .setTitle('🌐 Latency 🌐')
     .addField(
