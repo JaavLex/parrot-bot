@@ -13,15 +13,6 @@ function getAllCommands(client, message) {
     )
     .setTimestamp();
 
-  function getCommandsByCategory(category) {
-    console.log('bonsoir', category);
-    return (
-      '`' +
-      client.commands.filter(cmd => cmd.category === category).join(' | ') +
-      '`'
-    );
-  }
-
   function commandsListToString(category) {
     return (
       '```css\n' +
