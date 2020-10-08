@@ -5,7 +5,6 @@ const {prefix} = require('./config.json');
 const handler = require(`./handler/handler.js`);
 const fs = require('fs');
 const onMessage = require('./handler/message');
-const {throws} = require('assert');
 
 const discordToken = process.env.DISCORD_TOKEN;
 
