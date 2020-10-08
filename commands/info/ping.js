@@ -1,4 +1,4 @@
-module.exports = {
+const pingCommand = {
     name: 'ping',
     category: 'info',
     description: 'Returns bot\'s latency and API\' latency',
@@ -18,5 +18,7 @@ module.exports = {
             .addField('📄 API Latency :', `**${Math.round(client.ws.ping)}** ms`)
             .setTimestamp();
         msg.edit(newmsg);
-    },
+    }
 };
+
+module.exports = pingCommand;
