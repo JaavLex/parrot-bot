@@ -1,6 +1,6 @@
 const {
   Client,
-  RichEmbed,
+  MessageEmbed,
   Collection
 } = require('discord.js');
 const {
@@ -29,7 +29,6 @@ client.on('message', async message => {
     .trim()
     .split(/ +/g)
   const cmd = args.shift().toLowerCase();
-  console.log(args + " | " + cmd);
 
   let command = client.commands.get(cmd);
 

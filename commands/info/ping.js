@@ -4,11 +4,11 @@ module.exports = {
     description: 'Returns latency and API ping',
     run: async (client, message, args) => {
         const {
-            RichEmbed
+            MessageEmbed
         } = require('discord.js');
 
         const msg = await message.channel.send(`✍️ Pinging ... ✍️`);
-        const newmsg = new RichEmbed()
+        const newmsg = new MessageEmbed()
             .setColor('#ff9900')
             .setTitle('Latency')
             .addField(
