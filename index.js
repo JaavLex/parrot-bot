@@ -2,6 +2,7 @@
 require('dotenv').config();
 const {Client, RichEmbed, Collection} = require('discord.js');
 const {prefix} = require('./config.json');
+
 const handler = require(`./handler/handler.js`);
 const fs = require('fs');
 const onMessage = require('./handler/message');
