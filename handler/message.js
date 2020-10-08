@@ -1,7 +1,12 @@
-async function onMessage(message, client, prefix) {
-  if (message.author.bot || !message.content.startsWith(prefix)) return;
+require('dotenv').config();
+const { prefix } = require('../config.json');
 
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+const currentPrefix = process.env.DEV_PREFIX || prefix;
+
+async function onMessage(message, client) {
+  if (message.author.bot || !message.content.startsWith(currentPrefix)) return;
+
+  const args = message.content.slice(currentPrefix.length).trim().split(/ +/g);
 
   const command = args.shift().toLowerCase();
 

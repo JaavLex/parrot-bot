@@ -23,7 +23,7 @@ client.categories = fs.readdirSync('./commands/');
 
 handler(client);
 
-client.on('message', message => onMessage(message, client, prefix));
+client.on('message', message => onMessage(message, client));
 
 client.once('ready', () => {
   console.info('✨ The bot is running.');
