@@ -1,13 +1,7 @@
 // load .env variables
 require('dotenv').config();
-const {
-  Client,
-  RichEmbed,
-  Collection
-} = require('discord.js');
-const {
-  prefix
-} = require('./config.json');
+const {Client, RichEmbed, Collection} = require('discord.js');
+const {prefix} = require('./config.json');
 
 const handler = require(`./handler/handler.js`);
 const fs = require('fs');
@@ -29,7 +23,7 @@ client.categories = fs.readdirSync('./commands/');
 
 handler(client);
 
-client.on('message', (message) => onMessage(message, client, prefix));
+client.on('message', message => onMessage(message, client, prefix));
 
 client.once('ready', () => {
   console.info('✨ The bot is running.');
