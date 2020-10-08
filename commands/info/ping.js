@@ -1,7 +1,7 @@
 const {MessageEmbed} = require('discord.js');
 
 async function run(client, message, args) {
-  const msg = await message.channel.send(
+  const waitingMessage = await message.channel.send(
     new MessageEmbed()
       .setColor('#ff9900')
       .setTitle('Latency')
