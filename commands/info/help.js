@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const { prefix } = require('../../config.json');
+const emojiObject = require('./messageHandler.json');
 
 function getAllCommands(client, message) {
   const embed = new MessageEmbed()
@@ -27,7 +28,9 @@ function getAllCommands(client, message) {
 
   client.categories.map(category => {
     embed.addField(
-      '> ' + category.toUpperCase() || '-',
+      '> ' + emojiObject[category] ||
+        '😁' + ' ' + category.toUpperCase() ||
+        '-',
       commandsListToString(category) || '-',
     );
   });
