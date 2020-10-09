@@ -1,5 +1,9 @@
-const { MessageEmbed } = require('discord.js');
-const { prefix } = require('../../config.json');
+const {
+  MessageEmbed
+} = require('discord.js');
+const {
+  prefix
+} = require('../../config.json');
 const emojiObject = require('./messageHandler.json');
 
 function getAllCommands(client, message) {
@@ -28,9 +32,7 @@ function getAllCommands(client, message) {
 
   client.categories.map(category => {
     embed.addField(
-      '> ' + emojiObject[category] ||
-        '😁' + ' ' + category.toUpperCase() ||
-        '-',
+      `> ${emojiObject[category]} ${category.toUpperCase()} `,
       commandsListToString(category) || '-',
     );
   });
@@ -63,15 +65,19 @@ function getSingleCommand(client, message, input) {
   //   info += `\n**Aliases**: ${command.aliases.map(a => `\`${a}\``).join(', ')}`;
   // if (command.description) info += `\n**Description**: ${command.description}`;
 
-  // if (command.usage) {
-  //   info += `\n**Usage**: ${command.usage}`;
-  //   embed.setFooter(`Syntax: <> = required, [] = optional`);
-  // }
+  if (command.usage) {
+    embed.addField('📘 Usage', '```css\n' + prefix + command.name + ' ' + command.usage + '\n```')
+    embed.setFooter(`<> = required - [] = optional`);
+  }
+
+  if (command.description) {
+    embed.addField('📝 Description', '```\n' + command.description + '\n```');
+  }
 
   message.channel.send(
     embed
-      .setColor('GREEN')
-      .setTitle(`❕ Usage for \`${prefix}${command.name} \``),
+    .setColor('GREEN')
+    .setTitle(`❕ Usage for \`${prefix}${command.name} \``),
   );
 }
 
@@ -88,7 +94,7 @@ const helpCommand = {
   aliases: ['h'],
   category: 'info',
   description: 'Gives a list of all the commands',
-  usage: '[command | alias]',
+  usage: '[command]',
   run,
 };
 
