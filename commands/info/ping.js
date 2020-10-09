@@ -1,16 +1,14 @@
-const { MessageEmbed } = require('discord.js');
+const createEmbed = require('../../utils/disocrdUtils');
 
 async function run(client, message, args) {
   const waitingMessage = await message.channel.send(
-    new MessageEmbed()
-      .setColor('#ff9900')
-      .setTitle('🌐 Latency 🌐')
-      .addField('✍️ Pinging ...', 'Results will be delivered shortly !'),
+    createEmbed('#ff9900', '🌐 Latency 🌐').addField(
+      '✍️ Pinging ...',
+      'Results will be delivered shortly !',
+    ),
   );
 
-  const pingMessage = new MessageEmbed()
-    .setColor('#ff9900')
-    .setTitle('🌐 Latency 🌐')
+  const pingMessage = createEmbed('#ff9900', '🌐 Latency 🌐')
     .addField(
       '🤖 Bot Latency :',
       `**${Math.floor(waitingMessage.createdAt - message.createdAt)}** ms`,
