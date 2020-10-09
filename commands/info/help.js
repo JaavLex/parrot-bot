@@ -4,9 +4,9 @@ const { prefix } = require('../../config.json');
 function getAllCommands(client, message) {
   const embed = new MessageEmbed()
     .setColor('#32CD32')
-    .setTitle('**Command list :**')
-    .addField(
-      `To know usage of one command use \`${prefix}/help\` <command> 😁`,
+    .setTitle('**📖 Command list :**')
+    .setDescription(
+      `To know usage of one command use \`${prefix}help\` <command> 😉`,
     )
     .setThumbnail(
       'https://i2.wp.com/thesecuritynoob.com/wp-content/uploads/2020/02/632px-Parrot_Logo.png?fit=632%2C599&ssl=1',
@@ -35,30 +35,42 @@ function getAllCommands(client, message) {
   message.channel.send(embed);
 }
 
-// function getSingleCommand(client, message, input) {
-//   const embed = new MessageEmbed();
+function getSingleCommand(client, message, input) {
+  const embed = new MessageEmbed();
 
-//   const cmd =
-//     client.commands.get(input.toLowerCase()) ||
-//     client.commands.get(client.aliases.get(input.toLowerCase()));
+  const command =
+    client.commands.get(input.toLowerCase()) ||
+    client.commands.get(client.aliases.get(input.toLowerCase()));
 
-//   let info = `No info for command : **${input.toLowerCase()}**`;
+  let info = `No info for command : **${input.toLowerCase()}**`;
 
-//   if (!cmd) {
-//     return message.channel.send(embed.setColor('RED').setDescription(info));
-//   }
+  if (!command) {
+    const errorMessage = message.channel.send(
+      embed.setColor('RED').setDescription(info),
+    );
+    setTimeout(() => errorMessage.destroy(), 2000);
+    return;
+  }
 
-//   if (cmd.name) info = `**Command name**: ${cmd.name}`;
-//   if (cmd.aliases)
-//     info += `\n**Aliases**: ${cmd.aliases.map(a => `\`${a}\``).join(', ')}`;
-//   if (cmd.description) info += `\n**Description**: ${cmd.description}`;
-//   if (cmd.usage) {
-//     info += `\n**Usage**: ${cmd.usage}`;
-//     embed.setFooter(`Syntax: <> = required, [] = optional`);
-//   }
+  if (command.name) {
+    embed.addField('📞 Name', '```css\n' + command.name + '\n```');
+  }
 
-//   return message.channel.send(embed.setColor('GREEN').setDescription(info));
-// }
+  // if (command.aliases)
+  //   info += `\n**Aliases**: ${command.aliases.map(a => `\`${a}\``).join(', ')}`;
+  // if (command.description) info += `\n**Description**: ${command.description}`;
+
+  // if (command.usage) {
+  //   info += `\n**Usage**: ${command.usage}`;
+  //   embed.setFooter(`Syntax: <> = required, [] = optional`);
+  // }
+
+  message.channel.send(
+    embed
+      .setColor('GREEN')
+      .setTitle(`❕ Usage for \`${prefix}${command.name} \``),
+  );
+}
 
 async function run(client, message, args) {
   if (args[0]) {
