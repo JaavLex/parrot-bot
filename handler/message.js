@@ -10,6 +10,8 @@ async function onMessage(message, client) {
 
   const command = args.shift().toLowerCase();
 
+  console.log(`💣 ${message.author.username} run ${currentPrefix}${command}`);
+
   let clientCommand = client.commands.get(command);
 
   if (!clientCommand) {
