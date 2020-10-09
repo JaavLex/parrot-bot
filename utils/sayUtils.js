@@ -8,13 +8,33 @@ function generateSayText(text) {
   let returnedText = '';
 
   returnedText += generateLine(text.length, '_');
+  returnedText += generateCommandBlock(text);
+  returnedText += generateLine(text.length, '-');
 
   return returnedText;
 }
 
 // private
-function generateLine(length, char = '_') {
-  if (length < 40) {
+function generateCommandBlock(text) {
+  const stringArray = generateTextArray(text);
+  console.log(stringArray);
+  if (stringArray.length === 1) {
+    return `< ${stringArray[0]} >\n`;
+  }
+
+  let string = `/ ${stringArray[0]} \\\n`;
+
+  for (let i = 1; i < stringArray.length - 1; i++) {
+    string += `| ${stringArray[i]} |\n`;
+  }
+
+  string += `\\ ${stringArray[stringArray.length - 1]} /\n`;
+
+  return string;
+}
+
+function generateLine(length, char = '_', maxLength = 40) {
+  if (length < maxLength) {
     let string = '  ';
     for (let i = 0; i <= length; i++) {
       string += char;
@@ -24,33 +44,32 @@ function generateLine(length, char = '_') {
 
   let string = '  ';
 
-  for (let i = 0; i <= 40; i++) {
+  for (let i = 0; i <= maxLength; i++) {
     string += char;
   }
+
   return string + ' \n';
 }
 
-function generateText(text) {
+function generateTextArray(text, maxLength = 40) {
   const splitedWord = text.split(' ');
 
   let result = [];
+
   let index = 0;
 
-  let countChar = 0;
-
   splitedWord.forEach(word => {
-    countChar = countChar + word.length;
+    const countChar =
+      ((result[index] && result[index].length) || 0) + word.length;
 
-    if (countChar <= 40) {
-      const newValue = result[index] ? result[index] + ' ' + word : word;
-
-      result[index] = newValue;
-    } else {
-      countChar = 0;
+    if (countChar >= maxLength) {
       index += 1;
-      const newValue = result[index] ? result[index] + ' ' + word : word;
+    }
 
-      result[index] = newValue;
+    if (result[index]) {
+      result[index] = result[index] + ' ' + word;
+    } else {
+      result[index] = word;
     }
   });
 
