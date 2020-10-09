@@ -30,6 +30,31 @@ function generateLine(length, char = '_') {
   return string + ' \n';
 }
 
-function generateText(text) {}
+function generateText(text) {
+  const splitedWord = text.split(' ');
+
+  let result = [];
+  let index = 0;
+
+  let countChar = 0;
+
+  splitedWord.forEach(word => {
+    countChar = countChar + word.length;
+
+    if (countChar <= 40) {
+      const newValue = result[index] ? result[index] + ' ' + word : word;
+
+      result[index] = newValue;
+    } else {
+      countChar = 0;
+      index += 1;
+      const newValue = result[index] ? result[index] + ' ' + word : word;
+
+      result[index] = newValue;
+    }
+  });
+
+  return result;
+}
 
 module.exports = generateSayText;
