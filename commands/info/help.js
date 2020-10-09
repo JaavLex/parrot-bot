@@ -11,7 +11,7 @@ function getAllCommands(client, message) {
     .setColor('#0af2fa')
     .setTitle('**📖 Command list :**')
     .setDescription(
-      `To know usage of one command use \`${prefix}help\` <command> 😉`,
+      `Know more about a specific command, using \`${prefix}help\` [command] 😉`,
     )
     .setThumbnail(
       'https://i2.wp.com/thesecuritynoob.com/wp-content/uploads/2020/02/632px-Parrot_Logo.png?fit=632%2C599&ssl=1',
