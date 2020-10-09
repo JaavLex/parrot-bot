@@ -8,7 +8,7 @@ const emojiObject = require('./messageHandler.json');
 
 function getAllCommands(client, message) {
   const embed = new MessageEmbed()
-    .setColor('#32CD32')
+    .setColor('#0af2fa')
     .setTitle('**📖 Command list :**')
     .setDescription(
       `To know usage of one command use \`${prefix}help\` <command> 😉`,
