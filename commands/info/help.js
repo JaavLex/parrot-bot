@@ -1,17 +1,13 @@
-const {
-  MessageEmbed
-} = require('discord.js');
-const {
-  prefix
-} = require('../../config.json');
-const emojiObject = require('./messageHandler.json');
+const { MessageEmbed } = require('discord.js');
+const { prefix } = require('../../config.json');
+const emojiObject = require('./categories-label.json');
 
 function getAllCommands(client, message) {
   const embed = new MessageEmbed()
     .setColor('#0af2fa')
     .setTitle('**📖 Command list :**')
     .setDescription(
-      `Know more about a specific command, using \`${prefix}help\` [command] 😉`,
+      `Know more about a specific command using \`${prefix}help\` [command] 😉`,
     )
     .setThumbnail(
       'https://i2.wp.com/thesecuritynoob.com/wp-content/uploads/2020/02/632px-Parrot_Logo.png?fit=632%2C599&ssl=1',
@@ -61,12 +57,11 @@ function getSingleCommand(client, message, input) {
     embed.addField('📞 Name', '```css\n' + command.name + '\n```');
   }
 
-  // if (command.aliases)
-  //   info += `\n**Aliases**: ${command.aliases.map(a => `\`${a}\``).join(', ')}`;
-  // if (command.description) info += `\n**Description**: ${command.description}`;
-
   if (command.usage) {
-    embed.addField('📘 Usage', '```css\n' + prefix + command.name + ' ' + command.usage + '\n```')
+    embed.addField(
+      '📘 Usage',
+      '```css\n' + prefix + command.name + ' ' + command.usage + '\n```',
+    );
     embed.setFooter(`<> = required - [] = optional`);
   }
 
@@ -76,8 +71,8 @@ function getSingleCommand(client, message, input) {
 
   message.channel.send(
     embed
-    .setColor('GREEN')
-    .setTitle(`❕ Usage for \`${prefix}${command.name} \``),
+      .setColor('GREEN')
+      .setTitle(`❕ Usage for \`${prefix}${command.name} \``),
   );
 }
 
