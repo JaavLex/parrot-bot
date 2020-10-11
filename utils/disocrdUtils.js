@@ -9,18 +9,12 @@ const { MessageEmbed } = require('discord.js');
  * @param {boolean} timestamp The fotter of the embed
  * @return {MessageEmbed} A Discord Embed
  */
-function createEmbed(color, title, footer, timestamp) {
-  const embed = new MessageEmbed();
+function createEmbed(color, title, footer, timestamp = true) {
+  const embed = new MessageEmbed().setColor(color);
 
-  embed.setColor(color).setTitle(title);
-
-  if (footer) {
-    embed.setFooter(footer);
-  }
-
-  if (timestamp) {
-    embed.setTimestamp();
-  }
+  title && embed.setTitle(title);
+  footer && embed.setFooter(footer);
+  timestamp && embed.setTimestamp();
 
   return embed;
 }

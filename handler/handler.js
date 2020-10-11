@@ -23,6 +23,7 @@ function handler(client) {
         pull.aliases.forEach(alias => client.aliases.set(alias, pull.name));
     }
   });
-  console.log(table.toString());
+
+  console.info(`Detected commands :\n`, table.toString());
 }
 module.exports = handler;

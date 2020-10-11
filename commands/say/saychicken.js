@@ -5,7 +5,13 @@ const generateSayText = require('../../utils/sayUtils');
 async function run(client, message, args) {
   const sentence = args.join(' ') || 'Puk puk Pukaaakka';
 
-  const embed = createEmbed('#ff9900', '🐓 Chicken say');
+  const embed = createEmbed(
+    '#ff9900',
+    `🐓 ${message.author.username} invoke **El Pollo**`,
+    `Asked by ${message.author.username}`,
+  );
+
+  0 / 10;
 
   const chicken = `
    \\   __//
@@ -26,7 +32,7 @@ async function run(client, message, args) {
 const sayChikenCommand = {
   name: 'chickensay',
   category: 'say',
-  description: 'Say bdd chicken',
+  description: 'You invoke a chicken to say what you want !',
   run,
 };
 

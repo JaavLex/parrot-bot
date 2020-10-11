@@ -10,13 +10,22 @@ async function onMessage(message, client) {
 
   const command = args.shift().toLowerCase();
 
-  console.log(`💣 ${message.author.username} run ${currentPrefix}${command}`);
-
   let clientCommand = client.commands.get(command);
 
   if (!clientCommand) {
     clientCommand = client.commands.get(client.aliases.get(command));
-  } else {
+  }
+
+  console.info(
+    '\x1b[36m',
+    `▶️ ${message.author.username} run`,
+    '⭕️\x1b[31m',
+    currentPrefix + command,
+    '\x1b[36m at ' + new Date().toLocaleString(),
+    '\x1b[0m',
+  );
+
+  if (clientCommand) {
     clientCommand.run(client, message, args);
   }
 }
