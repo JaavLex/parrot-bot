@@ -19,14 +19,19 @@ async function onMessage(message, client) {
   console.info(
     '\x1b[36m',
     `▶️ ${message.author.username} run`,
-    '⭕️\x1b[31m',
+    '♨️\x1b[31m',
     currentPrefix + command,
     '\x1b[36m at ' + new Date().toLocaleString(),
     '\x1b[0m',
   );
 
-  if (clientCommand) {
-    clientCommand.run(client, message, args);
+  try {
+    if (clientCommand) {
+      clientCommand.run(client, message, args);
+    }
+  } catch (e) {
+    console.log(e);
+    message.channel.send('Erreur : ' + '```' + 'o' + '```');
   }
 }
 
