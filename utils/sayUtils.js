@@ -5,19 +5,18 @@
  * @return {string} Formatted string
  */
 function generateSayText(text) {
-  let returnedText = '';
+  const contentLines = generateTextLine(text);
+  const lineLength = contentLines.length > 1 ? 40 : text.length;
 
-  returnedText += generateLine(text.length, '_');
-  returnedText += generateCommandBlock(text);
-  returnedText += generateLine(text.length, '-', true);
+  const startLine = generateLine(lineLength, '_') + '\n';
+  const endLine = generateLine(lineLength, '-');
 
-  return returnedText;
+  return `${startLine}${contentLines}${endLine}`;
 }
 
-// private
 const defaultMaxLength = 40;
 
-function generateCommandBlock(text) {
+function generateTextLine(text) {
   const stringArray = generateTextArray(text);
 
   if (stringArray.length === 1) {
@@ -35,24 +34,15 @@ function generateCommandBlock(text) {
   return string;
 }
 
-function generateLine(
-  length,
-  char = '_',
-  isEnd = false,
-  maxLength = defaultMaxLength,
-) {
+function generateLine(length, char = '_', maxLength = defaultMaxLength) {
   const lineLength = length < maxLength ? length : maxLength;
 
-  let result = '  ';
+  let line = '  ';
   for (let i = 0; i <= lineLength; i++) {
-    result += char;
+    line += char;
   }
 
-  if (isEnd) {
-    return result;
-  } else {
-    return result + ' \n';
-  }
+  return line;
 }
 
 function fillString(string, maxLength = defaultMaxLength - 1) {
@@ -60,52 +50,68 @@ function fillString(string, maxLength = defaultMaxLength - 1) {
     return string;
   }
 
-  let result = string;
   let missingChar = maxLength - string.length;
 
   for (let i = 0; i <= missingChar; i++) {
-    result += ' ';
+    string += ' ';
   }
 
-  return result;
+  return string;
 }
 
 function generateTextArray(text, maxLength = defaultMaxLength) {
-  const splitedWord = text.split(' ');
-  let result = [];
+  const splitedWords = text.split(' ');
+  const textArray = [];
+
   let index = 0;
 
-  splitedWord.forEach(word => {
-    const countChar =
-      ((result[index] && result[index].length) || 0) + word.length;
+  splitedWords.forEach(word => {
+    const totalChar =
+      ((textArray[index] && textArray[index].length) || 0) + word.length;
 
-    if (countChar >= maxLength && result[index]) {
+    if (totalChar >= maxLength && textArray[index]) {
       index += 1;
     }
 
-    if (result[index]) {
-      result[index] = `${result[index]} ${word}`;
+    if (textArray[index]) {
+      if (word.includes('\n')) {
+        const splitedWord = word.split('\n');
+
+        textArray[index] = `${textArray[index]} ${splitedWord[0]}`;
+        index++;
+        // if multiple \n, put the last correct knew word
+        textArray[index] = splitedWord[1] || splitedWord[2] || splitedWord[3];
+      } else {
+        textArray[index] = `${textArray[index]} ${word}`;
+      }
     } else {
       if (word.length > defaultMaxLength) {
         const ratio = Math.ceil(word.length / maxLength);
 
         for (let i = 0; i < ratio; i++) {
-          result[i + index] = word.substring(
+          textArray[i + index] = word.substring(
             i * maxLength,
             (i + 1) * maxLength,
           );
         }
 
-        // TODO ENELVER LES RETOURS ä LIGNE
-
         index += ratio;
       } else {
-        result[index] = word;
+        if (word.includes('\n')) {
+          const splitedWord = word.split('\n');
+
+          textArray[index] = splitedWord[0];
+          index++;
+          // if multiple \n, put the last correct knew word
+          textArray[index] = splitedWord[1] || splitedWord[2] || splitedWord[3];
+        } else {
+          textArray[index] = word;
+        }
       }
     }
   });
 
-  return result;
+  return textArray;
 }
 
 module.exports = generateSayText;

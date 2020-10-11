@@ -13,7 +13,7 @@ if (!discordToken) {
   throw '⭕️ .env: DISCORD_TOKEN is missing.';
 }
 
-console.info('ℹ️ server bot starting.');
+console.info('\n\n\n\x1b[34m%s\x1b[0m', '⌛ bot starting...');
 
 const client = new Client();
 
@@ -26,7 +26,7 @@ handler(client);
 client.on('message', message => onMessage(message, client));
 
 client.once('ready', () => {
-  console.info('✨ The bot is running.');
+  console.info('\x1b[33m%s\x1b[0m', '✨ The bot is running.');
 });
 
 client.login(discordToken);

@@ -5,6 +5,12 @@ developped !
 
 Current Project Board https://github.com/TacticsCH/parrot-bot/projects/1
 
+## console protocole
+
+`console.info` : info utile for debug
+
+`console.log` : test log
+
 ## package.json scripts
 
 `npm start` : run the server
