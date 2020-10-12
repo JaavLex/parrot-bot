@@ -1,11 +1,10 @@
 const { MessageEmbed } = require('discord.js');
 const { prefix } = require('../../config.json');
+const createEmbed = require('../../utils/disocrdUtils');
 const emojiObject = require('./categories-label.json');
 
 function getAllCommands(client, message) {
-  const embed = new MessageEmbed()
-    .setColor('#0af2fa')
-    .setTitle('**📖 Command list :**')
+  const embed = createEmbed('#0af2fa', '**📖 Command list :**')
     .setDescription(
       `Know more about a specific command using \`${prefix}help\` [command] 😉`,
     )
@@ -37,7 +36,7 @@ function getAllCommands(client, message) {
 }
 
 function getSingleCommand(client, message, input) {
-  const embed = new MessageEmbed();
+  const embed = createEmbed();
 
   const command =
     client.commands.get(input.toLowerCase()) ||
