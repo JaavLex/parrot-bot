@@ -11,10 +11,6 @@ async function run(client, message, args) {
     `Asked by ${message.author.username}`,
   );
 
-  const x = undefined;
-
-  x.length;
-
   const chicken = `
    \\   __//
     \\ / . .\\

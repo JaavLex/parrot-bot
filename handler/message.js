@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { ReactionUserManager } = require('discord.js');
 const { prefix } = require('../config.json');
 
 const currentPrefix = process.env.DEV_PREFIX || prefix;
@@ -27,11 +28,18 @@ async function onMessage(message, client) {
 
   try {
     if (clientCommand) {
-      clientCommand.run(client, message, args);
+      await clientCommand.run(client, message, args);
+    } else {
+      const warningMessage = await message.channel.send(
+        `⚠️ Unknow command **${currentPrefix}${command}**`,
+      );
+
+      setTimeout(() => {
+        warningMessage.delete();
+      }, 2000);
     }
   } catch (e) {
-    console.log(e);
-    message.channel.send('Erreur : ' + '```' + 'o' + '```');
+    message.channel.send(`⚠️ Error : ${String(e)}`);
   }
 }
 
