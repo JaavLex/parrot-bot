@@ -11,8 +11,6 @@ async function run(client, message, args) {
     `Asked by ${message.author.username}`,
   );
 
-  0 / 10;
-
   const chicken = `
    \\   __//
     \\ / . .\\
