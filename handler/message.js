@@ -29,6 +29,9 @@ async function onMessage(message, client) {
 
   if (clientCommand) {
     clientCommand.run(client, message, args);
+    if (clientCommand.autoMessageDeletion) {
+      message.delete();
+    }
   }
 }
 
