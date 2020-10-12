@@ -7,7 +7,7 @@ async function run(client, message, args) {
 
   const embed = createEmbed(
     '#ff9900',
-    `🐓 ${message.author.username} invoke **El Pollo**`,
+    `🐓 ${message.author.username} invoked **El Pollo**`,
     `Asked by ${message.author.username}`,
   );
 
