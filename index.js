@@ -25,8 +25,12 @@ handler(client);
 
 client.on('message', message => onMessage(message, client));
 
-client.once('ready', () => {
+client.on('ready', () => {
   console.info('\x1b[33m%s\x1b[0m', '✨ The bot is running.');
+  client.user.setActivity(
+    `🦜 Squawk! Type ${prefix}help for a list of commands !`,
+    'PLAYING',
+  );
 });
 
 client.login(discordToken);
