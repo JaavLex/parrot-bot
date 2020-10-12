@@ -39,8 +39,11 @@ async function onMessage(message, client) {
       }, 2000);
     }
   } catch (e) {
-    console.info("⚠️ Error", e)
-    message.channel.send(`⚠️ Error : ${String(e)}`);
+    if (process.env.BOT_ENV === 'development') {
+      message.channel.send(`⚠️ Error : ${String(e)}`);
+    } else {
+      message.channel.send(`⚠️ An error has been encountered. Call an admin.`);
+    }
   }
 }
 
