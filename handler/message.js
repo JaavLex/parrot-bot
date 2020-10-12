@@ -31,7 +31,7 @@ async function onMessage(message, client) {
       await clientCommand.run(client, message, args);
 
       if (clientCommand.autoMessageDeletion) {
-        message.delete();
+        await message.delete();
       }
     } else {
       const warningMessage = await message.channel.send(
