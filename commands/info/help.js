@@ -1,4 +1,3 @@
-const { MessageEmbed } = require('discord.js');
 const { prefix } = require('../../config.json');
 const createEmbed = require('../../utils/disocrdUtils');
 const emojiObject = require('./categories-label.json');
@@ -10,8 +9,7 @@ function getAllCommands(client, message) {
     )
     .setThumbnail(
       'https://i2.wp.com/thesecuritynoob.com/wp-content/uploads/2020/02/632px-Parrot_Logo.png?fit=632%2C599&ssl=1',
-    )
-    .setTimestamp();
+    );
 
   function commandsListToString(category) {
     const commandsByCategory = client.commands
@@ -36,43 +34,42 @@ function getAllCommands(client, message) {
 }
 
 function getSingleCommand(client, message, input) {
-  const embed = createEmbed();
-
   const command =
     client.commands.get(input.toLowerCase()) ||
     client.commands.get(client.aliases.get(input.toLowerCase()));
 
-  let info = `No info for command : **${input.toLowerCase()}**`;
+  const embed = createEmbed(
+    '#27ae60',
+    `💡 Usage for \`${prefix}${command.name} \``,
+  );
 
   if (!command) {
     const errorMessage = message.channel.send(
-      embed.setColor('RED').setDescription(info),
+      embed
+        .setColor('#c0392b')
+        .setDescription(`No info for command : **${input.toLowerCase()}**`),
     );
     setTimeout(() => errorMessage.destroy(), 2000);
     return;
   }
 
   if (command.name) {
-    embed.addField('📞 Name', '```css\n' + command.name + '\n```');
+    embed.addField('> 🔦 Name', '```css\n' + command.name + '\n```');
   }
 
   if (command.usage) {
     embed.addField(
-      '📘 Usage',
+      '> 📘 Usage',
       '```css\n' + prefix + command.name + ' ' + command.usage + '\n```',
     );
     embed.setFooter(`<> = required - [] = optional`);
   }
 
   if (command.description) {
-    embed.addField('📝 Description', '```\n' + command.description + '\n```');
+    embed.addField('> 📝 Description', '```\n' + command.description + '\n```');
   }
 
-  message.channel.send(
-    embed
-      .setColor('GREEN')
-      .setTitle(`❕ Usage for \`${prefix}${command.name} \``),
-  );
+  message.channel.send(embed);
 }
 
 async function run(client, message, args) {

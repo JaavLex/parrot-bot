@@ -19,8 +19,7 @@ async function run(client, message, args) {
    \\-      )
     \\_____/
   _____|_|____
-       " "
-  `;
+       " "`;
 
   embed.setDescription('```\n' + generateSayText(sentence) + chicken + '\n```');
 
