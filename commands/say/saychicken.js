@@ -31,7 +31,7 @@ const sayChikenCommand = {
   name: 'chickensay',
   category: 'say',
   description: 'You invoke a chicken to say what you want !',
-  messageDeletion: true,
+  autoMessageDeletion: true,
   run,
 };
 

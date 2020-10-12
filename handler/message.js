@@ -28,9 +28,8 @@ async function onMessage(message, client) {
   );
 
   if (clientCommand) {
-    console.log(command);
     clientCommand.run(client, message, args);
-    if (client.commands.get(command).messageDeletion == true) {
+    if (clientCommand.autoMessageDeletion) {
       message.delete();
     }
   }

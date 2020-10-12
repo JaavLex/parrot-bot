@@ -89,7 +89,7 @@ const helpCommand = {
   category: 'info',
   description: 'Gives a list of all the commands',
   usage: '[command]',
-  messageDeletion: false,
+  autoMessageDeletion: false,
   run,
 };
 
