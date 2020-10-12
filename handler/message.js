@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { ReactionUserManager } = require('discord.js');
 const { prefix } = require('../config.json');
 
 const currentPrefix = process.env.DEV_PREFIX || prefix;
@@ -19,16 +20,33 @@ async function onMessage(message, client) {
   console.info(
     '\x1b[36m',
     `▶️ ${message.author.username} run`,
-    '⭕️\x1b[31m',
+    '♨️\x1b[31m',
     currentPrefix + command,
     '\x1b[36m at ' + new Date().toLocaleString(),
     '\x1b[0m',
   );
 
-  if (clientCommand) {
-    clientCommand.run(client, message, args);
-    if (clientCommand.autoMessageDeletion) {
-      message.delete();
+  try {
+    if (clientCommand) {
+      await clientCommand.run(client, message, args);
+
+      if (clientCommand.autoMessageDeletion) {
+        await message.delete();
+      }
+    } else {
+      const warningMessage = await message.channel.send(
+        `⚠️ Unknow command **${currentPrefix}${command}**`,
+      );
+
+      setTimeout(() => {
+        warningMessage.delete();
+      }, 2000);
+    }
+  } catch (e) {
+    if (process.env.BOT_ENV === 'development') {
+      message.channel.send(`⚠️ Error : ${String(e)}`);
+    } else {
+      message.channel.send(`⚠️ An error has been encountered. Call an admin.`);
     }
   }
 }
