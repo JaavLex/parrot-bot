@@ -16,7 +16,18 @@ async function onMessage(message, client) {
 
   if (!clientCommand) {
     clientCommand = client.commands.get(client.aliases.get(command));
-  } else {
+  }
+
+  console.info(
+    '\x1b[36m',
+    `▶️ ${message.author.username} run`,
+    '⭕️\x1b[31m',
+    currentPrefix + command,
+    '\x1b[36m at ' + new Date().toLocaleString(),
+    '\x1b[0m',
+  );
+
+  if (clientCommand) {
     clientCommand.run(client, message, args);
   }
 }
