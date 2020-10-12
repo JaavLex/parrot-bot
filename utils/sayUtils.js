@@ -6,7 +6,7 @@
  */
 function generateSayText(text) {
   const contentLines = generateTextLine(text);
-  const lineLength = contentLines.length > 1 ? 40 : text.length;
+  const lineLength = contentLines.split('\n').length > 2 ? 40 : text.length;
 
   const startLine = generateLine(lineLength, '_') + '\n';
   const endLine = generateLine(lineLength, '-');
