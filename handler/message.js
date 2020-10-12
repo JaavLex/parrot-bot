@@ -29,6 +29,10 @@ async function onMessage(message, client) {
   try {
     if (clientCommand) {
       await clientCommand.run(client, message, args);
+
+      if (clientCommand.autoMessageDeletion) {
+        message.delete();
+      }
     } else {
       const warningMessage = await message.channel.send(
         `⚠️ Unknow command **${currentPrefix}${command}**`,
