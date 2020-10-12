@@ -23,7 +23,7 @@ const pingCommand = {
   name: 'ping',
   category: 'info',
   description: "Returns bot's latency and API' latency",
-  messageDeletion: false,
+  autoMessageDeletion: false,
   run,
 };
 
