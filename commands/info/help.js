@@ -60,7 +60,7 @@ function getSingleCommand(client, message, input) {
   if (command.aliases) {
     embed.addField(
       '> 💬 Aliases',
-      '```css\n' + command.aliases.map(alias => `${alias}`) + '\n```',
+      '```css\n' + command.aliases.join(' | ') + '\n```',
     );
   }
 
