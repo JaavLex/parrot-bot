@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { ReactionUserManager } = require('discord.js');
 const { prefix } = require('../config.json');
+const { createEmbedError } = require('../utils/errorUtils');
 
 const currentPrefix = process.env.DEV_PREFIX || prefix;
 
@@ -42,9 +43,14 @@ async function onMessage(message, client) {
         warningMessage.delete();
       }, 2000);
     }
-  } catch (e) {
+  } catch (error) {
+    if (error.custom) {
+      message.channel.send(createEmbedError(error));
+      return;
+    }
+
     if (process.env.BOT_ENV === 'development') {
-      message.channel.send(`⚠️ Error : ${String(e)}`);
+      message.channel.send(`⚠️ Error : ${String(error)}`);
     } else {
       message.channel.send(`⚠️ An error has been encountered. Call an admin.`);
     }
