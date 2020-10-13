@@ -6,6 +6,7 @@ const { prefix } = require('./config.json');
 const handler = require(`./handler/handler.js`);
 const fs = require('fs');
 const onMessage = require('./handler/message');
+const { consoleColor } = require('./utils/functions');
 
 const discordToken = process.env.DISCORD_TOKEN;
 const environment = process.env.BOT_ENV;
@@ -15,8 +16,8 @@ if (!discordToken) {
 }
 
 console.info(
-  '\n\n\n\x1b[34m%s\x1b[0m',
-  `⌛ bot starting in "${environment}" environment...`,
+  '\n\n\n\n',
+  consoleColor('logger', `⌛ bot starting in "${environment}" environment...`),
 );
 
 const client = new Client();
@@ -30,7 +31,7 @@ handler(client);
 client.on('message', message => onMessage(message, client));
 
 client.on('ready', () => {
-  console.info('\x1b[33m%s\x1b[0m', '✨ The bot is running.');
+  console.info(consoleColor('success', '✨ The bot is running.'));
   client.user.setActivity(
     `🦜 Squawk! Type ${prefix}help for a list of commands !`,
     'PLAYING',
