@@ -41,11 +41,17 @@ async function onMessage(message, client) {
 
       setTimeout(() => {
         warningMessage.delete();
-      }, 2000);
+      }, 4000);
     }
   } catch (error) {
     if (error.custom) {
-      message.channel.send(createEmbedError(error));
+      const errorMessage = await message.channel.send(createEmbedError(error));
+
+      if (error.autoMessageDeletion) {
+        setTimeout(() => {
+          errorMessage.delete();
+        }, 4000);
+      }
       return;
     }
 

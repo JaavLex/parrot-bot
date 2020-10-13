@@ -1,16 +1,16 @@
 const createEmbed = require('./disocrdUtils');
 
 /**
- * Function to create Embed easier.
+ * Function to create error embed easier.
  *
- * @param {{title: string, error: string, solution: string}} error The color of the embed
+ * @param {{title: string, description: string, solution: string}} error error
  * @return {MessageEmbed} A Discord Embed
  */
 function createEmbedError(error) {
   const embed = createEmbed('#c0392b', ' ⚠️ ' + error.title);
 
-  if (error.error) {
-    embed.addField('🔴 Error', '```\n' + error.error + '\n```');
+  if (error.description) {
+    embed.addField('🔴 Error', '```\n' + error.description + '\n```');
   }
 
   if (error.solution) {
@@ -21,15 +21,16 @@ function createEmbedError(error) {
 }
 
 /**
- * Function to create Embed easier.
+ * To create error object sended to `createEmbedError`
  *
- * @param {string} title The color of the embed
- * @param {string} error The color of the embed
- * @param {string} solution The color of the embed
- * @return {MessageEmbed} A Discord Embed
+ * @param {string} title error's title
+ * @param {string} description error's description
+ * @param {string} solution error's solution
+ * @param {boolean} autoDeleteError true if error need to be autoDelete
+ * @return {{custom: boolean, title: string, description: string, solution: string, autoDeleteError: boolean}}
  */
-function createError(title, error, solution) {
-  return { custom: true, title, error, solution };
+function createError(title, description, solution, autoDeleteError) {
+  return { custom: true, title, error: description, solution, autoDeleteError };
 }
 
 exports.createError = createError;
