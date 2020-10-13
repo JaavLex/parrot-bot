@@ -8,12 +8,16 @@ const fs = require('fs');
 const onMessage = require('./handler/message');
 
 const discordToken = process.env.DISCORD_TOKEN;
+const environment = process.env.BOT_ENV;
 
 if (!discordToken) {
   throw '⭕️ .env: DISCORD_TOKEN is missing.';
 }
 
-console.info('\n\n\n\x1b[34m%s\x1b[0m', '⌛ bot starting...');
+console.info(
+  '\n\n\n\x1b[34m%s\x1b[0m',
+  `⌛ bot starting in "${environment}" environment...`,
+);
 
 const client = new Client();
 
