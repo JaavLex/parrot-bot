@@ -33,7 +33,7 @@ throw createError(
 );
 ```
 
-## .env
+## - .env
 
 BOT_ENV= development | production DISCORD_TOKEN=You're discord bot Token
 DEV_PREFIX=Custom prefix for dev
