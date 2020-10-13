@@ -33,5 +33,21 @@ function createError(title, description, solution, autoDeleteError) {
   return { custom: true, title, error: description, solution, autoDeleteError };
 }
 
+/**
+ * To create error object sended to `createEmbedError`
+ *
+ * @param {string} prefix command prefix
+ * @param {string} command command
+ * @return {MessageEmbed} A Discord Embed
+ */
+function createUnknowCommandError(prefix, command) {
+  return createEmbedError({
+    title: 'Unknown command',
+    description: `${prefix}${command} is unknown`,
+    solution: `Type ${prefix}help to see available commands.`,
+  });
+}
+
 exports.createError = createError;
 exports.createEmbedError = createEmbedError;
+exports.createUnknowCommandError = createUnknowCommandError;
