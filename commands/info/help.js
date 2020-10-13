@@ -57,6 +57,13 @@ function getSingleCommand(client, message, input) {
     embed.addField('> 🔦 Name', '```css\n' + command.name + '\n```');
   }
 
+  if (command.aliases) {
+    embed.addField(
+      '> 🔦 Aliases',
+      '```css\n' + command.aliases.map(alias => `${alias}`) + '\n```',
+    );
+  }
+
   if (command.usage) {
     embed.addField(
       '> 📘 Usage',
