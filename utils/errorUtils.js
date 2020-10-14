@@ -1,4 +1,4 @@
-const { createEmbed } = require('./disocrdUtils');
+const { createEmbed } = require('./discordUtils');
 
 /**
  * Function to create error embed easier.
@@ -26,11 +26,11 @@ function createEmbedError(error) {
  * @param {string} title error's title
  * @param {string} description error's description
  * @param {string} solution error's solution
- * @param {boolean} autoDeleteError true if error need to be autoDelete
+ * @param {boolean} autoMessageDeletion true if error need to be autoDelete
  * @return {{custom: boolean, title: string, description: string, solution: string, autoDeleteError: boolean}}
  */
-function createError(title, description, solution, autoDeleteError) {
-  return { custom: true, title, description, solution, autoDeleteError };
+function createError(title, description, solution, autoMessageDeletion) {
+  return { custom: true, title, description, solution, autoMessageDeletion };
 }
 
 /**

@@ -1,24 +1,29 @@
-const createEmbed = require('../../utils/disocrdUtils');
+const { createUserEmbed } = require('../../utils/discordUtils');
+const { createError } = require('../../utils/errorUtils');
 const giphy = require('giphy-api')();
 
 async function run(client, message, args) {
   const userQuery = args[0] || 'parrot';
 
   let gifQuery = await giphy.search(userQuery).then(function (res) {
-    return res.data[Math.floor(Math.random() * 26)].images.original.url;
+    const result = res.data[Math.floor(Math.random() * 26)];
+    if (!result) {
+      throw createError(
+        'No results to your query were found !',
+        'Your query could not be found by the giphy API.',
+        'Try to specify your query in a short specific keyword',
+        true,
+      );
+    }
+    return result.images.original.url;
   });
 
-  try {
-    const gifMessage = await message.channel.send(
-      createEmbed(
-        '#ff9900',
-        `📷 ${message.author.username} asked for a ${userQuery}'s gif !`,
-        `Asked by ${message.author.username}`,
-      ).setImage(gifQuery),
-    );
-  } catch (e) {
-    createError('No results were found !', e, 'Search smth else', true);
-  }
+  const gifMessage = await message.channel.send(
+    createUserEmbed('#ff9900', `📷 Here's your ${userQuery}'s gif !`, {
+      command: gifCommand.name,
+      author: message.author,
+    }).setImage(gifQuery),
+  );
 }
 
 const gifCommand = {
