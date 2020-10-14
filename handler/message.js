@@ -46,7 +46,7 @@ async function onMessage(message, client) {
       }, 5000);
     }
   } catch (error) {
-    console.info(consoleColor('danger', '⭕️ Error : ' + error));
+    console.info(consoleColor('danger', '⭕️ Error : '), error.stack);
     if (error.custom) {
       const errorMessage = await message.channel.send(createEmbedError(error));
 

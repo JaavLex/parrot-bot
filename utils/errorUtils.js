@@ -1,4 +1,4 @@
-const createEmbed = require('./disocrdUtils');
+const { createEmbed } = require('./disocrdUtils');
 
 /**
  * Function to create error embed easier.
