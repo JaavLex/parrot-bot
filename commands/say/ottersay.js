@@ -1,14 +1,18 @@
 const { MessageEmbed } = require('discord.js');
-const createEmbed = require('../../utils/disocrdUtils');
+const { createUserEmbed } = require('../../utils/disocrdUtils');
+const { createError } = require('../../utils/errorUtils');
 const generateSayText = require('../../utils/sayUtils');
 
 async function run(client, message, args) {
   const sentence = args.join(' ') || 'oooooooo oooo OO OO';
 
-  const embed = createEmbed(
-    '#ff9900',
-    `🦦 ${message.author.username} invoked **Baby Otter**`,
-    `Asked by ${message.author.username}`,
+  const embed = createUserEmbed(
+    '#2980b9',
+    `🦦  ${message.author.username} invoked **Baby Otter**`,
+    {
+      command: sayotterCommand.name,
+      author: message.author,
+    },
   );
 
   const otter = `
