@@ -3,7 +3,7 @@ const { createError } = require('../../utils/errorUtils');
 const giphy = require('giphy-api')();
 
 async function run(client, message, args) {
-  const userQuery = args[0] || 'parrot';
+  let userQuery = args.join(' ') || 'parrot';
 
   let gifQuery = await giphy.search(userQuery).then(function (res) {
     const result = res.data[Math.floor(Math.random() * 26)];
@@ -19,7 +19,7 @@ async function run(client, message, args) {
   });
 
   const gifMessage = await message.channel.send(
-    createUserEmbed('#ff9900', `📷 Here's your ${userQuery}'s gif !`, {
+    createUserEmbed('#ff9900', `📷 Here's your gif !`, {
       command: gifCommand.name,
       author: message.author,
     }).setImage(gifQuery),
