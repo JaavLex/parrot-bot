@@ -1,5 +1,5 @@
 const { prefix } = require('../../config.json');
-const createEmbed = require('../../utils/disocrdUtils');
+const { createEmbed } = require('../../utils/disocrdUtils');
 const emojiObject = require('./categories-label.json');
 
 function getAllCommands(client, message) {
@@ -55,6 +55,13 @@ function getSingleCommand(client, message, input) {
 
   if (command.name) {
     embed.addField('> 🔦 Name', '```css\n' + command.name + '\n```');
+  }
+
+  if (command.aliases) {
+    embed.addField(
+      '> 💬 Aliases',
+      '```css\n' + command.aliases.join(' | ') + '\n```',
+    );
   }
 
   if (command.usage) {

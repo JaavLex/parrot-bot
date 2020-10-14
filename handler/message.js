@@ -1,7 +1,11 @@
 require('dotenv').config();
 const { ReactionUserManager } = require('discord.js');
 const { prefix } = require('../config.json');
-const { createEmbedError } = require('../utils/errorUtils');
+const {
+  createEmbedError,
+  createUnknowCommandError,
+} = require('../utils/errorUtils');
+const { consoleColor } = require('../utils/functions');
 
 const currentPrefix = process.env.DEV_PREFIX || prefix;
 
@@ -19,12 +23,9 @@ async function onMessage(message, client) {
   }
 
   console.info(
-    '\x1b[36m',
-    `▶️ ${message.author.username} run`,
-    '♨️\x1b[31m',
-    currentPrefix + command,
-    '\x1b[36m at ' + new Date().toLocaleString(),
-    '\x1b[0m',
+    consoleColor('info', `▶️ ${message.author.username} run`),
+    consoleColor('danger', currentPrefix + command),
+    consoleColor('info', 'at ' + new Date().toLocaleString()),
   );
 
   try {
@@ -35,15 +36,17 @@ async function onMessage(message, client) {
         await message.delete();
       }
     } else {
+      await message.delete();
       const warningMessage = await message.channel.send(
-        `⚠️ Unknow command **${currentPrefix}${command}**`,
+        createUnknowCommandError(currentPrefix, command),
       );
 
       setTimeout(() => {
         warningMessage.delete();
-      }, 4000);
+      }, 5000);
     }
   } catch (error) {
+    console.info(consoleColor('danger', '⭕️ Error : '), error.stack);
     if (error.custom) {
       const errorMessage = await message.channel.send(createEmbedError(error));
 
