@@ -1,14 +1,17 @@
 const { MessageEmbed } = require('discord.js');
-const createEmbed = require('../../utils/disocrdUtils');
+const { createUserEmbed } = require('../../utils/disocrdUtils');
 const generateSayText = require('../../utils/sayUtils');
 
 async function run(client, message, args) {
   const sentence = args.join(' ') || 'Puk puk Pukaaakka';
 
-  const embed = createEmbed(
+  const embed = createUserEmbed(
     '#ff9900',
     `🐓 ${message.author.username} invoked **El Pollo**`,
-    `Asked by ${message.author.username}`,
+    {
+      command: sayChikenCommand.name,
+      author: message.author,
+    },
   );
 
   const chicken = `

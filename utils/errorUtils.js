@@ -1,4 +1,4 @@
-const createEmbed = require('./disocrdUtils');
+const { createEmbed } = require('./disocrdUtils');
 
 /**
  * Function to create error embed easier.
@@ -30,7 +30,7 @@ function createEmbedError(error) {
  * @return {{custom: boolean, title: string, description: string, solution: string, autoDeleteError: boolean}}
  */
 function createError(title, description, solution, autoDeleteError) {
-  return { custom: true, title, error: description, solution, autoDeleteError };
+  return { custom: true, title, description, solution, autoDeleteError };
 }
 
 /**

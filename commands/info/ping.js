@@ -1,4 +1,4 @@
-const createEmbed = require('../../utils/disocrdUtils');
+const { createEmbed } = require('../../utils/disocrdUtils');
 
 async function run(client, message, args) {
   const waitingMessage = await message.channel.send(

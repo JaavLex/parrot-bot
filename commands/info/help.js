@@ -1,5 +1,5 @@
 const { prefix } = require('../../config.json');
-const createEmbed = require('../../utils/disocrdUtils');
+const { createEmbed } = require('../../utils/disocrdUtils');
 const emojiObject = require('./categories-label.json');
 
 function getAllCommands(client, message) {
