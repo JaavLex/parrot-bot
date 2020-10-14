@@ -3,28 +3,22 @@ const giphy = require('giphy-api')();
 
 async function run(client, message, args) {
   const userQuery = args[0] || 'parrot';
-  var picture = '';
 
-  giphy.search(
-    {
-      q: userQuery,
-      limit: 2,
-    },
-    function (err, res) {
-      picture = res.data[Math.floor(Math.random() * 2)].embed_url;
-      console.log(picture);
-    },
-  );
+  let gifQuery = await giphy.search(userQuery).then(function (res) {
+    return res.data[Math.floor(Math.random() * 26)].images.original.url;
+  });
 
-  console.log(picture);
-
-  const waitingMessage = await message.channel.send(
-    createEmbed(
-      '#ff9900',
-      `📷 ${message.author.username} asked for a ${userQuery}'s gif !`,
-      `Asked by ${message.author.username}`,
-    ).setImage(picture),
-  );
+  try {
+    const gifMessage = await message.channel.send(
+      createEmbed(
+        '#ff9900',
+        `📷 ${message.author.username} asked for a ${userQuery}'s gif !`,
+        `Asked by ${message.author.username}`,
+      ).setImage(gifQuery),
+    );
+  } catch (e) {
+    createError('No results were found !', e, 'Search smth else', true);
+  }
 }
 
 const gifCommand = {
