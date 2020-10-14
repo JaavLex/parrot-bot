@@ -30,7 +30,9 @@ const gifCommand = {
   name: 'gif',
   aliases: ['g'],
   category: 'pictures',
-  description: 'Posts a random gif',
+  description:
+    'Posts random gifs (of parrots by default). Add a keyword to search a gif of something !',
+  usage: '[keyword]',
   autoMessageDeletion: false,
   run,
 };
