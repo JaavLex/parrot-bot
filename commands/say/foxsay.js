@@ -15,7 +15,7 @@ async function run(client, message, args) {
   );
 
   const fox = `
- \\
+   \\
   \\ 
    /\\   /\\
   //\\\\_//\\\\       ____
