@@ -23,7 +23,7 @@ async function onMessage(message, client) {
   }
 
   console.info(
-    consoleColor('info', `▶️ ${message.author.username} run`),
+    consoleColor('info', `▶️ ${message.author.username} ran`),
     consoleColor('danger', currentPrefix + command),
     consoleColor('info', 'at ' + new Date().toLocaleString()),
   );
