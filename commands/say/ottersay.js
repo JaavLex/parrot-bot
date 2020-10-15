@@ -27,9 +27,11 @@ async function run(client, message, args) {
                  '._        -'    /
                    \`\`""--\`------\'    `;
 
-  embed.setDescription('```\n' + generateSayText(sentence) + otter + '\n```');
+  embed.setDescription(
+    '```\n' + generateSayText(sentence, otter.length) + otter + '\n```',
+  );
 
-  message.channel.send(embed);
+  await message.channel.send(embed);
 }
 
 const sayotterCommand = {
