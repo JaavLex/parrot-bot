@@ -14,7 +14,8 @@
   "dependencies": {
     "ascii-table": "0.0.9",
     "discord.js": "^12.3.1",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "giphy-api": "^2.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

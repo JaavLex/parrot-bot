@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const { createUserEmbed } = require('../../utils/disocrdUtils');
+const { createUserEmbed } = require('../../utils/discordUtils');
 const { createError } = require('../../utils/errorUtils');
 const generateSayText = require('../../utils/sayUtils');
 
