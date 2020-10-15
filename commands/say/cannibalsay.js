@@ -43,7 +43,7 @@ const saycatCommand = {
   name: 'cannibalsay',
   aliases: ['cannisay'],
   category: 'say',
-  description: 'You invoke a cat to say what you want !',
+  description: 'You invoke a cannibal to say what you want !',
   autoMessageDeletion: true,
   run,
 };

@@ -1,5 +1,6 @@
 const { prefix } = require('../../config.json');
 const { createEmbed } = require('../../utils/discordUtils');
+const { createError } = require('../../utils/errorUtils');
 const emojiObject = require('./categories-label.json');
 
 function getAllCommands(client, message) {
@@ -38,22 +39,18 @@ function getSingleCommand(client, message, input) {
     client.commands.get(input.toLowerCase()) ||
     client.commands.get(client.aliases.get(input.toLowerCase()));
 
-  const embed = createEmbed(
-    '#27ae60',
-    `💡 Usage for \`${prefix}${command.name} \``,
-  );
+  const embed = createEmbed('#27ae60');
 
   if (!command) {
-    const errorMessage = message.channel.send(
-      embed
-        .setColor('#c0392b')
-        .setDescription(`No info for command : **${input.toLowerCase()}**`),
+    throw createError(
+      `The command ${prefix}${input.toLowerCase()} doesn't exist!`,
+      `Your command is either not available, or doesn't exist`,
+      `Refer to ${prefix}help to see available commands`,
+      true,
     );
-    setTimeout(() => errorMessage.destroy(), 2000);
-    return;
   }
-
   if (command.name) {
+    embed.setTitle(`💡 Usage for \`${prefix}${command.name} \``);
     embed.addField('> 🔦 Name', '```css\n' + command.name + '\n```');
   }
 

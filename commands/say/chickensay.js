@@ -35,7 +35,7 @@ const sayChikenCommand = {
   name: 'chickensay',
   category: 'say',
   aliases: ['chicsay'],
-  description: 'You invoke a chicken to say what you want !',
+  description: 'You invoke a chicken to say what you want!',
   autoMessageDeletion: true,
   run,
 };

@@ -38,7 +38,7 @@ const sayotterCommand = {
   name: 'ottersay',
   aliases: ['otsay'],
   category: 'say',
-  description: 'You invoke a otter to say what you want !',
+  description: 'You invoke a otter to say what you want!',
   autoMessageDeletion: true,
   run,
 };

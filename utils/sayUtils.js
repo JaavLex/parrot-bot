@@ -18,7 +18,7 @@ function generateSayText(text, baseLength) {
 
   if (sayText.length + baseLength >= 2048) {
     throw createError(
-      'Arguments length is too long !',
+      'Arguments length is too long!',
       '',
       'Make your command with less arguments length.',
       true,
