@@ -3,9 +3,9 @@ const { createError } = require('../../utils/errorUtils');
 const giphy = require('giphy-api')();
 
 async function run(client, message, args) {
-  let userQuery = args.join(' ') || 'parrot';
+  const userQuery = args.join(' ') || 'parrot';
 
-  let gifQuery = await giphy.search(userQuery).then(function (res) {
+  const image_url = await giphy.search(userQuery).then(function (res) {
     const result = res.data[Math.floor(Math.random() * 26)];
     if (!result) {
       throw createError(
@@ -18,11 +18,11 @@ async function run(client, message, args) {
     return result.images.original.url;
   });
 
-  const gifMessage = await message.channel.send(
-    createUserEmbed('#ff9900', `📷 Here's your gif !`, {
+  await message.channel.send(
+    createUserEmbed('#ff9900', `📷 Your gif of : "${userQuery}" ! 📷`, {
       command: gifCommand.name,
       author: message.author,
-    }).setImage(gifQuery),
+    }).setImage(image_url),
   );
 }
 
