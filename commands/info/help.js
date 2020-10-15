@@ -39,7 +39,10 @@ function getSingleCommand(client, message, input) {
     client.commands.get(input.toLowerCase()) ||
     client.commands.get(client.aliases.get(input.toLowerCase()));
 
-  const embed = createEmbed('#27ae60');
+  const embed = createEmbed(
+    '#27ae60',
+    `💡 Usage for \`${prefix}${command.name} \``,
+  );
 
   if (!command) {
     throw createError(
@@ -50,7 +53,6 @@ function getSingleCommand(client, message, input) {
     );
   }
   if (command.name) {
-    embed.setTitle(`💡 Usage for \`${prefix}${command.name} \``);
     embed.addField('> 🔦 Name', '```css\n' + command.name + '\n```');
   }
 
