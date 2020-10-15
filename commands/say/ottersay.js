@@ -36,6 +36,7 @@ async function run(client, message, args) {
 
 const sayotterCommand = {
   name: 'ottersay',
+  aliases: ['otsay'],
   category: 'say',
   description: 'You invoke a otter to say what you want !',
   autoMessageDeletion: true,

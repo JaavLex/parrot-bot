@@ -7,14 +7,14 @@ async function run(client, message, args) {
 
   const embed = createUserEmbed(
     '#e74c3c',
-    `🍖 ${message.author.username} invoked **THE CANIBAL**`,
+    `🍖 ${message.author.username} invoked **THE CANNIBAL**`,
     {
       command: saycatCommand.name,
       author: message.author,
     },
   );
 
-  const canibal = `
+  const cannibal = `
       \\             .-.
        \\   \\\\\\V/// (o.o)
         \\  #######  |=|
@@ -33,15 +33,15 @@ async function run(client, message, args) {
        `;
 
   embed.setDescription(
-    '```\n' + generateSayText(sentence, canibal.length) + canibal + '\n```',
+    '```\n' + generateSayText(sentence, cannibal.length) + cannibal + '\n```',
   );
 
   await message.channel.send(embed);
 }
 
 const saycatCommand = {
-  name: 'canibalsay',
-  aliases: ['canisay'],
+  name: 'cannibalsay',
+  aliases: ['cannisay'],
   category: 'say',
   description: 'You invoke a cat to say what you want !',
   autoMessageDeletion: true,
