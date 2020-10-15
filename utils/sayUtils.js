@@ -1,17 +1,31 @@
+const { createError } = require('./errorUtils');
+
 /**
  * Function to create Embed easier.
  *
  * @param {string} text Text was sayed
+ * @param {number} baseLength Length of the animal or other.
  * @return {string} Formatted string
  */
-function generateSayText(text) {
+function generateSayText(text, baseLength) {
   const contentLines = generateTextLine(text);
   const lineLength = contentLines.split('\n').length > 2 ? 40 : text.length;
 
   const startLine = generateLine(lineLength, '_') + '\n';
   const endLine = generateLine(lineLength, '-');
 
-  return `${startLine}${contentLines}${endLine}`;
+  const sayText = `${startLine}${contentLines}${endLine}`;
+
+  if (sayText.length + baseLength >= 2048) {
+    throw createError(
+      'Arguments length is too long !',
+      '',
+      'Make your command with less arguments length.',
+      true,
+    );
+  }
+
+  return sayText;
 }
 
 const defaultMaxLength = 40;

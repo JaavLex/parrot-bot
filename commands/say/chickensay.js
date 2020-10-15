@@ -24,14 +24,17 @@ async function run(client, message, args) {
   _____|_|____
        " "`;
 
-  embed.setDescription('```\n' + generateSayText(sentence) + chicken + '\n```');
+  embed.setDescription(
+    '```\n' + generateSayText(sentence, chicken.length) + chicken + '\n```',
+  );
 
-  message.channel.send(embed);
+  await message.channel.send(embed);
 }
 
 const sayChikenCommand = {
   name: 'chickensay',
   category: 'say',
+  aliases: ['chicsay'],
   description: 'You invoke a chicken to say what you want !',
   autoMessageDeletion: true,
   run,
