@@ -9,7 +9,9 @@ async function run(client, message, args) {
     '#e74c3c',
     `🍖 ${message.author.username} invoked **THE CANNIBAL**`,
     {
+
       command: saycannibalCommand.name,
+
       author: message.author,
     },
   );
