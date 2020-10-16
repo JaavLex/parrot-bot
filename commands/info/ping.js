@@ -1,4 +1,4 @@
-const { createEmbed } = require('../../utils/disocrdUtils');
+const { createEmbed } = require('../../utils/discordUtils');
 
 async function run(client, message, args) {
   const waitingMessage = await message.channel.send(
@@ -16,7 +16,7 @@ async function run(client, message, args) {
     .addField('📄 API Latency :', `**${Math.round(client.ws.ping)}** ms`)
     .setTimestamp();
 
-  waitingMessage.edit(pingMessage);
+  await waitingMessage.edit(pingMessage);
 }
 
 const pingCommand = {

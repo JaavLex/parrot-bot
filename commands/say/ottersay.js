@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const { createUserEmbed } = require('../../utils/disocrdUtils');
+const { createUserEmbed } = require('../../utils/discordUtils');
 const { createError } = require('../../utils/errorUtils');
 const generateSayText = require('../../utils/sayUtils');
 
@@ -27,15 +27,18 @@ async function run(client, message, args) {
                  '._        -'    /
                    \`\`""--\`------\'    `;
 
-  embed.setDescription('```\n' + generateSayText(sentence) + otter + '\n```');
+  embed.setDescription(
+    '```\n' + generateSayText(sentence, otter.length) + otter + '\n```',
+  );
 
-  message.channel.send(embed);
+  await message.channel.send(embed);
 }
 
 const sayotterCommand = {
   name: 'ottersay',
+  aliases: ['otsay'],
   category: 'say',
-  description: 'You invoke a otter to say what you want !',
+  description: 'You invoke a otter to say what you want!',
   autoMessageDeletion: true,
   run,
 };
