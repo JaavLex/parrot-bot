@@ -15,8 +15,8 @@ async function run(client, message, args) {
   );
 
   const pig = `
-  \\       _____  
-   \\  ^..^     \\9
+   \\      _____  
+    \\ ^..^     \\9
       (oo)_____/ 
          WW  WW`;
 
