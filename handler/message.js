@@ -23,7 +23,7 @@ async function onMessage(message, client) {
   }
 
   console.info(
-    consoleColor('info', `▶️ ${message.author.username} run`),
+    consoleColor('info', `▶️ ${message.author.username} ran`),
     consoleColor('danger', currentPrefix + command),
     consoleColor('info', 'at ' + new Date().toLocaleString()),
   );
@@ -46,7 +46,10 @@ async function onMessage(message, client) {
       }, 5000);
     }
   } catch (error) {
-    console.info(consoleColor('danger', '⭕️ Error : '), error.stack);
+    console.info(
+      consoleColor('danger', '⭕️ Error : '),
+      error.custom ? error.title : error.stack,
+    );
     if (error.custom) {
       const errorMessage = await message.channel.send(createEmbedError(error));
 

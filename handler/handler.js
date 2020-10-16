@@ -8,8 +8,8 @@ function handler(client) {
       file.endsWith('.js'),
     );
 
-    for (let file of commandsFolder) {
-      let pull = require(`../commands/${dir}/${file}`);
+    for (const file of commandsFolder) {
+      const pull = require(`../commands/${dir}/${file}`);
 
       if (pull.name) {
         client.commands.set(pull.name, pull);
