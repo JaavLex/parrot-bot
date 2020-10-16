@@ -15,17 +15,16 @@ async function run(client, message, args) {
   );
 
   const fox = `
-   \\
-  \\ 
-   /\\   /\\
-  //\\\\_//\\\\       ____
-  \\_     _/      /   /
-   / o o \\      /^^^]
-    =\\o/=       [   ]
-    /   \\_      [   /
-    \\     \\_  /  /
-     [  [ ( \\/ _/
-    _[ _[ / / _/`;
+ \\ 
+  \\  /\\   /\\
+    //\\\\_//\\\\      ____
+    \\_     _/     /   /
+     / o o \\     /^^^]
+      =\\o/=      [   ]
+      /   \\_     [   /
+      \\     \\_  /  /
+       [  [ ( \\/ _/
+      _[ _[ / / _/`;
 
   embed.setDescription('```\n' + generateSayText(sentence) + fox + '\n```');
 
@@ -35,7 +34,7 @@ async function run(client, message, args) {
 const sayFoxCommand = {
   name: 'foxsay',
   category: 'say',
-  description: 'You invoke a fox to make it say what you want !',
+  description: 'You invoke a fox to make it say what you want!',
   autoMessageDeletion: true,
   run,
 };
