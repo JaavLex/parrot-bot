@@ -9,7 +9,7 @@ async function run(client, message, args) {
     '#e74c3c',
     `🍖 ${message.author.username} invoked **THE CANNIBAL**`,
     {
-      command: saycatCommand.name,
+      command: saycannibalCommand.name,
       author: message.author,
     },
   );
@@ -39,13 +39,13 @@ async function run(client, message, args) {
   await message.channel.send(embed);
 }
 
-const saycatCommand = {
-  name: 'cannibalsay',
-  aliases: ['cannisay'],
+const saycannibalCommand = {
+  name: 'saycannibal',
+  aliases: ['cannisay', 'saycanni'],
   category: 'say',
   description: 'You invoke a cannibal to say what you want !',
   autoMessageDeletion: true,
   run,
 };
 
-module.exports = saycatCommand;
+module.exports = saycannibalCommand;
