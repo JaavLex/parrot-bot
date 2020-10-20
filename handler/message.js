@@ -12,7 +12,6 @@ const currentPrefix = process.env.DEV_PREFIX || prefix;
 
 async function onMessage(message, client) {
   if (message.channel.name === undefined) {
-    if (message.author.bot) return;
     await onPrivateMessage(message, client);
     return;
   }
