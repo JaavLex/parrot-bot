@@ -1,19 +1,31 @@
-const { createEmbed } = require('../../utils/discordUtils');
+const { createEmbed, createUserEmbed } = require('../../utils/discordUtils');
 
 async function run(client, message, args) {
-  const userQuestion = args.join(' ') || 'parrot';
+  const userQuestion = args.join(' ') || 'Who loves parrot-bot ?';
+  var membersList = [];
 
-  console.log(message.guild.members);
+  message.guild.members.cache.forEach(GuildMember => {
+    if (!GuildMember.user.bot) {
+      membersList.push(`${GuildMember.user.id}`);
+    }
+  });
 
   await message.channel.send(
-    createEmbed('#ff9900', '🌐 Latency 🌐').addField(
-      'test ',
-      message.guild.members,
-    ),
+    createUserEmbed('#ff9900', `🤔 Here's your answer... 🤔`, {
+      command: chooseCommand.name,
+      author: message.author,
+    })
+      .addField('> ❔ Question', userQuestion)
+      .addField(
+        '> ❕ Answer',
+        '<@' +
+          membersList[Math.floor(Math.random() * membersList.length)] +
+          '>',
+      ),
   );
 }
 
-const pingCommand = {
+const chooseCommand = {
   name: 'choose',
   aliases: ['chse'],
   category: 'ask',
@@ -23,4 +35,4 @@ const pingCommand = {
   run,
 };
 
-module.exports = pingCommand;
+module.exports = chooseCommand;
