@@ -1,26 +1,25 @@
 const { createUserEmbed } = require('../../utils/discordUtils');
+const { randomNumber } = require('../../utils/functions.js');
 
 async function run(client, message, args) {
   const userQuestion = args.join(' ') || 'Who loves parrot-bot ?';
-  const serverMembersList = message.guild.members.cache;
+  const serverMembersList = message.channel.members;
 
-  var serverUsersList = [];
-
-  serverMembersList.forEach(GuildMember => {
-    if (!GuildMember.user.bot) {
-      serverUsersList.push(`${GuildMember.user.id}`);
-    }
-  });
+  const serverUsersList = serverMembersList
+    .filter(m => !m.user.bot)
+    .map(GuildMember => {
+      if (!GuildMember.user.bot) {
+        return GuildMember.user.id;
+      }
+    });
 
   await message.channel.send(
     createUserEmbed('#ff9900', `🤔 Here's your answer... 🤔`, {
       command: chooseCommand.name,
       author: message.author,
     }).addField(
-      `> ${userQuestion}`,
-      '<@' +
-        serverUsersList[Math.floor(Math.random() * serverUsersList.length)] +
-        '>',
+      '>' + userQuestion,
+      '<@' + serverUsersList[randomNumber(0, serverUsersList.length)] + '>',
     ),
   );
 }

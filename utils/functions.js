@@ -13,4 +13,9 @@ function consoleColor(modifier, string) {
   return styles[modifier].open + string + styles[modifier].close;
 }
 
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 exports.consoleColor = consoleColor;
+exports.randomNumber = randomNumber;
