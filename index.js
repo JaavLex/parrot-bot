@@ -12,9 +12,8 @@ const discordToken = process.env.DISCORD_TOKEN;
 const environment = process.env.BOT_ENV;
 const currentPrefix = process.env.DEV_PREFIX || prefix;
 
-if (!discordToken) {
-  throw '⭕️ .env: DISCORD_TOKEN is missing.';
-}
+if (!discordToken) throw '⭕️ .env: DISCORD_TOKEN is missing.';
+if (!environment) throw '⭕️ .env: BOT_ENV is missing.';
 
 console.info(
   '\n\n\n\n',
