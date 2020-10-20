@@ -18,7 +18,7 @@ async function run(client, message, args) {
       command: chooseCommand.name,
       author: message.author,
     }).addField(
-      '>' + userQuestion,
+      '> ' + userQuestion,
       '<@' + serverUsersList[randomNumber(0, serverUsersList.length)] + '>',
     ),
   );
@@ -30,7 +30,7 @@ const chooseCommand = {
   category: 'ask',
   description: 'Chooses someone based on the question asked !',
   usage: '[question]',
-  autoMessageDeletion: false,
+  autoMessageDeletion: true,
   run,
 };
 
