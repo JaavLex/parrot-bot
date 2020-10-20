@@ -7,11 +7,7 @@ async function run(client, message, args) {
 
   const serverUsersList = serverMembersList
     .filter(m => !m.user.bot)
-    .map(GuildMember => {
-      if (!GuildMember.user.bot) {
-        return GuildMember.user.id;
-      }
-    });
+    .map(m => m.user.id);
 
   await message.channel.send(
     createUserEmbed('#ff9900', `🤔 Here's your answer... 🤔`, {
