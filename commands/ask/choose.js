@@ -14,8 +14,8 @@ async function run(client, message, args) {
       command: chooseCommand.name,
       author: message.author,
     }).addField(
-      '> ' + userQuestion,
-      '<@' + serverUsersList[randomNumber(0, serverUsersList.length)] + '>',
+      `> ${userQuestion}`,
+      `<@${serverUsersList[randomNumber(0, serverUsersList.length)]}>`,
     ),
   );
 }
