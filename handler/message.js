@@ -12,7 +12,7 @@ const currentPrefix = process.env.DEV_PREFIX || prefix;
 
 async function onMessage(message, client) {
   if (message.channel.name === undefined) {
-    console.log(message.channel.name, 'is undifiend');
+    if (message.author.bot) return;
     await handlerPrivateMessage(message, client);
     return;
   }
