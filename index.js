@@ -10,6 +10,7 @@ const { consoleColor } = require('./utils/functions');
 
 const discordToken = process.env.DISCORD_TOKEN;
 const environment = process.env.BOT_ENV;
+const currentPrefix = process.env.DEV_PREFIX || prefix;
 
 if (!discordToken) {
   throw '⭕️ .env: DISCORD_TOKEN is missing.';
@@ -33,7 +34,7 @@ client.on('message', message => onMessage(message, client));
 client.on('ready', () => {
   console.info(consoleColor('success', '✨ The bot is running.'));
   client.user.setActivity(
-    `🦜 Squawk! Type ${prefix}help for a list of commands!`,
+    `🦜 Squawk! Type ${currentPrefix}help for a list of commands!`,
     'PLAYING',
   );
 });
