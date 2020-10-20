@@ -1,12 +1,14 @@
-const { createEmbed, createUserEmbed } = require('../../utils/discordUtils');
+const { createUserEmbed } = require('../../utils/discordUtils');
 
 async function run(client, message, args) {
   const userQuestion = args.join(' ') || 'Who loves parrot-bot ?';
-  var membersList = [];
+  const serverMembersList = message.guild.members.cache;
 
-  message.guild.members.cache.forEach(GuildMember => {
+  var serverUsersList = [];
+
+  serverMembersList.forEach(GuildMember => {
     if (!GuildMember.user.bot) {
-      membersList.push(`${GuildMember.user.id}`);
+      serverUsersList.push(`${GuildMember.user.id}`);
     }
   });
 
@@ -14,14 +16,12 @@ async function run(client, message, args) {
     createUserEmbed('#ff9900', `🤔 Here's your answer... 🤔`, {
       command: chooseCommand.name,
       author: message.author,
-    })
-      .addField('> ❔ Question', userQuestion)
-      .addField(
-        '> ❕ Answer',
-        '<@' +
-          membersList[Math.floor(Math.random() * membersList.length)] +
-          '>',
-      ),
+    }).addField(
+      `> ${userQuestion}`,
+      '<@' +
+        serverUsersList[Math.floor(Math.random() * serverUsersList.length)] +
+        '>',
+    ),
   );
 }
 
