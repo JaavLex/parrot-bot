@@ -6,14 +6,14 @@ const {
   createUnknowCommandError,
 } = require('../utils/errorUtils');
 const { consoleColor } = require('../utils/functions');
-const handlerPrivateMessage = require('../private-message/handler');
+const onPrivateMessage = require('../private-message/message');
 
 const currentPrefix = process.env.DEV_PREFIX || prefix;
 
 async function onMessage(message, client) {
   if (message.channel.name === undefined) {
     if (message.author.bot) return;
-    await handlerPrivateMessage(message, client);
+    await onPrivateMessage(message, client);
     return;
   }
 
