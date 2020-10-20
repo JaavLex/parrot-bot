@@ -41,7 +41,7 @@ function getSingleCommand(client, message, input) {
 
   const embed = createEmbed(
     '#27ae60',
-    `💡 Usage for \`${prefix}${command ? command.name : "undefined"} \``,
+    `💡 Usage for \`${prefix}${command ? command.name : 'undefined'} \``,
   );
 
   if (!command) {
