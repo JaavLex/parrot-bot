@@ -9,7 +9,7 @@ async function run(client, message, args) {
     '#ff9900',
     `🦊 ${message.author.username} invoked **Mr. Fox**`,
     {
-      command: sayFoxCommand.name,
+      command: foxsayCommand.name,
       author: message.author,
     },
   );
@@ -33,7 +33,7 @@ async function run(client, message, args) {
   message.channel.send(embed);
 }
 
-const sayFoxCommand = {
+const foxsayCommand = {
   name: 'foxsay',
   category: 'say',
   description: 'You invoke a fox to make it say what you want!',
@@ -41,4 +41,4 @@ const sayFoxCommand = {
   run,
 };
 
-module.exports = sayFoxCommand;
+module.exports = foxsayCommand;

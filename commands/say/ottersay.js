@@ -9,7 +9,7 @@ async function run(client, message, args) {
     '#2980b9',
     `🦦  ${message.author.username} invoked **Baby Otter**`,
     {
-      command: sayotterCommand.name,
+      command: ottersayCommand.name,
       author: message.author,
     },
   );
@@ -33,7 +33,7 @@ async function run(client, message, args) {
   await message.channel.send(embed);
 }
 
-const sayotterCommand = {
+const ottersayCommand = {
   name: 'ottersay',
   aliases: ['otsay'],
   category: 'say',
@@ -42,4 +42,4 @@ const sayotterCommand = {
   run,
 };
 
-module.exports = sayotterCommand;
+module.exports = ottersayCommand;

@@ -9,7 +9,7 @@ async function run(client, message, args) {
     '#ff9900',
     `🐷 ${message.author.username} invoked **Plopper the Pig**`,
     {
-      command: sayPigCommand.name,
+      command: pigsayCommand.name,
       author: message.author,
     },
   );
@@ -27,7 +27,7 @@ async function run(client, message, args) {
   message.channel.send(embed);
 }
 
-const sayPigCommand = {
+const pigsayCommand = {
   name: 'pigsay',
   category: 'say',
   description: 'You invoke a pig to make it say what you want!',
@@ -35,4 +35,4 @@ const sayPigCommand = {
   run,
 };
 
-module.exports = sayPigCommand;
+module.exports = pigsayCommand;

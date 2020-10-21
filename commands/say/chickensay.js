@@ -9,7 +9,7 @@ async function run(client, message, args) {
     '#ff9900',
     `🐓 ${message.author.username} invoked **El Pollo**`,
     {
-      command: sayChikenCommand.name,
+      command: chickensayCommand.name,
       author: message.author,
     },
   );
@@ -31,7 +31,7 @@ async function run(client, message, args) {
   await message.channel.send(embed);
 }
 
-const sayChikenCommand = {
+const chickensayCommand = {
   name: 'chickensay',
   category: 'say',
   aliases: ['chicsay'],
@@ -40,4 +40,4 @@ const sayChikenCommand = {
   run,
 };
 
-module.exports = sayChikenCommand;
+module.exports = chickensayCommand;
