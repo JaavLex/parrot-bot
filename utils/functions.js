@@ -17,5 +17,23 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function jaugeBar(
+  percentage,
+  length = 10,
+  { filler = '█', unfiller = ' ' } = {},
+) {
+  const filledBars = Math.floor(percentage / (100 / length));
+  let finalJaugeBar = '`[';
+
+  for (var i = 0; i < length; i++) {
+    finalJaugeBar += i <= filledBars ? filler : unfiller;
+  }
+
+  finalJaugeBar += `] ${percentage}%\``;
+
+  return finalJaugeBar;
+}
+
 exports.consoleColor = consoleColor;
 exports.randomNumber = randomNumber;
+exports.jaugeBar = jaugeBar;
