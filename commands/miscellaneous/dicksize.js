@@ -8,7 +8,7 @@ async function run(client, message) {
 
   const embed = createUserEmbed('#8e44ad', "🍆 You're dick size 🍌", {
     author: message.author,
-    command: sayChikenCommand.command,
+    command: dicksizeCommand.command,
   }).setDescription(
     `😋 Dick size of ${userMentioned}
     ${generateDick(randomSize)}`,
@@ -39,7 +39,7 @@ function generateDick(size) {
   return message;
 }
 
-const sayChikenCommand = {
+const dicksizeCommand = {
   name: 'dicksize',
   category: 'funny',
   aliases: ['ds', 'dicks', 'dsize'],
@@ -48,4 +48,4 @@ const sayChikenCommand = {
   run,
 };
 
-module.exports = sayChikenCommand;
+module.exports = dicksizeCommand;
