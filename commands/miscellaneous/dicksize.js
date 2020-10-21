@@ -42,7 +42,7 @@ function generateDick(size) {
 const sayChikenCommand = {
   name: 'dicksize',
   category: 'funny',
-  aliases: ['dz'],
+  aliases: ['ds', 'dicks', 'dsize'],
   description: 'You invoke a chicken to say what you want!',
   autoMessageDeletion: true,
   run,
