@@ -6,10 +6,16 @@ const {
   createUnknowCommandError,
 } = require('../utils/errorUtils');
 const { consoleColor } = require('../utils/functions');
+const onPrivateMessage = require('../private-message/message');
 
 const currentPrefix = process.env.DEV_PREFIX || prefix;
 
 async function onMessage(message, client) {
+  if (message.channel.name === undefined) {
+    await onPrivateMessage(message, client);
+    return;
+  }
+
   if (message.author.bot || !message.content.startsWith(currentPrefix)) return;
 
   const args = message.content.slice(currentPrefix.length).trim().split(/ +/g);

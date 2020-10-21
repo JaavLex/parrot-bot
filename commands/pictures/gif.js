@@ -1,12 +1,13 @@
 const { createUserEmbed } = require('../../utils/discordUtils');
 const { createError } = require('../../utils/errorUtils');
+const { randomNumber } = require('../../utils/functions.js');
 const giphy = require('giphy-api')();
 
 async function run(client, message, args) {
   const userQuery = args.join(' ') || 'parrot';
 
   const image_url = await giphy.search(userQuery).then(function (res) {
-    const result = res.data[Math.floor(Math.random() * 26)];
+    const result = res.data[randomNumber(0, 25)];
     if (!result) {
       throw createError(
         'No results to your query were found!',
