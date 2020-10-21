@@ -14,6 +14,12 @@
     "no-unused-vars": [
       "error",
       { "vars": "all", "args": "none", "ignoreRestSiblings": false }
-    ]
+    ],
+    "no-unused-expressions": "off",
+    "prefer-destructuring": [
+      "error",
+      { "AssignmentExpression": { "array": false, "object": false } }
+    ],
+    "no-console": ["warn", { "allow": ["info"] }]
   }
 }

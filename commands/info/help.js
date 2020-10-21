@@ -1,6 +1,7 @@
 const { prefix } = require('../../config.json');
 const { createEmbed } = require('../../utils/discordUtils');
 const { createError } = require('../../utils/errorUtils');
+const { createMdBlock } = require('../../utils/functions');
 const emojiObject = require('./categories-label.json');
 
 function getAllCommands(client, message) {
@@ -21,10 +22,10 @@ function getAllCommands(client, message) {
       return '⚠️ no command with this category';
     }
 
-    return '```css\n' + commandsByCategory.join(' | ') + '\n```';
+    return createMdBlock(commandsByCategory.join(' | '), 'css');
   }
 
-  client.categories.map(category => {
+  client.categories.forEach(category => {
     embed.addField(
       `> ${emojiObject[category]} ${category.toUpperCase()} `,
       commandsListToString(category) || '-',
@@ -53,26 +54,26 @@ function getSingleCommand(client, message, input) {
     );
   }
   if (command.name) {
-    embed.addField('> 🔦 Name', '```css\n' + command.name + '\n```');
+    embed.addField('> 🔦 Name', createMdBlock(command.name, 'css'));
   }
 
   if (command.aliases) {
     embed.addField(
       '> 💬 Aliases',
-      '```css\n' + command.aliases.join(' | ') + '\n```',
+      createMdBlock(command.aliases.join(' | '), 'css'),
     );
   }
 
   if (command.usage) {
     embed.addField(
       '> 📘 Usage',
-      '```css\n' + prefix + command.name + ' ' + command.usage + '\n```',
+      createMdBlock(`${prefix + command.name} ${command.usage}`, 'css'),
     );
     embed.setFooter(`<> = required - [] = optional`);
   }
 
   if (command.description) {
-    embed.addField('> 📝 Description', '```\n' + command.description + '\n```');
+    embed.addField('> 📝 Description', createMdBlock(command.description));
   }
 
   message.channel.send(embed);

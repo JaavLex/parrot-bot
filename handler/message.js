@@ -1,5 +1,4 @@
 require('dotenv').config();
-const { ReactionUserManager } = require('discord.js');
 const { prefix } = require('../config.json');
 const {
   createEmbedError,
@@ -31,7 +30,7 @@ async function onMessage(message, client) {
   console.info(
     consoleColor('info', `▶️ ${message.author.username} ran`),
     consoleColor('danger', currentPrefix + command),
-    consoleColor('info', 'at ' + new Date().toLocaleString()),
+    consoleColor('info', `at ${new Date().toLocaleString()}`),
   );
 
   try {

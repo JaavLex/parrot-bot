@@ -1,5 +1,5 @@
-const { MessageEmbed } = require('discord.js');
 const { createUserEmbed } = require('../../utils/discordUtils');
+const { createMdBlock } = require('../../utils/functions');
 const generateSayText = require('../../utils/sayUtils');
 
 async function run(client, message, args) {
@@ -25,7 +25,7 @@ async function run(client, message, args) {
        " "`;
 
   embed.setDescription(
-    '```\n' + generateSayText(sentence, chicken.length) + chicken + '\n```',
+    createMdBlock(generateSayText(sentence, chicken.length) + chicken),
   );
 
   await message.channel.send(embed);

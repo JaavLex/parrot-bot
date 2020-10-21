@@ -11,7 +11,7 @@ function generateSayText(text, baseLength) {
   const contentLines = generateTextLine(text);
   const lineLength = contentLines.split('\n').length > 2 ? 40 : text.length;
 
-  const startLine = generateLine(lineLength, '_') + '\n';
+  const startLine = `${generateLine(lineLength, '_')}\n`;
   const endLine = generateLine(lineLength, '-');
 
   const sayText = `${startLine}${contentLines}${endLine}`;
@@ -64,13 +64,14 @@ function fillString(string, maxLength = defaultMaxLength - 1) {
     return string;
   }
 
-  let missingChar = maxLength - string.length;
+  const missingChar = maxLength - string.length;
 
+  let stringCopy = string;
   for (let i = 0; i <= missingChar; i++) {
-    string += ' ';
+    stringCopy += ' ';
   }
 
-  return string;
+  return stringCopy;
 }
 
 function generateTextArray(text, maxLength = defaultMaxLength) {
@@ -98,30 +99,26 @@ function generateTextArray(text, maxLength = defaultMaxLength) {
       } else {
         textArray[index] = `${textArray[index]} ${word}`;
       }
-    } else {
-      if (word.length > defaultMaxLength) {
-        const ratio = Math.ceil(word.length / maxLength);
+    } else if (word.length > defaultMaxLength) {
+      const ratio = Math.ceil(word.length / maxLength);
 
-        for (let i = 0; i < ratio; i++) {
-          textArray[i + index] = word.substring(
-            i * maxLength,
-            (i + 1) * maxLength,
-          );
-        }
-
-        index += ratio;
-      } else {
-        if (word.includes('\n')) {
-          const splitedWord = word.split('\n');
-
-          textArray[index] = splitedWord[0];
-          index++;
-          // if multiple \n, put the last correct knew word
-          textArray[index] = splitedWord[1] || splitedWord[2] || splitedWord[3];
-        } else {
-          textArray[index] = word;
-        }
+      for (let i = 0; i < ratio; i++) {
+        textArray[i + index] = word.substring(
+          i * maxLength,
+          (i + 1) * maxLength,
+        );
       }
+
+      index += ratio;
+    } else if (word.includes('\n')) {
+      const splitedWord = word.split('\n');
+
+      textArray[index] = splitedWord[0];
+      index++;
+      // if multiple \n, put the last correct knew word
+      textArray[index] = splitedWord[1] || splitedWord[2] || splitedWord[3];
+    } else {
+      textArray[index] = word;
     }
   });
 

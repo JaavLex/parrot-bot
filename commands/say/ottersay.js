@@ -1,6 +1,5 @@
-const { MessageEmbed } = require('discord.js');
 const { createUserEmbed } = require('../../utils/discordUtils');
-const { createError } = require('../../utils/errorUtils');
+const { createMdBlock } = require('../../utils/functions');
 const generateSayText = require('../../utils/sayUtils');
 
 async function run(client, message, args) {
@@ -25,10 +24,10 @@ async function run(client, message, args) {
              \\  .'  )        .-.;\`  /
               '.             |  \`\\-'
                  '._        -'    /
-                   \`\`""--\`------\'    `;
+                   \`\`""--\`------'    `;
 
   embed.setDescription(
-    '```\n' + generateSayText(sentence, otter.length) + otter + '\n```',
+    createMdBlock(generateSayText(sentence, otter.length) + otter),
   );
 
   await message.channel.send(embed);
