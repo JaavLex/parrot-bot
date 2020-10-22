@@ -19,7 +19,7 @@ async function run(client, message) {
   setTimeout(async () => {
     if (randomNumber(0, 1)) {
       embed.setDescription(
-        `**🤡 I Failed !**, it's the correct dick size of ${userMentioned}
+        `**🤡 Sike!**, __THIS__ is ${userMentioned}'s correct dick size !
         ${generateDick(randomNumber(2, randomSize))}`,
       );
 
