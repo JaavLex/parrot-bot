@@ -34,7 +34,7 @@ const frogsayCommand = {
   name: 'frogsay',
   category: 'say',
   aliases: ['fosay', 'fgsay'],
-  description: 'You invoke a fox to make it say what you want!',
+  description: 'You invoke a frog to make it say what you want!',
   autoMessageDeletion: true,
   run,
 };
