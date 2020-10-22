@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "npx nodemon index.js",
-    "github:eslint": "eslint js ."
+    "github:eslint": "eslint js,ts,tsx ."
   },
   "dependencies": {
     "ascii-table": "0.0.9",
