@@ -19,7 +19,7 @@ jobs:
         run: npm i --save-dev
         env:
           CI: true
-      - name:  Run linter
+      - name: Run linter
         run: npm run github:eslint
         env:
           CI: true

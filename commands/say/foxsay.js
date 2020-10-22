@@ -6,7 +6,7 @@ async function run(client, message, args) {
   const sentence = args.join(' ') || 'WHAT DOES THE FOX SAYYY';
 
   const embed = createUserEmbed(
-    '#ff9900',
+    '#f39c12',
     `🦊 ${message.author.username} invoked **Mr. Fox**`,
     {
       command: foxsayCommand.name,
