@@ -14,7 +14,7 @@ async function run(client, message, args) {
     },
   );
 
-  const cannibal = `
+  const baby = `
   ,=""=,   |
   c , _,{ /
   /\\  @ )                __
