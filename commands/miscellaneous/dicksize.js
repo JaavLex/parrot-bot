@@ -10,7 +10,7 @@ async function run(client, message) {
     author: message.author,
     command: dicksizeCommand.command,
   }).setDescription(
-    `😋 Dick size of ${userMentioned}
+    `😋 ${userMentioned}'s dick size
     ${generateDick(randomSize)}`,
   );
 
