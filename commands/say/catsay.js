@@ -14,7 +14,7 @@ async function run(client, message, args) {
     },
   );
 
-  const chicken = `
+  const cat = `
   \\   ,_     _
    \\  |\\\\_,-~/
     \\ / _  _ |    ,--.
