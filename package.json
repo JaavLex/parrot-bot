@@ -9,7 +9,8 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "dev": "npx nodemon index.js"
+    "dev": "npx nodemon index.js",
+    "github:eslint": "eslint js ."
   },
   "dependencies": {
     "ascii-table": "0.0.9",
