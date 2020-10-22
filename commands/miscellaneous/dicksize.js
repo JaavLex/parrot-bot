@@ -45,7 +45,7 @@ function generateDick(size) {
 
 const dicksizeCommand = {
   name: 'dicksize',
-  category: 'funny',
+  category: 'miscellaneous',
   aliases: ['ds', 'dicks', 'dsize'],
   description: "The bot will evaluate someone's dick size !",
   usage: '[target user]',
