@@ -9,7 +9,7 @@ async function run(client, message, args) {
       command: gayrateCommand.name,
       author: message.author,
     }).setDescription(
-      `**${userMentioned}\'s rate of gayness :**\n ${jaugeBar(
+      `**${userMentioned}'s rate of gayness :**\n ${jaugeBar(
         randomNumber(0, 100),
         20,
         { filler: '🏳️‍🌈', unfiller: '  ' },

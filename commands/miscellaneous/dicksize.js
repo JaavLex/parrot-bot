@@ -6,10 +6,14 @@ async function run(client, message) {
 
   const randomSize = randomNumber(5, 25);
 
-  const embed = createUserEmbed('#8e44ad', "🍆 Dick Size has been evaluated! 🍌", {
-    author: message.author,
-    command: dicksizeCommand.command,
-  }).setDescription(
+  const embed = createUserEmbed(
+    '#8e44ad',
+    '🍆 Dick Size has been evaluated! 🍌',
+    {
+      author: message.author,
+      command: dicksizeCommand.command,
+    },
+  ).setDescription(
     `😋 ${userMentioned}'s dick size
     ${generateDick(randomSize)}`,
   );
@@ -43,7 +47,7 @@ const dicksizeCommand = {
   name: 'dicksize',
   category: 'funny',
   aliases: ['ds', 'dicks', 'dsize'],
-  description: 'The bot will evaluate someone's dick size !',
+  description: "The bot will evaluate someone's dick size !",
   usage: '[target user]',
   autoMessageDeletion: true,
   run,

@@ -25,7 +25,7 @@ function jaugeBar(
   const filledBars = Math.floor(percentage / (100 / length));
   let finalJaugeBar = '`[';
 
-  for (var i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     finalJaugeBar += i <= filledBars ? filler : unfiller;
   }
 
