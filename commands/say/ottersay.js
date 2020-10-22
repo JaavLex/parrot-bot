@@ -1,6 +1,5 @@
-const { MessageEmbed } = require('discord.js');
 const { createUserEmbed } = require('../../utils/discordUtils');
-const { createError } = require('../../utils/errorUtils');
+const { createMdBlock } = require('../../utils/functions');
 const generateSayText = require('../../utils/sayUtils');
 
 async function run(client, message, args) {
@@ -10,7 +9,7 @@ async function run(client, message, args) {
     '#2980b9',
     `🦦  ${message.author.username} invoked **Baby Otter**`,
     {
-      command: sayotterCommand.name,
+      command: ottersayCommand.name,
       author: message.author,
     },
   );
@@ -25,16 +24,16 @@ async function run(client, message, args) {
              \\  .'  )        .-.;\`  /
               '.             |  \`\\-'
                  '._        -'    /
-                   \`\`""--\`------\'    `;
+                   \`\`""--\`------'    `;
 
   embed.setDescription(
-    '```\n' + generateSayText(sentence, otter.length) + otter + '\n```',
+    createMdBlock(generateSayText(sentence, otter.length) + otter),
   );
 
   await message.channel.send(embed);
 }
 
-const sayotterCommand = {
+const ottersayCommand = {
   name: 'ottersay',
   aliases: ['otsay'],
   category: 'say',
@@ -43,4 +42,4 @@ const sayotterCommand = {
   run,
 };
 
-module.exports = sayotterCommand;
+module.exports = ottersayCommand;

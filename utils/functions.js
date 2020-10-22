@@ -34,6 +34,11 @@ function jaugeBar(
   return finalJaugeBar;
 }
 
+function createMdBlock(text, language = '') {
+  return `\`\`\`${language}\n${text}\n\`\`\``;
+}
+
 exports.consoleColor = consoleColor;
 exports.randomNumber = randomNumber;
 exports.jaugeBar = jaugeBar;
+exports.createMdBlock = createMdBlock;

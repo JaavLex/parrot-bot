@@ -1,5 +1,5 @@
-const { MessageEmbed } = require('discord.js');
 const { createUserEmbed } = require('../../utils/discordUtils');
+const { createMdBlock } = require('../../utils/functions');
 const generateSayText = require('../../utils/sayUtils');
 
 async function run(client, message, args) {
@@ -9,9 +9,7 @@ async function run(client, message, args) {
     '#e74c3c',
     `🍖 ${message.author.username} invoked **THE CANNIBAL**`,
     {
-
-      command: saycannibalCommand.name,
-
+      command: cannibalsayCommand.name,
       author: message.author,
     },
   );
@@ -35,19 +33,19 @@ async function run(client, message, args) {
        `;
 
   embed.setDescription(
-    '```\n' + generateSayText(sentence, cannibal.length) + cannibal + '\n```',
+    createMdBlock(generateSayText(sentence, cannibal.length) + cannibal),
   );
 
   await message.channel.send(embed);
 }
 
-const saycannibalCommand = {
-  name: 'saycannibal',
-  aliases: ['cannisay', 'saycanni'],
+const cannibalsayCommand = {
+  name: 'cannibalsay',
+  aliases: ['saycanni', 'cannisay'],
   category: 'say',
   description: 'You invoke a cannibal to say what you want !',
   autoMessageDeletion: true,
   run,
 };
 
-module.exports = saycannibalCommand;
+module.exports = cannibalsayCommand;

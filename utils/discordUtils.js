@@ -1,7 +1,4 @@
-const { MessageEmbed, ReactionUserManager } = require('discord.js');
-const { prefix } = require('../config.json');
-
-const currentPrefix = process.env.DEV_PREFIX || prefix;
+const { MessageEmbed } = require('discord.js');
 
 /**
  * Function to create Embed easier.
@@ -19,10 +16,8 @@ function createEmbed(color, title, footer, timestamp = true) {
   if (footer) {
     if (typeof footer === 'string') {
       embed.setFooter(footer);
-    } else {
-      if (footer.footer && footer.image) {
-        embed.setFooter(footer.footer, footer.image);
-      }
+    } else if (footer.footer && footer.image) {
+      embed.setFooter(footer.footer, footer.image);
     }
   }
   timestamp && embed.setTimestamp();
@@ -42,7 +37,7 @@ function createUserEmbed(color, title, { author, command }) {
   const embed = new MessageEmbed().setColor(color).setTimestamp();
 
   title && embed.setTitle(title);
-  author && embed.setFooter('Asked by ' + author.username, author.avatarURL());
+  author && embed.setFooter(`Asked by ${author.username}`, author.avatarURL());
 
   return embed;
 }

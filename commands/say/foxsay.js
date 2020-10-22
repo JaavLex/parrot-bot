@@ -1,5 +1,5 @@
-const { MessageEmbed } = require('discord.js');
 const { createUserEmbed } = require('../../utils/discordUtils');
+const { createMdBlock } = require('../../utils/functions');
 const generateSayText = require('../../utils/sayUtils');
 
 async function run(client, message, args) {
@@ -9,7 +9,7 @@ async function run(client, message, args) {
     '#ff9900',
     `🦊 ${message.author.username} invoked **Mr. Fox**`,
     {
-      command: sayFoxCommand.name,
+      command: foxsayCommand.name,
       author: message.author,
     },
   );
@@ -26,12 +26,14 @@ async function run(client, message, args) {
        [  [ ( \\/ _/
       _[ _[ / / _/`;
 
-  embed.setDescription('```\n' + generateSayText(sentence) + fox + '\n```');
+  embed.setDescription(
+    createMdBlock(generateSayText(sentence, fox.length) + fox),
+  );
 
   message.channel.send(embed);
 }
 
-const sayFoxCommand = {
+const foxsayCommand = {
   name: 'foxsay',
   category: 'say',
   description: 'You invoke a fox to make it say what you want!',
@@ -39,4 +41,4 @@ const sayFoxCommand = {
   run,
 };
 
-module.exports = sayFoxCommand;
+module.exports = foxsayCommand;
