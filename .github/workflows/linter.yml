@@ -9,10 +9,17 @@ jobs:
       matrix:
         node-version: [14.x]
     steps:
+      # checkout to the repository
       - uses: actions/checkout@v1
+      # install nodejs
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
       - name: Install
-        run: npm i
+        run: npm i --save-dev
+        env:
+          CI: true
       - name:  Build
-        run: npx eslint . --ext .js,.jsx,.ts,.tsx 
+        run: eslint js .
         env:
           CI: true
