@@ -43,7 +43,8 @@ const dicksizeCommand = {
   name: 'dicksize',
   category: 'funny',
   aliases: ['ds', 'dicks', 'dsize'],
-  description: 'You invoke a chicken to say what you want!',
+  description: 'The bot will evaluate someone's dick size !',
+  usage: '[target user]',
   autoMessageDeletion: true,
   run,
 };
