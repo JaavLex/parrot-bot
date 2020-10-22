@@ -6,7 +6,7 @@ async function run(client, message) {
 
   const randomSize = randomNumber(5, 25);
 
-  const embed = createUserEmbed('#8e44ad', "🍆 You're dick size 🍌", {
+  const embed = createUserEmbed('#8e44ad', "🍆 Dick Size has been evaluated! 🍌", {
     author: message.author,
     command: dicksizeCommand.command,
   }).setDescription(
