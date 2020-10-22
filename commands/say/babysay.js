@@ -24,7 +24,7 @@ async function run(client, message, args) {
        `;
 
   embed.setDescription(
-    createMdBlock(generateSayText(sentence, cannibal.length) + cannibal),
+    createMdBlock(generateSayText(sentence, baby.length) + baby),
   );
 
   await message.channel.send(embed);
