@@ -1,5 +1,5 @@
-const { MessageEmbed } = require('discord.js');
 const { createUserEmbed } = require('../../utils/discordUtils');
+const { createMdBlock } = require('../../utils/functions');
 const generateSayText = require('../../utils/sayUtils');
 
 async function run(client, message, args) {
@@ -9,7 +9,7 @@ async function run(client, message, args) {
     '#ff9900',
     `🐓 ${message.author.username} invoked **El Pollo**`,
     {
-      command: sayChikenCommand.name,
+      command: chickensayCommand.name,
       author: message.author,
     },
   );
@@ -25,13 +25,13 @@ async function run(client, message, args) {
        " "`;
 
   embed.setDescription(
-    '```\n' + generateSayText(sentence, chicken.length) + chicken + '\n```',
+    createMdBlock(generateSayText(sentence, chicken.length) + chicken),
   );
 
   await message.channel.send(embed);
 }
 
-const sayChikenCommand = {
+const chickensayCommand = {
   name: 'chickensay',
   category: 'say',
   aliases: ['chicsay'],
@@ -40,4 +40,4 @@ const sayChikenCommand = {
   run,
 };
 
-module.exports = sayChikenCommand;
+module.exports = chickensayCommand;

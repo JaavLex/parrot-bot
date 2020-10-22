@@ -1,4 +1,5 @@
 const { createEmbed } = require('./discordUtils');
+const { createMdBlock } = require('./functions');
 
 /**
  * Function to create error embed easier.
@@ -7,14 +8,14 @@ const { createEmbed } = require('./discordUtils');
  * @return {MessageEmbed} A Discord Embed
  */
 function createEmbedError(error) {
-  const embed = createEmbed('#c0392b', ' ⚠️ ' + error.title);
+  const embed = createEmbed('#c0392b', ` ⚠️ ${error.title}`);
 
   if (error.description) {
-    embed.addField('🔴 Error', '```\n' + error.description + '\n```');
+    embed.addField('🔴 Error', createMdBlock(error.description));
   }
 
   if (error.solution) {
-    embed.addField('🟢 Solution', '```\n' + error.solution + '\n```');
+    embed.addField('🟢 Solution', createMdBlock(error.solution));
   }
 
   return embed;

@@ -1,12 +1,12 @@
+const giphy = require('giphy-api')();
 const { createUserEmbed } = require('../../utils/discordUtils');
 const { createError } = require('../../utils/errorUtils');
 const { randomNumber } = require('../../utils/functions.js');
-const giphy = require('giphy-api')();
 
 async function run(client, message, args) {
   const userQuery = args.join(' ') || 'parrot';
 
-  const image_url = await giphy.search(userQuery).then(function (res) {
+  const imageUrl = await giphy.search(userQuery).then(res => {
     const result = res.data[randomNumber(0, 25)];
     if (!result) {
       throw createError(
@@ -23,7 +23,7 @@ async function run(client, message, args) {
     createUserEmbed('#ff9900', `📷 Your gif of : "${userQuery}"! 📷`, {
       command: gifCommand.name,
       author: message.author,
-    }).setImage(image_url),
+    }).setImage(imageUrl),
   );
 }
 
