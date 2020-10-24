@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "npx nodemon index.js",
-    "github:eslint": "eslint --ext js ."
+    "github:eslint": "eslint --ext js .",
+    "github:start": "node index.js NODE_ENV=development DISCORD_TOKEN=NzY5Njk0NDE4NTg3ODc3NDE3.X5SvyQ.Z8iLDsnMvFsqsXkCQ_SF_-0yf0M"
   },
   "dependencies": {
     "ascii-table": "0.0.9",

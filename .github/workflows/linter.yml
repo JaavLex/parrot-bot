@@ -39,7 +39,7 @@ jobs:
         run: npm i --save-dev
         env:
           CI: true
-      - name: Run linter
-        run: npm start
+      - name: start app
+        run: npm github:start
         env:
           CI: true
