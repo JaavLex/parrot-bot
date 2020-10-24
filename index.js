@@ -33,7 +33,7 @@ client.on('message', message => onMessage(message, client));
 client.on('ready', () => {
   console.info(consoleColor('success', '✨ The bot is running.'));
   client.user.setActivity(
-    `🦜 Squawk! Type ${currentPrefix}help for a list of commands!`,
+    `🦜 Squawk! ${currentPrefix}help`,
     'PLAYING',
   );
 });
