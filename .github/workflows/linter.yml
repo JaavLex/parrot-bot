@@ -1,4 +1,4 @@
-name: Linter validation
+name: Linter and Start validation
 
 on: [pull_request]
 
@@ -21,5 +21,25 @@ jobs:
           CI: true
       - name: Run linter
         run: npm run github:eslint
+        env:
+          CI: true
+  start:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      # checkout to the repository
+      - uses: actions/checkout@v1
+      # install nodejs
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install
+        run: npm i --save-dev
+        env:
+          CI: true
+      - name: Run linter
+        run: npm start
         env:
           CI: true
