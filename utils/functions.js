@@ -38,7 +38,10 @@ function createMdBlock(text, language = '') {
   return `\`\`\`${language}\n${text}\n\`\`\``;
 }
 
+const invisibleChar = '‏‏‎';
+
 exports.consoleColor = consoleColor;
 exports.randomNumber = randomNumber;
 exports.jaugeBar = jaugeBar;
 exports.createMdBlock = createMdBlock;
+exports.invisibleChar = invisibleChar;
