@@ -40,6 +40,6 @@ jobs:
         env:
           CI: true
       - name: start app
-        run: npm github:start
+        run: npm run github:start
         env:
           CI: true
