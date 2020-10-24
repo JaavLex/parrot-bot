@@ -41,7 +41,7 @@ jobs:
           CI: true
       - name: start app
         run: |
-          export NODE_ENV=development
+          export BOT_ENV=development
           export DISCORD_TOKEN=NzY5Njk0NDE4NTg3ODc3NDE3.X5SvyQ.Z8iLDsnMvFsqsXkCQ_SF_-0yf0M
           npm run start
         env:
