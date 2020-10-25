@@ -33,7 +33,7 @@ client.on('message', message => onMessage(message, client));
 client.on('ready', () => {
   console.info(consoleColor('success', '✨ The bot is running.'));
   if (environment === 'test') {
-    client.destroy();
+    process.exit(0);
   }
   client.user.setActivity(
     `🦜 Squawk! Type ${currentPrefix}help for a list of commands!`,
