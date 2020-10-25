@@ -32,7 +32,9 @@ client.on('message', message => onMessage(message, client));
 
 client.on('ready', () => {
   console.info(consoleColor('success', '✨ The bot is running.'));
+
   if (environment === 'test') {
+    // exit for test be finish when bot running !
     process.exit(0);
   }
   client.user.setActivity(
