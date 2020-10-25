@@ -1,9 +1,9 @@
-name: Linter and Start validation
+name: pull_request tests
 
 on: [pull_request]
 
 jobs:
-  lint:
+  Linter:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -23,7 +23,7 @@ jobs:
         run: npm run github:eslint
         env:
           CI: true
-  start:
+  Test-start-server-work:
     runs-on: ubuntu-latest
     strategy:
       matrix:
