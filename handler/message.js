@@ -4,7 +4,7 @@ const {
   createEmbedError,
   createUnknowCommandError,
 } = require('../utils/errorUtils');
-const { consoleColor } = require('../utils/functions');
+const { consoleColor } = require('../utils/utils');
 const onPrivateMessage = require('../private-message/message');
 
 const currentPrefix = process.env.DEV_PREFIX || prefix;

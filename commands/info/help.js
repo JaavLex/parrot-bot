@@ -1,7 +1,7 @@
 const { prefix } = require('../../config.json');
 const { createEmbed } = require('../../utils/discordUtils');
 const { createError } = require('../../utils/errorUtils');
-const { createMdBlock } = require('../../utils/functions');
+const { createMdBlock } = require('../../utils/utils');
 const emojiObject = require('./categories-label.json');
 
 function getAllCommands(client, message) {

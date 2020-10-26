@@ -1,7 +1,7 @@
 const giphy = require('giphy-api')();
 const { createUserEmbed } = require('../../utils/discordUtils');
 const { createError } = require('../../utils/errorUtils');
-const { randomNumber } = require('../../utils/functions.js');
+const { randomNumber } = require('../../utils/utils.js');
 
 async function run(client, message, args) {
   const userQuery = args.join(' ') || 'parrot';

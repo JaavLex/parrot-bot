@@ -6,7 +6,7 @@ const { prefix } = require('./config.json');
 
 const handler = require(`./handler/handler.js`);
 const onMessage = require('./handler/message');
-const { consoleColor } = require('./utils/functions');
+const { consoleColor } = require('./utils/utils');
 
 const discordToken = process.env.DISCORD_TOKEN;
 const environment = process.env.BOT_ENV;

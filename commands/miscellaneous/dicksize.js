@@ -1,5 +1,5 @@
 const { createUserEmbed } = require('../../utils/discordUtils');
-const { randomNumber } = require('../../utils/functions');
+const { randomNumber } = require('../../utils/utils');
 
 async function run(client, message) {
   const userMentioned = message.mentions.users.first() || message.author;
@@ -22,6 +22,7 @@ async function run(client, message) {
 
   setTimeout(async () => {
     if (randomNumber(0, 1)) {
+      console.log('EDIT MESSAFE');
       embed.setDescription(
         `**🤡 Sike!**, __THIS__ is ${userMentioned}'s correct dick size !
         ${generateDick(randomNumber(2, randomSize))}`,

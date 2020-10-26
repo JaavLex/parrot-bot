@@ -1,6 +1,7 @@
 const { createUserEmbed } = require('../../utils/discordUtils');
 const { createError } = require('../../utils/errorUtils');
-const { invisibleChar } = require('../../utils/functions');
+const { createCollectorMessage } = require('../../utils/reactionsUtils');
+const { invisibleChar } = require('../../utils/utils');
 
 const emojies = [
   '1️⃣',
@@ -19,70 +20,86 @@ const emojies = [
 ];
 
 async function run(client, message, args) {
-  const splitedMessage = args
+  let poolKinds = args
     .join(' ')
     .split(';')
     .map(m => m.trim());
 
-  if (splitedMessage.length < 3) {
-    // ! DESTROY
-    splitedMessage[0] = 'Question';
-    splitedMessage[1] = 'Answer1';
-    splitedMessage[2] = 'Answer2';
-    // ! DESTROY
-    // throw createError(
-    //   'Need 2 question min !',
-    //   '',
-    //   'try /pool question ; answer1 ; answer2',
-    // );
+  if (poolKinds.length < 3)
+    poolKinds = [
+      'Quelles est la fortune de Bill Gates en 2020 ?',
+      '98 milliards de dollars',
+      '99 milliards de dollars',
+      '100 milliards de dollars',
+      '101 milliards de dollars',
+    ];
+
+  checkPool(poolKinds);
+
+  const embed = createUserEmbed('#8e44ad', `🤔 ${poolKinds[0]}`, {
+    command: poolCommand.name,
+    author: message.author,
+  }).setDescription('The pool will finish in 5 minutes.');
+
+  addKinds(poolKinds, embed);
+
+  const sendingMessage = await message.channel.send(embed);
+
+  addReactions(poolKinds, sendingMessage);
+  createCollectorMessage(sendingMessage, onCollect, { alwaysCollect: true });
+
+  function onCollect(emoji, msg, users) {
+    const fields = getEditedEmbed(emoji, msg, users, msg.embeds[0]);
+    embed.fields = fields;
+    // need to send original embed idk why
+    msg.edit(embed);
+  }
+}
+
+function getEditedEmbed(emoji, msg, users, embed) {
+  const fields = [...embed.fields];
+
+  const selectedFieldIndex = fields.findIndex(field =>
+    field.name.includes(emoji),
+  );
+
+  fields[selectedFieldIndex] = {
+    value: users.map(u => `<@${u.id}>`).join(', ') || invisibleChar,
+    inline: fields[selectedFieldIndex].inline,
+    name: fields[selectedFieldIndex].name,
+  };
+
+  return fields;
+}
+
+const addKinds = (kinds, embed) =>
+  [...emojies]
+    .splice(0, kinds.length - 1)
+    .map((emoji, i) =>
+      embed.addField(`${emoji} ${kinds[i + 1]}`, invisibleChar),
+    );
+
+const addReactions = (kinds, message) =>
+  [...emojies]
+    .splice(0, kinds.length - 1)
+    .map((emoji, i) => message.react(emoji));
+
+function checkPool(poolKinds) {
+  if (poolKinds.length < 3) {
+    throw createError(
+      'Need 2 questions min !',
+      '',
+      'try /pool question ; answer1 ; answer2',
+    );
   }
 
-  if (splitedMessage.length > 12) {
+  if (poolKinds.length > 12) {
     throw createError(
-      'Max 12 question !',
+      'Max 12 questions !',
       '',
       'try /pool question ; answer1 ; answer2 ... answer12',
     );
   }
-
-  const embed = createUserEmbed('#8e44ad', 'Pool', {
-    command: poolCommand.name,
-    author: message.author,
-  }).setDescription(splitedMessage[0]);
-
-  for (let i = 1; i < splitedMessage.length; i++) {
-    // is an invisible char here !
-    embed.addField(`${emojies[i - 1]} ${splitedMessage[i]}`, invisibleChar);
-  }
-
-  await message.channel.send(embed).then(async mess => {
-    for (let i = 1; i < splitedMessage.length; i++) {
-      mess.react(emojies[i - 1]);
-    }
-
-    mess.awaitReactions(async (msg, user) => {
-      // eslint-disable-next-line no-underscore-dangle
-      const emoji = msg.users.reaction._emoji.name;
-      const fields = [...embed.fields];
-
-      const selectedFieldIndex = fields.findIndex(field =>
-        field.name.includes(emoji),
-      );
-
-      fields[selectedFieldIndex] = {
-        name: 'salut',
-        ...fields[selectedFieldIndex],
-      };
-
-      embed.fields = fields;
-
-      await t.edit('pute');
-    });
-  });
-
-  // mess.awaitReactions((mes, user) => {
-  //   console.log('yo', mes, 'blabla', user, 'embed :', embed);
-  // });
 }
 
 const poolCommand = {

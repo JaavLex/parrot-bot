@@ -1,5 +1,5 @@
 const { createEmbed } = require('./discordUtils');
-const { createMdBlock } = require('./functions');
+const { createMdBlock } = require('./utils');
 
 /**
  * Function to create error embed easier.

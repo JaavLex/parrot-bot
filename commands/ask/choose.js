@@ -1,5 +1,5 @@
 const { createUserEmbed } = require('../../utils/discordUtils');
-const { randomNumber } = require('../../utils/functions.js');
+const { randomNumber } = require('../../utils/utils.js');
 
 async function run(client, message, args) {
   const userQuestion = args.join(' ') || 'Who loves parrot-bot ?';

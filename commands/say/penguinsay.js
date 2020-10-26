@@ -1,5 +1,5 @@
 const { createUserEmbed } = require('../../utils/discordUtils');
-const { createMdBlock } = require('../../utils/functions');
+const { createMdBlock } = require('../../utils/utils');
 const generateSayText = require('../../utils/sayUtils');
 
 async function run(client, message, args) {
