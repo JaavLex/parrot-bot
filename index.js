@@ -38,7 +38,7 @@ client.on('ready', () => {
     process.exit(0);
   }
   client.user.setActivity(
-    `🦜 Squawk! Type ${currentPrefix}help for a list of commands!`,
+    `🦜 Squawk! ${currentPrefix}help`,
     'PLAYING',
   );
 });
