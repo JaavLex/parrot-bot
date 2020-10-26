@@ -20,7 +20,7 @@ function randomNumber(min, max) {
 function jaugeBar(
   percentage,
   length = 10,
-  { filler = '█', unfiller = ' ' } = {},
+  { filler = '██', unfiller = '  ' } = {},
 ) {
   const filledBars = Math.floor(percentage / (100 / length));
   let finalJaugeBar = '`[';
