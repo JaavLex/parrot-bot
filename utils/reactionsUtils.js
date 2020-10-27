@@ -1,7 +1,7 @@
 function defaultFilter(reaction, user) {
   return !user.bot;
 }
-
+// TODO : remove users
 /**
  * Function to make Embed creation easier
  *
@@ -15,7 +15,7 @@ function createCollectorMessage(
   {
     onEnd = () => {},
     onRemove = () => {},
-    time = 60000,
+    time = 8000,
     filter,
     alwaysCollect = true,
   },

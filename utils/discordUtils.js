@@ -30,10 +30,10 @@ function createEmbed(color, title, footer, timestamp = true) {
  *
  * @param {string} color The color of the embed
  * @param {string} title The title of the embed
- * @param {{author: Author, command:? string}} footer The fotter of the embed
+ * @param {{author: Author}} footer The fotter of the embed
  * @return {MessageEmbed} A Discord Embed
  */
-function createUserEmbed(color, title, { author, command }) {
+function createUserEmbed(color, title, { author }) {
   const embed = new MessageEmbed().setColor(color).setTimestamp();
 
   title && embed.setTitle(title);

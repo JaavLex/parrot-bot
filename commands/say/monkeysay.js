@@ -1,6 +1,6 @@
 const { createUserEmbed } = require('../../utils/discordUtils');
 const { createMdBlock } = require('../../utils/utils');
-const generateSayText = require('../../utils/sayUtils');
+const generateSayText = require('../../utils/services/sayServices');
 
 async function run(client, message, args) {
   const sentence = args.join(' ') || 'hoo hoo hoo hoo';

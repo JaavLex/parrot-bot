@@ -1,13 +1,10 @@
 require('dotenv').config();
-const { prefix } = require('../config.json');
 const {
   createEmbedError,
   createUnknowCommandError,
 } = require('../utils/errorUtils');
-const { consoleColor } = require('../utils/utils');
+const { consoleColor, prefix } = require('../utils/utils');
 const onPrivateMessage = require('../private-message/message');
-
-const currentPrefix = process.env.DEV_PREFIX || prefix;
 
 async function onMessage(message, client) {
   if (message.channel.name === undefined) {
@@ -15,9 +12,9 @@ async function onMessage(message, client) {
     return;
   }
 
-  if (message.author.bot || !message.content.startsWith(currentPrefix)) return;
+  if (message.author.bot || !message.content.startsWith(prefix)) return;
 
-  const args = message.content.slice(currentPrefix.length).trim().split(/ +/g);
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
 
   const command = args.shift().toLowerCase();
 
@@ -29,7 +26,7 @@ async function onMessage(message, client) {
 
   console.info(
     consoleColor('info', `▶️ ${message.author.username} ran`),
-    consoleColor('danger', currentPrefix + command),
+    consoleColor('danger', prefix + command),
     consoleColor('info', `at ${new Date().toLocaleString()}`),
   );
 
@@ -43,7 +40,7 @@ async function onMessage(message, client) {
     } else {
       await message.delete();
       const warningMessage = await message.channel.send(
-        createUnknowCommandError(currentPrefix, command),
+        createUnknowCommandError(prefix, command),
       );
 
       setTimeout(() => {
