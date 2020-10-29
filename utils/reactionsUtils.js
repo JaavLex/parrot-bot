@@ -1,6 +1,5 @@
-function defaultFilter(reaction, user) {
-  return !user.bot;
-}
+const defaultFilter = (reaction, user) => (!user.bot);
+
 /**
  * Function to make Embed creation easier
  *
