@@ -10,21 +10,23 @@ async function run(client, message) {
     time: 30000,
     filter: (reaction, user) =>
       user.id === message.author.id && reaction.emoji.name === '🔁',
+    data: { author: message.author },
   });
 }
 
-function onCollect(emoji, msg, users) {
-  const newMsg = msg.channel.send(createEmbedRoulette(msg.author));
+async function onCollect(emoji, msg, users, data) {
+  const newMsg = await msg.channel.send(createEmbedRoulette(data.author));
   newMsg.react('🔁');
 
   createCollectorMessage(newMsg, onCollect, {
     time: 30000,
     filter: (reaction, user) =>
-      user.id === msg.author.id && reaction.emoji.name === '🔁',
+      user.id === data.author && reaction.emoji.name === '🔁',
+    data: { author: data.author },
   });
 }
 
-async function createEmbedRoulette(author) {
+function createEmbedRoulette(author) {
   const rouletteResult = randomNumber(1, 6);
 
   if (rouletteResult === 1) {
