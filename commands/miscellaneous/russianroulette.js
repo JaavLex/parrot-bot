@@ -1,81 +1,47 @@
 const { createUserEmbed } = require('../../utils/discordUtils');
-const { createError } = require('../../utils/errorUtils');
 const { randomNumber } = require('../../utils/utils.js');
 const { createCollectorMessage } = require('../../utils/reactionsUtils');
 
 async function run(client, message) {
-  let messageResult = '';
+  const msg = await message.channel.send(createEmbedRoulette(message.author));
+  msg.react('🔁');
 
-  async function launchRoulette() {
-    const rouletteResult = randomNumber(1, 6);
+  createCollectorMessage(msg, onCollect, {
+    time: 30000,
+    filter: (reaction, user) =>
+      user.id === message.author.id && reaction.emoji.name === '🔁',
+  });
+}
 
-    if (rouletteResult === 1) {
-      messageResult = await message.channel.send(
-        createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
-          command: russianrouletteCommand.name,
-          author: message.author,
-        }).setDescription(
-          `**💀 You died 💀** : The bullet was in chamber n#${rouletteResult}`,
-        ),
-      );
-    } else {
-      messageResult = await message.channel.send(
-        createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
-          command: russianrouletteCommand.name,
-          author: message.author,
-        }).setDescription(
-          `**😨 You survived ! 😨** : The bullet was in chamber n#${rouletteResult}`,
-        ),
-      );
-    }
+function onCollect(emoji, msg, users) {
+  const newMsg = msg.channel.send(createEmbedRoulette(msg.author));
+  newMsg.react('🔁');
 
-    messageResult.react('🔁');
+  createCollectorMessage(newMsg, onCollect, {
+    time: 30000,
+    filter: (reaction, user) =>
+      user.id === msg.author.id && reaction.emoji.name === '🔁',
+  });
+}
 
-    redoOption(rouletteResult);
+async function createEmbedRoulette(author) {
+  const rouletteResult = randomNumber(1, 6);
+
+  if (rouletteResult === 1) {
+    return createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
+      command: russianrouletteCommand.name,
+      author,
+    }).setDescription(
+      `**💀 You died 💀** : The bullet was in chamber n#${rouletteResult}`,
+    );
   }
 
-  async function redoOption(result) {
-    function onCollect() {
-      if (result !== 1) {
-        if (collected.first().emoji.name === '🔁') {
-          launchRoulette();
-        }
-      } else {
-        message.channel.send(
-          createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
-            command: russianrouletteCommand.name,
-            author: message.author,
-          }).setDescription(
-            `💀 You are dead, your are unable to replay the command 💀`,
-          ),
-        );
-      }
-    }
-
-    createCollectorMessage(messageResult, onCollect, {
-      time: 30000,
-      filter: (reaction, user) =>
-        user.id === message.author.id && reaction.emoji.name == '🔁',
-    });
-
-    /*     messageResult
-      .awaitReactions(
-        (reaction, user) =>
-          user.id === message.author.id && reaction.emoji.name == '🔁',
-        { max: 1, time: 30000 },
-      )
-      .then(collected => {})
-      .catch(() => {
-        throw createError(
-          `No response after 30 seconds, operation cancelled`,
-          `Waited for a reaction for too long.`,
-          `Type !russianroulette again to retry`,
-          true,
-        );
-      }); */
-  }
-
-  await launchRoulette();
+  return createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
+    command: russianrouletteCommand.name,
+    author,
+  }).setDescription(
+    `**😨 You survived ! 😨** : The bullet was in chamber n#${rouletteResult}`,
+  );
 }
 
 const russianrouletteCommand = {
