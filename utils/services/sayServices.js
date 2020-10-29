@@ -1,4 +1,4 @@
-const { createError } = require('./errorUtils');
+const { createError } = require('../errorUtils');
 
 /**
  * Function to create Embed easier.

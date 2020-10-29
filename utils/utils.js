@@ -1,3 +1,5 @@
+const { prefix: prefixJson } = require('../config.json');
+
 const styles = {
   // got these from playing around with what I found from:
   // https://github.com/istanbuljs/istanbuljs/blob/0f328fd0896417ccb2085f4b7888dd8e167ba3fa/packages/istanbul-lib-report/lib/file-writer.js#L84-L96
@@ -8,6 +10,8 @@ const styles = {
   subtitle: { open: '\u001b[2;1m', close: '\u001b[0m' },
   logger: { open: '\u001b[34;1m', close: '\u001b[0m' },
 };
+
+const prefix = process.env.DEV_PREFIX || prefixJson;
 
 function consoleColor(modifier, string) {
   return styles[modifier].open + string + styles[modifier].close;
@@ -38,7 +42,28 @@ function createMdBlock(text, language = '') {
   return `\`\`\`${language}\n${text}\n\`\`\``;
 }
 
-exports.consoleColor = consoleColor;
-exports.randomNumber = randomNumber;
-exports.jaugeBar = jaugeBar;
-exports.createMdBlock = createMdBlock;
+function maxValueInArray(arrayOfNumbers) {
+  let index = 0;
+  let max = 0;
+
+  arrayOfNumbers.forEach((number, i) => {
+    if (number > max) {
+      max = number;
+      index = i;
+    }
+  });
+
+  return { index, value: max };
+}
+
+const invisibleChar = '‏‏‎';
+
+module.exports = {
+  prefix,
+  consoleColor,
+  randomNumber,
+  jaugeBar,
+  invisibleChar,
+  createMdBlock,
+  maxValueInArray,
+};

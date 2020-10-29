@@ -1,5 +1,5 @@
 const { createUserEmbed } = require('../../utils/discordUtils');
-const { randomNumber } = require('../../utils/functions');
+const { randomNumber } = require('../../utils/utils');
 
 async function run(client, message) {
   const userMentioned = message.mentions.users.first() || message.author;
