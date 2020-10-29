@@ -29,7 +29,7 @@ async function run(client, message, args) {
     createMdBlock(generateSayText(sentence, mouse.length) + mouse),
   );
 
-  message.channel.send(embed);
+  await message.channel.send(embed);
 }
 
 const mousesayCommand = {

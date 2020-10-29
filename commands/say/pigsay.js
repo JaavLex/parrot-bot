@@ -24,7 +24,7 @@ async function run(client, message, args) {
     createMdBlock(generateSayText(sentence, pig.length) + pig),
   );
 
-  message.channel.send(embed);
+  await message.channel.send(embed);
 }
 
 const pigsayCommand = {

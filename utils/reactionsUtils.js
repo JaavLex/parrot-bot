@@ -1,11 +1,11 @@
-const defaultFilter = (reaction, user) => (!user.bot);
+const defaultFilter = (reaction, user) => !user.bot;
 
 /**
- * Function to make Embed creation easier
+ * Make a reaction collector with function callback
  *
- * @param {Message} message The message who need listen react
- * @param {(emoji: string, message: Message, users: Array<any>, user: User) => {}} onCollect The message who need listen react
- * @param {{onEnd: (emoji: string, message: Message, users: Array<any>, user: User) => any, onEnd: () => {}, time: number, filter: (reaction: any, user: any) => {}, alwaysCollect: boolean, }} params The title of the embed
+ * @param {Message} message The message who listen reaction
+ * @param {(emoji: string, message: Message, users: Array<any>, user: User) => {}} onCollect Function called all reaction added and reaction removed if you turn on `alwaysCollect`
+ * @param {{onEnd: (emoji: string, message: Message, users: Array<any>, user: User) => any, onEnd: () => {}, time: number, filter: (reaction: any, user: any) => {}, alwaysCollect: boolean, }} params Params of the reaction
  */
 function createCollectorMessage(
   message,
