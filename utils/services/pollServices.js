@@ -1,8 +1,8 @@
+/* eslint-disable no-param-reassign */
 const { createUserEmbed } = require('../discordUtils');
 const { createError } = require('../errorUtils');
 const { invisibleChar, maxValueInArray } = require('../utils');
 
-/* eslint-disable no-param-reassign */
 const emojies = [
   '1️⃣',
   '2️⃣',
