@@ -1,5 +1,5 @@
 async function run(client, message, args) {
-  const sentence = args.join(' ') || '😎 🥰 😍';
+  const sentence = args.join(' ') || 'Double parrot bot';
 
   message.channel.send(getDoubleText(sentence))
 }
