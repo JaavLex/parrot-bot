@@ -1,0 +1,48 @@
+name: pull_request tests
+
+on: [pull_request]
+
+jobs:
+  Linter:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      # checkout to the repository
+      - uses: actions/checkout@v1
+      # install nodejs
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install
+        run: npm i --save-dev
+        env:
+          CI: true
+      - name: Run linter
+        run: npm run github:eslint
+        env:
+          CI: true
+  Test-start-server-work:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      # checkout to the repository
+      - uses: actions/checkout@v1
+      # install nodejs
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install
+        run: npm i --save-dev
+        env:
+          CI: true
+      - name: start app
+        run: |
+          export BOT_ENV=test
+          export DISCORD_TOKEN=NzY5Njk0NDE4NTg3ODc3NDE3.X5SvyQ.Z8iLDsnMvFsqsXkCQ_SF_-0yf0M
+          npm run start
+        env:
+          CI: true
