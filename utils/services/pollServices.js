@@ -27,16 +27,16 @@ function onEnd(message, embed, question, author) {
   }));
   const { index } = maxValueInArray(countAnswers.map(a => a.count));
   embed.fields[index].name = `✅ ${embed.fields[index].name}`;
-  embed.setDescription('⚠️ Pool is finish !');
+  embed.setDescription('⚠️ Poll is finish !');
   message.edit(embed);
 
-  const poolFinishEmbed = createUserEmbed('#27ae60', `🥳 Pool is finish !`, {
+  const pollFinishEmbed = createUserEmbed('#27ae60', `🥳 Poll is finish !`, {
     author,
   })
     .setDescription("The poll has just been completed, here's the results.")
     .addField(`> ${question}`, `➡️ ${countAnswers[index].answer}`);
 
-  message.channel.send(poolFinishEmbed);
+  message.channel.send(pollFinishEmbed);
 }
 
 function getEditedFields(emoji, msg, users, embed, ...args) {
