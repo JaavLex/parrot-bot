@@ -5,9 +5,9 @@ function defaultFilter(reaction, user) {
 /**
  * Function to make Embed creation easier
  *
- * @param {DiscordMessage} message The message who need listen react
- * @param {(emoji: string, message: DiscordMessage, users: Array<any>, user: DiscordUser) => {}} onCollect The message who need listen react //! change user:DiscordUser
- * @param {{onEnd: (emoji: string, message: DiscordMessage, users: Array<any>, user: DiscordUser) => any, onEnd: () => {}, time: number, filter: (reaction: any, user: any) => {}, alwaysCollect: boolean, }} params The title of the embed
+ * @param {Message} message The message who need listen react
+ * @param {(emoji: string, message: Message, users: Array<any>, user: User) => {}} onCollect The message who need listen react
+ * @param {{onEnd: (emoji: string, message: Message, users: Array<any>, user: User) => any, onEnd: () => {}, time: number, filter: (reaction: any, user: any) => {}, alwaysCollect: boolean, }} params The title of the embed
  */
 function createCollectorMessage(
   message,

@@ -26,13 +26,17 @@ async function run(client, message, args) {
     poolKinds.splice(0, 1);
   }
 
+  const finishAt = new Date(new Date().getTime() + minutes * 60000);
+
   checkPool(poolKinds);
   const [question, ...answers] = poolKinds;
 
   const embed = createUserEmbed('#8e44ad', `🤔 ${question}`, {
     command: pollCommand.name,
     author: message.author,
-  }).setDescription(`The pool will finish in ${minutes} minutes.`);
+  }).setDescription(
+    `The pool will finish in ${minutes} minutes at ${finishAt.toLocaleTimeString()}.`,
+  );
   addAnswers(answers, embed);
 
   const sendingMessage = await message.channel.send(embed);
@@ -66,6 +70,8 @@ Exemple :
 10 will be the time of the survey.
 🔴 Maximum ${maxMinutes} minutes.
 🟡 Default ${defaultMinutes} minutes.
+
+⚠️ User reactions to the same IP adress may encounter problems.
 `,
   usage: 'question ; first answer ; second answer ...',
   autoMessageDeletion: false,
