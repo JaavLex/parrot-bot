@@ -1,6 +1,7 @@
 const { createUserEmbed } = require('../../utils/discordUtils');
 const { createError } = require('../../utils/errorUtils');
 const { randomNumber } = require('../../utils/utils.js');
+const { createCollectorMessage } = require('../../utils/reactionsUtils');
 
 async function run(client, message) {
   let messageResult = '';
@@ -8,7 +9,7 @@ async function run(client, message) {
   async function launchRoulette() {
     const rouletteResult = randomNumber(1, 6);
 
-    if (rouletteResult == 1) {
+    if (rouletteResult === 1) {
       messageResult = await message.channel.send(
         createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
           command: russianrouletteCommand.name,
@@ -34,28 +35,36 @@ async function run(client, message) {
   }
 
   async function redoOption(result) {
-    messageResult
+    function onCollect() {
+      if (result !== 1) {
+        if (collected.first().emoji.name === '🔁') {
+          launchRoulette();
+        }
+      } else {
+        message.channel.send(
+          createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
+            command: russianrouletteCommand.name,
+            author: message.author,
+          }).setDescription(
+            `💀 You are dead, your are unable to replay the command 💀`,
+          ),
+        );
+      }
+    }
+
+    createCollectorMessage(messageResult, onCollect, {
+      time: 30000,
+      filter: (reaction, user) =>
+        user.id === message.author.id && reaction.emoji.name == '🔁',
+    });
+
+    /*     messageResult
       .awaitReactions(
         (reaction, user) =>
-          user.id == message.author.id && reaction.emoji.name == '🔁',
+          user.id === message.author.id && reaction.emoji.name == '🔁',
         { max: 1, time: 30000 },
       )
-      .then(collected => {
-        if (result != 1) {
-          if (collected.first().emoji.name == '🔁') {
-            launchRoulette();
-          }
-        } else {
-          message.channel.send(
-            createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
-              command: russianrouletteCommand.name,
-              author: message.author,
-            }).setDescription(
-              `💀 You are dead, your are unable to replay the command 💀`,
-            ),
-          );
-        }
-      })
+      .then(collected => {})
       .catch(() => {
         throw createError(
           `No response after 30 seconds, operation cancelled`,
@@ -63,7 +72,7 @@ async function run(client, message) {
           `Type !russianroulette again to retry`,
           true,
         );
-      });
+      }); */
   }
 
   await launchRoulette();
