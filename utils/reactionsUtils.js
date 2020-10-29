@@ -1,7 +1,6 @@
 function defaultFilter(reaction, user) {
   return !user.bot;
 }
-// TODO : remove users
 /**
  * Function to make Embed creation easier
  *
