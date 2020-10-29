@@ -68,19 +68,19 @@ const addAnswers = (answers, embed) =>
 const addReactions = (kinds, message) =>
   emojies.slice(0, kinds.length).map(emoji => message.react(emoji));
 
-function checkPool(poolKinds) {
-  if (poolKinds.length < 3)
+function checkPoll(pollKinkds) {
+  if (pollKinkds.length < 3)
     throw createError(
       'Need 2 questions min !',
       '',
-      'try /pool question ; answer1 ; answer2',
+      'try /poll question ; answer1 ; answer2',
     );
 
-  if (poolKinds.length > 12)
+  if (pollKinkds.length > 12)
     throw createError(
       'Max 12 questions !',
       '',
-      'try /pool question ; answer1 ; answer2 ... answer12',
+      'try /poll question ; answer1 ; answer2 ... answer12',
     );
 }
 
@@ -90,5 +90,5 @@ module.exports = {
   onEnd,
   emojies,
   getEditedFields,
-  checkPool,
+  checkPoll,
 };

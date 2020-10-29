@@ -2,7 +2,7 @@ const { createUserEmbed } = require('../../utils/discordUtils');
 const { prefix } = require('../../utils/utils');
 const { createCollectorMessage } = require('../../utils/reactionsUtils');
 const {
-  checkPool,
+  checkPoll,
   addAnswers,
   addReactions,
   onEnd,
@@ -13,29 +13,29 @@ const defaultMinutes = 15;
 const maxMinutes = 120;
 
 async function run(client, message, args) {
-  const poolKinds = args
+  const pollKinds = args
     .join(' ')
     .split(';')
     .map(m => m.trim());
 
   let minutes = defaultMinutes;
   // if first argument is number, I set minutes value and remove first item of kinds
-  if (!Number.isNaN(Number(poolKinds[0]))) {
-    minutes = Number(poolKinds[0]);
+  if (!Number.isNaN(Number(pollKinds[0]))) {
+    minutes = Number(pollKinds[0]);
     if (minutes > maxMinutes) minutes = maxMinutes;
-    poolKinds.splice(0, 1);
+    pollKinds.splice(0, 1);
   }
 
   const finishAt = new Date(new Date().getTime() + minutes * 60000);
 
-  checkPool(poolKinds);
-  const [question, ...answers] = poolKinds;
+  checkPoll(pollKinds);
+  const [question, ...answers] = pollKinds;
 
   const embed = createUserEmbed('#8e44ad', `🤔 ${question}`, {
     command: pollCommand.name,
     author: message.author,
   }).setDescription(
-    `The pool will finish in ${minutes} minutes at ${finishAt.toLocaleTimeString()}.`,
+    `The poll will finish in ${minutes} minutes at ${finishAt.toLocaleTimeString()}.`,
   );
   addAnswers(answers, embed);
 
