@@ -30,7 +30,7 @@ async function run(client, message, args) {
     createMdBlock(generateSayText(sentence, fox.length) + fox),
   );
 
-  message.channel.send(embed);
+  await message.channel.send(embed);
 }
 
 const foxsayCommand = {

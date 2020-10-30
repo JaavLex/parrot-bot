@@ -21,6 +21,7 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+// create jaugeBar like "[xxx       ] 30%"
 function jaugeBar(
   percentage,
   length = 10,

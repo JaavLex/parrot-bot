@@ -29,7 +29,7 @@ async function run(client, message, args) {
     createMdBlock(generateSayText(sentence, monkey.length) + monkey),
   );
 
-  message.channel.send(embed);
+  await message.channel.send(embed);
 }
 
 const monkeysayCommand = {

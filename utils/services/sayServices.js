@@ -1,7 +1,7 @@
 const { createError } = require('../errorUtils');
 
 /**
- * Function to create Embed easier.
+ * generate say text for say commands
  *
  * @param {string} text Text was sayed
  * @param {number} baseLength Length of the animal or other.
