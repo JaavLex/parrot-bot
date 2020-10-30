@@ -23,7 +23,7 @@ async function onCollect(emoji, msg, users, data) {
       time: 30000,
       filter: (reaction, user) =>
         user.id === data.author.id && reaction.emoji.name === '🔁',
-      data: { author: data.author },
+    data
     });
   } else {
     await msg.channel.send(
