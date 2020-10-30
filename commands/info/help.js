@@ -9,9 +9,7 @@ function getAllCommands(client, message) {
     .setDescription(
       `Know more about a specific command using \`${prefix}help\` [command] 😉`,
     )
-    .setThumbnail(
-      'https://i2.wp.com/thesecuritynoob.com/wp-content/uploads/2020/02/632px-Parrot_Logo.png?fit=632%2C599&ssl=1',
-    );
+    .setThumbnail(client.user.avatarURL());
 
   function commandsListToString(category) {
     const commandsByCategory = client.commands

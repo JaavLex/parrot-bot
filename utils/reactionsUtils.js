@@ -5,7 +5,7 @@ const defaultFilter = (reaction, user) => !user.bot;
  *
  * @param {Message} message The message who listen reaction
  * @param {(emoji: string, message: Message, users: Array<any>, user: User) => {}} onCollect Function called all reaction added and reaction removed if you turn on `alwaysCollect`
- * @param {{onEnd: (emoji: string, message: Message, users: Array<any>, user: User) => any, onEnd: () => {}, time: number, filter: (reaction: any, user: any) => {}, alwaysCollect: boolean, }} params Params of the reaction
+ * @param {{onEnd: (emoji: string, message: Message, users: Array<any>, user: User) => any, onEnd: () => {}, time: number, filter: (reaction: any, user: any) => {}, alwaysCollect: boolean, data: any }} params Params of the reaction
  */
 function createCollectorMessage(
   message,
@@ -16,6 +16,7 @@ function createCollectorMessage(
     time = 8000,
     filter,
     alwaysCollect = true,
+    data,
   },
 ) {
   const collector = message.createReactionCollector(filter || defaultFilter, {
@@ -28,7 +29,7 @@ function createCollectorMessage(
       reaction.emoji,
       message,
       reaction.users.cache.filter(u => !u.bot),
-      msg,
+      data,
     ),
   );
 
@@ -38,7 +39,7 @@ function createCollectorMessage(
       reaction.emoji,
       message,
       reaction.users.cache.filter(u => !u.bot),
-      msg,
+      data,
     ),
   );
 
