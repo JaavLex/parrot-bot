@@ -15,15 +15,24 @@ async function run(client, message) {
 }
 
 async function onCollect(emoji, msg, users, data) {
-  const newMsg = await msg.channel.send(createEmbedRoulette(data.author));
-  newMsg.react('🔁');
+  if (msg.embeds[0].description.toLowerCase().includes('😨')) {
+    const newMsg = await msg.channel.send(createEmbedRoulette(data.author));
+    newMsg.react('🔁');
 
-  createCollectorMessage(newMsg, onCollect, {
-    time: 30000,
-    filter: (reaction, user) =>
-      user.id === data.author && reaction.emoji.name === '🔁',
-    data: { author: data.author },
-  });
+    createCollectorMessage(newMsg, onCollect, {
+      time: 30000,
+      filter: (reaction, user) =>
+        user.id === data.author.id && reaction.emoji.name === '🔁',
+      data: { author: data.author },
+    });
+  } else {
+    await msg.channel.send(
+      createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
+        command: russianrouletteCommand.name,
+        author: data.author,
+      }).setDescription(`__**💀 CANNOT REPLAY SINCE YOU'RE DEAD 💀**__`),
+    );
+  }
 }
 
 function createEmbedRoulette(author) {
