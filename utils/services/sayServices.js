@@ -49,7 +49,7 @@ function generateTextLine(text) {
 }
 
 function generateLine(length, char = '_', maxLength = defaultMaxLength) {
-  const lineLength = length < maxLength ? length : maxLength;
+  const lineLength = (length < maxLength ? length : maxLength) - 1;
 
   let line = '  ';
   for (let i = 0; i <= lineLength; i++) {
