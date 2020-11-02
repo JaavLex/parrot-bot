@@ -32,7 +32,6 @@ async function run(client, message, args) {
   const [question, ...answers] = pollKinds;
 
   const embed = createUserEmbed('#8e44ad', `🤔 ${question}`, {
-    command: pollCommand.name,
     author: message.author,
   }).setDescription(
     `The poll will finish in ${minutes} minutes at ${finishAt.toLocaleTimeString()}.`,

@@ -30,7 +30,6 @@ async function run(client, message, args) {
 
   await message.channel.send(
     createUserEmbed('#ff9900', `📷 Your gif of : "${userQuery}"! 📷`, {
-      command: gifCommand.name,
       author: message.author,
     }).setImage(imageUrl),
   );

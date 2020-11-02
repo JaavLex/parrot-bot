@@ -8,11 +8,8 @@ async function run(client, message, args) {
   const embed = createUserEmbed(
     '#16a085',
     `🐸 ${message.author.username} invoked **Greegrree**`,
-    {
-      command: frogsayCommand.name,
-      author: message.author,
-    },
-  );
+    { author: message.author },
+  ).setImage(message.author.avatarURL());
 
   const frog = `
       \\  (.)(.)

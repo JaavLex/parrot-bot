@@ -11,7 +11,6 @@ async function run(client, message, args) {
 
   await message.channel.send(
     createUserEmbed('#ff9900', `🤔 Here's your answer... 🤔`, {
-      command: chooseCommand.name,
       author: message.author,
     }).addField(
       `> ${userQuestion}`,

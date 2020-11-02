@@ -8,10 +8,7 @@ async function run(client, message, args) {
   const embed = createUserEmbed(
     '#f368e0',
     `🐷 ${message.author.username} invoked **Plopper the Pig**`,
-    {
-      command: pigsayCommand.name,
-      author: message.author,
-    },
+    { author: message.author },
   );
 
   const pig = `

@@ -6,7 +6,6 @@ async function run(client, message, args) {
   await message.channel.send(
     createUserEmbed('#8e44ad', '👌 Your qrcode here 💪', {
       author: message.author,
-      command: qrcodeCommand.command,
     })
       .setDescription('The qrcode may take time to load.')
       .setImage(
