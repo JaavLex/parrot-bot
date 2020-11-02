@@ -19,8 +19,8 @@ async function run(client, message, args) {
 }
 
 const gayrateCommand = {
-  name: 'gayrate',
-  aliases: ['grate'],
+  name: 'gay',
+  aliases: ['gayrate', 'grate', 'gr'],
   category: 'ask',
   description: "Evalutates someone's gayness !",
   usage: '[target user]',
