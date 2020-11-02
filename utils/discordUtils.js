@@ -42,5 +42,29 @@ function createUserEmbed(color, title, { author }) {
   return embed;
 }
 
+/**
+ * Exemple : <@!396680803842523146> replace <@!763746136422219776> today !
+ * Result : Username replace Username2 today !
+ *
+ * @param {string} text Text to replace tag by string !
+ * @param {guild} guild Discord guild ! (message.guild)
+ * @return {string} A string with no tag !
+ */
+function replaceDiscordTag(text, guild) {
+  if (!text || !guild) {
+    throw new Error('Invalid props {text: string, guild: DiscordGuild}');
+  }
+
+  // regex to find only tag
+  return text.replace(/<\D+\d+>/g, tag => {
+    // regex to find only number of the tag
+    const id = tag.match(/\d+/g)[0];
+    const member = guild.members.cache.get(id);
+
+    return member.user.username;
+  });
+}
+
 exports.createEmbed = createEmbed;
 exports.createUserEmbed = createUserEmbed;
+exports.replaceDiscordTag = replaceDiscordTag;
