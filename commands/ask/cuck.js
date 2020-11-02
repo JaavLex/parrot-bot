@@ -5,26 +5,25 @@ async function run(client, message, args) {
   const userMentioned = message.mentions.users.first() || client.user;
 
   await message.channel.send(
-    createUserEmbed('#ff9900', `🏳️‍🌈 Gayness rate is evaluated 🏳️‍🌈`, {
+    createUserEmbed('#ff9900', `👫 Cuckness rate is evaluated 👫`, {
       author: message.author,
     }).setDescription(
-      `**${userMentioned}'s rate of gayness :**\n ${jaugeBar(
+      `**${userMentioned}'s rate of cuckness :**\n ${jaugeBar(
         randomNumber(0, 100),
         20,
-        { filler: '🏳️‍🌈', unfiller: '  ' },
       )}`,
     ),
   );
 }
 
-const gayrateCommand = {
-  name: 'gayrate',
-  aliases: ['grate'],
+const cuckrateCommand = {
+  name: 'cuck',
+  aliases: ['cuckrate', 'crate', 'cr'],
   category: 'ask',
-  description: "Evalutates someone's gayness !",
+  description: "Evalutates someone's cuckness !",
   usage: '[target user]',
   autoMessageDeletion: true,
   run,
 };
 
-module.exports = gayrateCommand;
+module.exports = cuckrateCommand;

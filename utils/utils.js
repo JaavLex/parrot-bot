@@ -31,7 +31,7 @@ function jaugeBar(
   let finalJaugeBar = '`[';
 
   for (let i = 0; i < length; i++) {
-    finalJaugeBar += i <= filledBars ? filler : unfiller;
+    finalJaugeBar += i < filledBars ? filler : unfiller;
   }
 
   finalJaugeBar += `] ${percentage}%\``;
