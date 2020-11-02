@@ -1,4 +1,7 @@
-const { createUserEmbed } = require('../../utils/discordUtils');
+const {
+  createUserEmbed,
+  replaceDiscordTag,
+} = require('../../utils/discordUtils');
 const { prefix } = require('../../utils/utils');
 const { createCollectorMessage } = require('../../utils/reactionsUtils');
 const {
@@ -16,7 +19,7 @@ async function run(client, message, args) {
   const pollKinds = args
     .join(' ')
     .split(';')
-    .map(m => m.trim());
+    .map(m => replaceDiscordTag(m.trim(), message.guild));
 
   let minutes = defaultMinutes;
   // if first argument is number, I set minutes value and remove first item of kinds

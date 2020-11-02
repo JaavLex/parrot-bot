@@ -1,9 +1,13 @@
-const { createUserEmbed } = require('../../utils/discordUtils');
+const {
+  createUserEmbed,
+  replaceDiscordTag,
+} = require('../../utils/discordUtils');
 const { createMdBlock } = require('../../utils/utils');
 const generateSayText = require('../../utils/services/sayServices');
 
 async function run(client, message, args) {
-  const sentence = args.join(' ') || 'Run my duck 😜';
+  const sentence =
+    replaceDiscordTag(args.join(' '), message.guild) || 'Run my duck 😜';
 
   const embed = createUserEmbed(
     '#a5b1c2',
