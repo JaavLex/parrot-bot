@@ -9,10 +9,7 @@ async function run(client, message) {
   const embed = createUserEmbed(
     '#8e44ad',
     '🍆 Dick Size has been evaluated! 🍌',
-    {
-      author: message.author,
-      command: dicksizeCommand.command,
-    },
+    { author: message.author },
   ).setDescription(
     `😋 ${userMentioned}'s dick size
     ${generateDick(randomSize)}`,

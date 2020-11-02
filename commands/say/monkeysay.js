@@ -1,17 +1,18 @@
-const { createUserEmbed } = require('../../utils/discordUtils');
+const {
+  createUserEmbed,
+  replaceDiscordTag,
+} = require('../../utils/discordUtils');
 const { createMdBlock } = require('../../utils/utils');
 const generateSayText = require('../../utils/services/sayServices');
 
 async function run(client, message, args) {
-  const sentence = args.join(' ') || 'hoo hoo hoo hoo';
+  const sentence =
+    replaceDiscordTag(args.join(' '), message.guild) || 'hoo hoo hoo hoo';
 
   const embed = createUserEmbed(
     '#ff9900',
     `🐵 ${message.author.username} invoked **Jack the Monkey**`,
-    {
-      command: monkeysayCommand.name,
-      author: message.author,
-    },
+    { author: message.author },
   );
 
   const monkey = `

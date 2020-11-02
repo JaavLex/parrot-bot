@@ -6,7 +6,6 @@ async function run(client, message, args) {
 
   await message.channel.send(
     createUserEmbed('#ff9900', `🏳️‍🌈 Gayness rate is evaluated 🏳️‍🌈`, {
-      command: gayrateCommand.name,
       author: message.author,
     }).setDescription(
       `**${userMentioned}'s rate of gayness :**\n ${jaugeBar(

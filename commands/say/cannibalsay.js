@@ -1,17 +1,18 @@
-const { createUserEmbed } = require('../../utils/discordUtils');
+const {
+  createUserEmbed,
+  replaceDiscordTag,
+} = require('../../utils/discordUtils');
 const { createMdBlock } = require('../../utils/utils');
 const generateSayText = require('../../utils/services/sayServices');
 
 async function run(client, message, args) {
-  const sentence = args.join(' ') || 'Eat human miam miam';
+  const sentence =
+    replaceDiscordTag(args.join(' '), message.guild) || 'Eat human miam miam';
 
   const embed = createUserEmbed(
     '#e74c3c',
     `🍖 ${message.author.username} invoked **THE CANNIBAL**`,
-    {
-      command: cannibalsayCommand.name,
-      author: message.author,
-    },
+    { author: message.author },
   );
 
   const cannibal = `

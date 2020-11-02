@@ -28,7 +28,6 @@ async function onCollect(emoji, msg, users, data) {
   } else {
     await msg.channel.send(
       createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
-        command: russianrouletteCommand.name,
         author: data.author,
       }).setDescription(`__**💀 CANNOT REPLAY SINCE YOU'RE DEAD 💀**__`),
     );
@@ -40,7 +39,6 @@ function createEmbedRoulette(author) {
 
   if (rouletteResult === 1) {
     return createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
-      command: russianrouletteCommand.name,
       author,
     }).setDescription(
       `**💀 You died 💀** : The bullet was in chamber n#${rouletteResult}`,
@@ -48,7 +46,6 @@ function createEmbedRoulette(author) {
   }
 
   return createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
-    command: russianrouletteCommand.name,
     author,
   }).setDescription(
     `**😨 You survived ! 😨** : The bullet was in chamber n#${rouletteResult}`,

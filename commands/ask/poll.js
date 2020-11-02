@@ -1,4 +1,7 @@
-const { createUserEmbed } = require('../../utils/discordUtils');
+const {
+  createUserEmbed,
+  replaceDiscordTag,
+} = require('../../utils/discordUtils');
 const { prefix } = require('../../utils/utils');
 const { createCollectorMessage } = require('../../utils/reactionsUtils');
 const {
@@ -16,7 +19,7 @@ async function run(client, message, args) {
   const pollKinds = args
     .join(' ')
     .split(';')
-    .map(m => m.trim());
+    .map(m => replaceDiscordTag(m.trim(), message.guild));
 
   let minutes = defaultMinutes;
   // if first argument is number, I set minutes value and remove first item of kinds
@@ -32,7 +35,6 @@ async function run(client, message, args) {
   const [question, ...answers] = pollKinds;
 
   const embed = createUserEmbed('#8e44ad', `🤔 ${question}`, {
-    command: pollCommand.name,
     author: message.author,
   }).setDescription(
     `The poll will finish in ${minutes} minutes at ${finishAt.toLocaleTimeString()}.`,
