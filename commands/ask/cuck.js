@@ -18,8 +18,8 @@ async function run(client, message, args) {
 }
 
 const cuckrateCommand = {
-  name: 'cuckrate',
-  aliases: ['crate'],
+  name: 'cuck',
+  aliases: ['cuckrate', 'crate', 'cr'],
   category: 'ask',
   description: "Evalutates someone's cuckness !",
   usage: '[target user]',
