@@ -23,7 +23,7 @@ async function onCollect(emoji, msg, users, data) {
       time: 30000,
       filter: (reaction, user) =>
         user.id === data.author.id && reaction.emoji.name === '🔁',
-    data
+      data,
     });
   } else {
     await msg.channel.send(
@@ -57,7 +57,7 @@ function createEmbedRoulette(author) {
 
 const russianrouletteCommand = {
   name: 'russianroulette',
-  category: 'miscellaneous',
+  category: 'games',
   aliases: ['rr', 'rroulette', 'russian'],
   description: '1 out of 6 chance to shoot yourself be careful !',
   autoMessageDeletion: true,
