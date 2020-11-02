@@ -51,7 +51,7 @@ function createUserEmbed(color, title, { author }) {
  * @return {string} A string with no tag !
  */
 function replaceDiscordTag(text, guild) {
-  if (!text || !guild) {
+  if ((!text && text.length > 0) || !guild) {
     throw new Error('Invalid props {text: string, guild: DiscordGuild}');
   }
 
