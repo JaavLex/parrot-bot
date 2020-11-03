@@ -19,7 +19,8 @@ async function run(client, message, args) {
   const pollKinds = args
     .join(' ')
     .split(';')
-    .map(m => replaceDiscordTag(m.trim(), message.guild));
+    .map(m => replaceDiscordTag(m.trim(), message.guild))
+    .filter(m => m.length > 0);
 
   let minutes = defaultMinutes;
   // if first argument is number, I set minutes value and remove first item of kinds
