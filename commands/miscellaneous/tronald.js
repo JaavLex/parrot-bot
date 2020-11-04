@@ -10,8 +10,7 @@ async function run(client, message, args) {
     .then(async json => {
       await message.channel.send(
         createUserEmbed('#8e44ad', "👱 Here's your Donald Trump quote 👱", {
-          author: message.author,
-          command: tronaldCommand.command,
+          author: message.author
         })
           .setDescription(`> ${json.value}`)
           .setImage(image),
