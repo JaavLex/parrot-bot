@@ -1,31 +1,9 @@
-const giphy = require('giphy-api')();
 const fetch = require('node-fetch');
 const { createUserEmbed } = require('../../utils/discordUtils');
-const { createError } = require('../../utils/errorUtils');
-const { randomNumber, createMdBlock } = require('../../utils/utils');
+const randomGif = require('../../utils/services/gifServices');
 
 async function run(client, message, args) {
-  const imageUrl = await giphy.search('Donald Trump').then(response => {
-    if (!response || !response.data) {
-      throw createError(
-        'An error was encountered.',
-        '',
-        'Retry command !',
-        true,
-      );
-    }
-
-    const imageData = response.data[randomNumber(0, 25)];
-    if (!imageData) {
-      throw createError(
-        'No results to your query were found!',
-        'Your query could not be found by the giphy API.',
-        'Try to specify your query in a short specific keyword',
-        true,
-      );
-    }
-    return imageData.images.original.url;
-  });
+  const image = await randomGif('Donald Trump');
 
   fetch('https://www.tronalddump.io/random/quote')
     .then(res => res.json())
@@ -36,7 +14,7 @@ async function run(client, message, args) {
           command: tronaldCommand.command,
         })
           .setDescription(`> ${json.value}`)
-          .setImage(imageUrl),
+          .setImage(image),
       );
     });
 }
