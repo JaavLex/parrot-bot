@@ -76,11 +76,11 @@ function checkPoll(pollKinkds) {
       'try /poll question ; answer1 ; answer2',
     );
 
-  if (pollKinkds.length > 12)
+  if (pollKinkds.length > 14)
     throw createError(
       'Max 12 questions !',
       '',
-      'try /poll question ; answer1 ; answer2 ... answer12',
+      'try /poll question ; answer1 ; answer2 ... answer13',
     );
 }
 
