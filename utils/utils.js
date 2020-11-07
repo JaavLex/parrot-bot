@@ -12,6 +12,7 @@ const styles = {
 };
 
 const prefix = process.env.DEV_PREFIX || prefixJson;
+const discordApiUrl = 'https://discord.com/api/v6';
 
 function consoleColor(modifier, string) {
   return styles[modifier].open + string + styles[modifier].close;
@@ -67,4 +68,5 @@ module.exports = {
   invisibleChar,
   createMdBlock,
   maxValueInArray,
+  discordApiUrl,
 };

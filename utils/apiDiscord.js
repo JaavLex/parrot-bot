@@ -1,5 +1,6 @@
 const UrlParser = require('url').URL;
 const { default: fetch } = require('node-fetch');
+const { discordApiUrl } = require('./utils');
 
 /**
  * If more than one emoji, use custom add emojies to do not crash the bot in PRODUCTION !
@@ -11,7 +12,7 @@ const { default: fetch } = require('node-fetch');
 function addEmojies(emojies, message) {
   const promesses = emojies.map(emoji => {
     const url = new UrlParser(
-      `https://discord.com/api/v6/channels/${message.channel.id}/messages/${message.id}/reactions/${emoji}/@me`,
+      `${discordApiUrl}/channels/${message.channel.id}/messages/${message.id}/reactions/${emoji}/@me`,
     );
     const headers = {
       Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
@@ -41,9 +42,9 @@ async function runPromisesAsync(promises, retryCount = 0) {
   const result = await promise();
 
   if (result.ok || retryCount >= 1) {
-    setTimeout(() => runPromisesAsync(restPromises), 250);
+    setTimeout(() => runPromisesAsync(restPromises), 300);
   } else {
-    setTimeout(() => runPromisesAsync(promises, retryCount + 1), 250);
+    setTimeout(() => runPromisesAsync(promises, retryCount + 1), 300);
   }
 }
 
