@@ -113,9 +113,11 @@ function checkAuthorPermissions(requiredPermissions, author) {
 }
 
 function createMissingPermissionsMessage(missingPermissions) {
-  return createEmbed('#444444', "You don't have the necessary permissions")
+  return createEmbed('#c0392b', "⭕️ You don't have the necessary permissions")
     .setDescription(
-      `You must ${missingPermissions.map(p => p.description).join(' and ')}.`,
+      `You must ${missingPermissions
+        .map(p => `**${p.description}**`)
+        .join(' and ')}.`,
     )
     .setFooter('Contact the administrator of this server to have permissions.');
 }

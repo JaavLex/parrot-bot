@@ -1,4 +1,6 @@
 /* eslint-disable no-param-reassign */
+
+const { addEmojies } = require('../apiUtils');
 const { createUserEmbed } = require('../discordUtils');
 const { createError } = require('../errorUtils');
 const { invisibleChar, maxValueInArray } = require('../utils');
@@ -66,7 +68,7 @@ const addAnswers = (answers, embed) =>
     .map((emoji, i) => embed.addField(`${emoji} ${answers[i]}`, invisibleChar));
 
 const addReactions = (kinds, message) =>
-  emojies.slice(0, kinds.length).map(emoji => message.react(emoji));
+  addEmojies(emojies.slice(0, kinds.length), message);
 
 function checkPoll(pollKinkds) {
   if (pollKinkds.length < 3)

@@ -1,11 +1,11 @@
 const { Permissions } = require('../../utils/adminUtils');
 
 async function run(client, message, args) {
-  await message.channel.send('YOU CAN DO THIS');
+  await message.channel.send('salut');
 }
 
 const chooseCommand = {
-  name: 'testa',
+  name: 'test-admin',
   aliases: ['ta'],
   category: 'ask',
   description: 'Chooses someone based on the question asked !',

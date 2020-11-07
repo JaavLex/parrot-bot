@@ -61,6 +61,9 @@ function replaceDiscordTag(text, guild) {
     const id = tag.match(/\d+/g)[0];
     const member = guild.members.cache.get(id);
 
+    if (!member) return '';
+    if (!member.user) return '';
+
     return member.user.username;
   });
 }

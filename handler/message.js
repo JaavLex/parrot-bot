@@ -35,6 +35,8 @@ async function onMessage(message, client) {
     setTimeout(() => {
       warningMessage.delete();
     }, 5000);
+
+    return;
   }
 
   try {
