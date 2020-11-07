@@ -5,12 +5,19 @@ const { randomNumber } = require('../utils');
 async function getGifApi(searchItem) {
   const result = await giphy.search(searchItem).then(response => {
     if (!response || !response.data) {
-      createError('An error was encountered.', '', 'Retry command !', true);
+      throw createError(
+        'An error was encountered.',
+        '',
+        'Retry command !',
+        true,
+      );
     }
 
     const imageData = response.data[randomNumber(0, 25)];
-    if (!imageData) {
-      createError(
+
+    const isValid = imageData ? Boolean(imageData.images) : false;
+    if (!isValid) {
+      throw createError(
         'No results to your query were found!',
         'Your query could not be found by the giphy API.',
         'Try to specify your query in a short specific keyword',
