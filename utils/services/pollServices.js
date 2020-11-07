@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-const { addEmojies } = require('../apiUtils');
+const { addEmojies } = require('../apiDiscord');
 const { createUserEmbed } = require('../discordUtils');
 const { createError } = require('../errorUtils');
 const { invisibleChar, maxValueInArray } = require('../utils');

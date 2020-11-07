@@ -1,14 +1,16 @@
 require('dotenv').config();
-const {
-  createEmbedError,
-  createUnknowCommandError,
-} = require('../utils/errorUtils');
 const { consoleColor, prefix } = require('../utils/utils');
 const onPrivateMessage = require('../private-message/message');
 const {
   checkAuthorPermissions,
   createMissingPermissionsMessage,
 } = require('../utils/adminUtils');
+const {
+  onError,
+  getArgsAndCommand,
+  getClientCommand,
+  onUnknowMessage,
+} = require('../utils/messageUtils');
 
 async function onMessage(message, client) {
   if (message.channel.name === undefined) {
@@ -26,20 +28,14 @@ async function onMessage(message, client) {
     consoleColor('info', `at ${new Date().toLocaleString()}`),
   );
 
+  // client run unknow command
   if (!clientCommand) {
-    await message.delete();
-    const warningMessage = await message.channel.send(
-      createUnknowCommandError(prefix, command),
-    );
-
-    setTimeout(() => {
-      warningMessage.delete();
-    }, 5000);
-
+    await onUnknowMessage(message, command);
     return;
   }
 
   try {
+    // if user need permissions before run command
     if (clientCommand.permissions) {
       const missingPermissions = checkAuthorPermissions(
         clientCommand.permissions,
@@ -66,44 +62,6 @@ async function onMessage(message, client) {
     );
     onError(error, message);
   }
-}
-
-// * UTILS
-// * UTILS
-// * UTILS
-// * UTILS
-
-function getClientCommand(client, command) {
-  return (
-    client.commands.get(command) ||
-    client.commands.get(client.aliases.get(command))
-  );
-}
-
-function getArgsAndCommand(message) {
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-  return { args, command };
-}
-
-async function onError(error, message) {
-  if (error.custom) {
-    const errorMessage = await message.channel.send(createEmbedError(error));
-
-    if (error.autoMessageDeletion) {
-      setTimeout(() => {
-        errorMessage.delete();
-      }, 4000);
-    }
-    return;
-  }
-
-  if (process.env.BOT_ENV === 'development') {
-    message.channel.send(`⚠️ Error : ${String(error)}`);
-    return;
-  }
-
-  message.channel.send(`⚠️ An error has been encountered. Call an admin.`);
 }
 
 module.exports = onMessage;
