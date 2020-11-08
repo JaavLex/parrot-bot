@@ -71,7 +71,12 @@ function getSingleCommand(client, message, input) {
   }
 
   if (command.description) {
-    embed.addField('> 📝 Description', createMdBlock(command.description));
+    embed.addField(
+      '> 📝 Description',
+      command.customDescription
+        ? command.description
+        : createMdBlock(command.description),
+    );
   }
 
   message.channel.send(embed);

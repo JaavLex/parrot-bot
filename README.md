@@ -17,6 +17,17 @@ Current Project Board https://github.com/TacticsCH/parrot-bot/projects/2
 
 `npm dev` : run the server with nodemon
 
+## command object parameters
+
+- name
+- aliases
+- category: category of command (match with folder)
+- description
+- usage: Exmeple of usage for the command
+- autoMessageDeletion: If true, message will be automatically be destroyed
+- customDescription: If message have custom **markdown** description
+- run: Function called when command is running
+
 ## error gestion
 
 `throw` error is catched at top level and create a beautiful and generic error.

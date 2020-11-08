@@ -2,7 +2,7 @@ const {
   createUserEmbed,
   replaceDiscordTag,
 } = require('../../utils/discordUtils');
-const { prefix } = require('../../utils/utils');
+const { prefix, createMdBlock } = require('../../utils/utils');
 const { createCollectorMessage } = require('../../utils/reactionsUtils');
 const {
   checkPoll,
@@ -72,16 +72,17 @@ Simply create a poll (survey) !
 
 You can choose after how long it ends.
 Exemple :
-> ${prefix}poll 10; Do you like me ?; yes; no
-
+${createMdBlock(`${prefix}poll 10; Do you like me ?; yes; no`)}
 10 will be the time of the survey.
-🔴 Maximum ${maxMinutes} minutes.
-🟡 Default ${defaultMinutes} minutes.
 
-⚠️ User reactions to the same IP adress may encounter problems.
+🔴 Maximum **${maxMinutes}** minutes.
+🟡 Default **${defaultMinutes}** minutes.
+
+*⚠️ User reactions to the same IP adress may encounter problems.*
 `,
   usage: 'question ; first answer ; second answer ...',
   autoMessageDeletion: false,
+  customDescription: true,
   run,
 };
 
