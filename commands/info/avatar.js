@@ -1,6 +1,5 @@
 const {
   createUserEmbed,
-  replaceDiscordTag,
 } = require('../../utils/discordUtils');
 
 async function run(client, message, args) {
