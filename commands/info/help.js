@@ -5,7 +5,7 @@ const { createMdBlock } = require('../../utils/utils');
 const emojiObject = require('./categories-label.json');
 
 function getAllCommands(client, message) {
-  const embed = createEmbed('#0af2fa', '**📖 Command list :**')
+  const embed = createEmbed('#009432', '**📖 Command list :**')
     .setDescription(
       `Know more about a specific command using \`${prefix}help\` [command] 😉`,
     )

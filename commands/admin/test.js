@@ -7,7 +7,7 @@ async function run(client, message, args) {
 const testAdmin = {
   name: 'test-admin',
   aliases: ['ta'],
-  category: 'ask',
+  category: 'admin',
   description: 'Test admin',
   autoMessageDeletion: false,
   permissions: [Permissions.MANAGE_CHANNELS, Permissions.KICK_MEMBERS],
