@@ -1,6 +1,4 @@
-const {
-  createUserEmbed,
-} = require('../../utils/discordUtils');
+const { createUserEmbed } = require('../../utils/discordUtils');
 
 async function run(client, message, args) {
   const userMentioned = message.mentions.users.first() || message.author;
