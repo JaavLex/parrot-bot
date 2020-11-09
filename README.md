@@ -25,7 +25,7 @@ Current Project Board https://github.com/TacticsCH/parrot-bot/projects/2
 - description
 - usage: Exmeple of usage for the command
 - autoMessageDeletion: If true, message will be automatically be destroyed
-- customDescription: If message have custom **markdown** description
+- customDescription: If false, message will not have message have custom **markdown** description
 - run: Function called when command is running
 
 ## error gestion
