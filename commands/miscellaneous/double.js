@@ -1,9 +1,18 @@
+const { createError } = require('../../utils/errorUtils');
 const { prefix } = require('../../utils/utils');
 
 async function run(client, message, args) {
   const sentence = args.join(' ') || 'Double parrot bot';
 
-  message.channel.send(getDoubleText(sentence));
+  if (sentence.length > 1000) {
+    throw createError(
+      'The result is too long.',
+      null,
+      'Try with a shorter text.',
+    );
+  }
+
+  await message.channel.send(getDoubleText(sentence));
 }
 
 function getDoubleText(text) {
