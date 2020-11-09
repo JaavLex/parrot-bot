@@ -1,4 +1,4 @@
-const { createEmbed, createUserEmbed } = require('../../utils/discordUtils');
+const { createUserEmbed } = require('../../utils/discordUtils');
 const { createError } = require('../../utils/errorUtils');
 const { createMdBlock, prefix } = require('../../utils/utils');
 const emojiObject = require('./categories-label.json');
@@ -37,10 +37,13 @@ function getSingleCommand(client, message, input) {
     client.commands.get(input.toLowerCase()) ||
     client.commands.get(client.aliases.get(input.toLowerCase()));
 
-  const embed = createEmbed(
-    '#27ae60',
-    `💡 Usage for \`${prefix}${command ? command.name : 'undefined'} \``,
-  );
+  const embed = createUserEmbed('#27ae60', {
+    author: message.author,
+  })
+    .setDescription(
+      `💡 Usage for \`${prefix}${command ? command.name : 'undefined'} \``,
+    )
+    .setThumbnail(client.user.avatarURL());
 
   if (!command) {
     throw createError(
