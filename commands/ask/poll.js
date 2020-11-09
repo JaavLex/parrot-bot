@@ -10,6 +10,7 @@ const {
   addReactions,
   onEnd,
   getEditedFields,
+  emojies,
 } = require('../../utils/services/pollServices');
 
 const defaultMinutes = 15;
@@ -45,17 +46,20 @@ async function run(client, message, args) {
   const sendingMessage = await message.channel.send(embed);
   addReactions(answers, sendingMessage);
 
+  const usedEmojies = emojies.slice(0, pollKinds.length);
   createCollectorMessage(sendingMessage, onCollect, {
     alwaysCollect: true,
     onEnd: (emoji, msg) => onEnd(msg, embed, question, message.author),
     time: minutes * 60000,
+    filter: (reaction, user) =>
+      usedEmojies.includes(reaction.emoji.name) && !user.bot,
   });
 
-  function onCollect(emoji, msg, users) {
+  async function onCollect(emoji, msg, users) {
     const fields = getEditedFields(emoji, msg, users, msg.embeds[0]);
     embed.fields = fields;
     // need to send original embed idk why
-    msg.edit(embed);
+    await msg.edit(embed);
   }
 }
 

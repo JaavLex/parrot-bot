@@ -8,7 +8,7 @@ const { createMdBlock } = require('./utils');
  * @return {MessageEmbed} A Discord Embed
  */
 function createEmbedError(error) {
-  const embed = createEmbed('#c0392b', ` ⚠️ ${error.title}`);
+  const embed = createEmbed('#c0392b', `${error.title}`);
 
   if (error.description) {
     embed.addField('🔴 Error', createMdBlock(error.description));
@@ -34,21 +34,5 @@ function createError(title, description, solution, autoMessageDeletion) {
   return { custom: true, title, description, solution, autoMessageDeletion };
 }
 
-/**
- * To create error object sended to `createEmbedError`
- *
- * @param {string} prefix command prefix
- * @param {string} command command
- * @return {MessageEmbed} A Discord Embed
- */
-function createUnknowCommandError(prefix, command) {
-  return createEmbedError({
-    title: 'Unknown command',
-    description: `${prefix}${command} is unknown`,
-    solution: `Type ${prefix}help to see available commands.`,
-  });
-}
-
 exports.createError = createError;
 exports.createEmbedError = createEmbedError;
-exports.createUnknowCommandError = createUnknowCommandError;
