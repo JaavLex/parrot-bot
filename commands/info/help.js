@@ -1,14 +1,13 @@
-const { prefix } = require('../../config.json');
-const { createEmbed } = require('../../utils/discordUtils');
+const { createEmbed, createUserEmbed } = require('../../utils/discordUtils');
 const { createError } = require('../../utils/errorUtils');
-const { createMdBlock } = require('../../utils/utils');
+const { createMdBlock, prefix } = require('../../utils/utils');
 const emojiObject = require('./categories-label.json');
 
 function getAllCommands(client, message) {
-  const embed = createEmbed('#009432', '**📖 Command list :**')
-    .setDescription(
-      `Know more about a specific command using \`${prefix}help\` [command] 😉`,
-    )
+  const embed = createUserEmbed('#009432', '📖 Command list :', {
+    author: message.author,
+  })
+    .setDescription(`Use \`${prefix}help\` [command] for more informations 😉`)
     .setThumbnail(client.user.avatarURL());
 
   function commandsListToString(category) {
