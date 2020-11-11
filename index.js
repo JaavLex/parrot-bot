@@ -33,7 +33,7 @@ client.on('ready', () => {
   console.info(consoleColor('success', '✨ The bot is running.'));
   console.info(
     consoleColor(
-      'info',
+      'subinfo',
       `ℹ️  Client info :
   - Username  ${client.user.tag}
   - Id        ${client.user.id}
