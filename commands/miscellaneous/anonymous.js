@@ -5,7 +5,7 @@ async function run(client, message, args) {
   const sentence = args.join(' ') || "I'm an anonymous parrot!";
 
   await message.channel.send(
-    createUserEmbed('#a5b1c2', `🕵 Anonymous Message 🕵`, {}).setDescription(
+    createUserEmbed('#a5b1c2', `🕵 Anonymous Message 🕵`).setDescription(
       createMdBlock(sentence),
     ),
   );
