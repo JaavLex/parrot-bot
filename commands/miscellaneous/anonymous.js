@@ -1,4 +1,7 @@
-const { createUserEmbed } = require('../../utils/discordUtils');
+const {
+  createUserEmbed,
+  replaceDiscordTag,
+} = require('../../utils/discordUtils');
 const { createMdBlock } = require('../../utils/utils');
 
 async function run(client, message, args) {
@@ -6,12 +9,12 @@ async function run(client, message, args) {
 
   await message.channel.send(
     createUserEmbed('#a5b1c2', `🕵 Anonymous Message 🕵`).setDescription(
-      createMdBlock(sentence),
+      createMdBlock(replaceDiscordTag(sentence, message.guild)),
     ),
   );
 }
 
-const anonymCommand = {
+const anonymousCommand = {
   name: 'anonymous',
   category: 'miscellaneous',
   aliases: ['ano', 'anonym'],
@@ -21,4 +24,4 @@ const anonymCommand = {
   run,
 };
 
-module.exports = anonymCommand;
+module.exports = anonymousCommand;
