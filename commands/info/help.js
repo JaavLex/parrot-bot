@@ -3,24 +3,12 @@ const { createError } = require('../../utils/errorUtils');
 const { createMdBlock, prefix } = require('../../utils/utils');
 const emojiObject = require('./categories-label.json');
 
-function getAllCommands(client, message) {
+function getCommandsEmbed(client, message) {
   const embed = createUserEmbed('#009432', '📖 Command list :', {
     author: message.author,
   })
     .setDescription(`Use \`${prefix}help\` [command] for more informations 😉`)
     .setThumbnail(client.user.avatarURL());
-
-  function commandsListToString(category) {
-    const commandsByCategory = client.commands
-      .filter(command => command.category === category)
-      .map(c => c.name);
-
-    if (!commandsByCategory.length) {
-      return '⚠️ no command with this category';
-    }
-
-    return createMdBlock(commandsByCategory.join(' | '), 'css');
-  }
 
   client.categories.forEach(category => {
     embed.addField(
@@ -29,21 +17,23 @@ function getAllCommands(client, message) {
     );
   });
 
-  message.channel.send(embed);
+  return embed;
 }
 
-function getSingleCommand(client, message, input) {
+function commandsListToString(category, client) {
+  const commandsByCategory = client.commands
+    .filter(command => command.category === category)
+    .map(c => c.name);
+
+  if (!commandsByCategory.length) return '⚠️ no command with this category';
+
+  return createMdBlock(commandsByCategory.join(' | '), 'css');
+}
+
+function getSingleCommandEmbed(client, message, input) {
   const command =
     client.commands.get(input.toLowerCase()) ||
     client.commands.get(client.aliases.get(input.toLowerCase()));
-
-  const embed = createUserEmbed('#27ae60', {
-    author: message.author,
-  })
-    .setDescription(
-      `💡 Usage for \`${prefix}${command ? command.name : 'undefined'} \``,
-    )
-    .setThumbnail(client.user.avatarURL());
 
   if (!command) {
     throw createError(
@@ -53,6 +43,15 @@ function getSingleCommand(client, message, input) {
       true,
     );
   }
+
+  const embed = createUserEmbed(
+    '#27ae60',
+    `💡 Usage for \`${prefix}${command ? command.name : 'undefined'} \``,
+    {
+      author: message.author,
+    },
+  ).setThumbnail(client.user.avatarURL());
+
   if (command.name) {
     embed.addField('> 🔦 Name', createMdBlock(command.name, 'css'));
   }
@@ -81,14 +80,14 @@ function getSingleCommand(client, message, input) {
     );
   }
 
-  message.channel.send(embed);
+  return embed;
 }
 
 async function run(client, message, args) {
   if (args[0]) {
-    getSingleCommand(client, message, args[0]);
+    await message.channel.send(getSingleCommandEmbed(client, message, args[0]));
   } else {
-    getAllCommands(client, message);
+    await message.channel.send(getCommandsEmbed(client, message));
   }
 }
 
