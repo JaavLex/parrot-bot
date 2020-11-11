@@ -9,6 +9,7 @@ const styles = {
   info: { open: '\u001b[36;1m', close: '\u001b[0m' },
   subtitle: { open: '\u001b[2;1m', close: '\u001b[0m' },
   logger: { open: '\u001b[34;1m', close: '\u001b[0m' },
+  subinfo: { open: '\u001b[33;1m', close: '\u001b[0m' },
 };
 
 const prefix = process.env.DEV_PREFIX || prefixJson;

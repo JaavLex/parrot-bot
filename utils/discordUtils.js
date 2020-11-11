@@ -33,10 +33,12 @@ function createEmbed(color, title, footer, timestamp = true) {
  * @param {{author: Author}} footer The fotter of the embed
  * @return {MessageEmbed} A Discord Embed
  */
-function createUserEmbed(color, title, { author }) {
+function createUserEmbed(color, title, { author } = {}) {
+  if (typeof color !== 'string') throw new Error('Invalid color param.');
+
   const embed = new MessageEmbed().setColor(color).setTimestamp();
 
-  title && embed.setTitle(title);
+  title && typeof title === 'string' && embed.setTitle(title);
   author && embed.setFooter(`Asked by ${author.username}`, author.avatarURL());
 
   return embed;
