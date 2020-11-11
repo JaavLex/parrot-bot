@@ -31,6 +31,15 @@ client.on('message', message => onMessage(message, client));
 
 client.on('ready', () => {
   console.info(consoleColor('success', '✨ The bot is running.'));
+  console.info(
+    consoleColor(
+      'info',
+      `ℹ️  Client info :
+  - Username  ${client.user.tag}
+  - Id        ${client.user.id}
+  - Prefix    ${consoleColor('danger', prefix)}\n`,
+    ),
+  );
 
   if (environment === 'test') {
     // exit for test be finish when bot running !
