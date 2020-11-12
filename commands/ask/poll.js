@@ -26,7 +26,7 @@ async function run(client, message, args) {
   let minutes = defaultMinutes;
   // if first argument is number, I set minutes value and remove first item of kinds
   if (!Number.isNaN(Number(pollKinds[0]))) {
-    minutes = Number(pollKinds[0]);
+    minutes = Number(pollKinds[0]) || defaultMinutes; // if minutes is 0, I put the default number !
     if (minutes > maxMinutes) minutes = maxMinutes;
     pollKinds.splice(0, 1);
   }
