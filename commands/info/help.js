@@ -13,7 +13,7 @@ function getCommandsEmbed(client, message) {
   client.categories.forEach(category => {
     embed.addField(
       `> ${emojiObject[category]} ${category.toUpperCase()} `,
-      commandsListToString(category) || '-',
+      commandsListToString(category, client) || '-',
     );
   });
 
