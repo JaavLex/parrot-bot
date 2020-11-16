@@ -1,38 +1,41 @@
 const { createUserEmbed } = require('../../utils/discordUtils');
 const { randomNumber } = require('../../utils/utils.js');
-const { createCollectorMessage } = require('../../utils/reactionsUtils');
+const { reactionCollector } = require('../../utils/reactionsUtils');
 
 async function run(client, message) {
   const msg = await message.channel.send(createEmbedRoulette(message.author));
   msg.react('🔁');
 
-  createCollectorMessage(msg, onCollect, {
+  reactionCollector(msg, onCollect, {
     time: 30000,
-    filter: (reaction, user) =>
-      user.id === message.author.id && reaction.emoji.name === '🔁',
+    filter: (reaction, user) => filter(reaction, user, message.author),
     data: { author: message.author },
   });
 }
 
-async function onCollect(emoji, msg, users, data) {
-  if (msg.embeds[0].description.toLowerCase().includes('😨')) {
-    const newMsg = await msg.channel.send(createEmbedRoulette(data.author));
+async function onCollect({ message, data }) {
+  if (message.embeds[0].description.toLowerCase().includes('😨')) {
+    const newMsg = await message.channel.send(createEmbedRoulette(data.author));
     newMsg.react('🔁');
 
-    createCollectorMessage(newMsg, onCollect, {
+    reactionCollector(newMsg, onCollect, {
       time: 30000,
-      filter: (reaction, user) =>
-        user.id === data.author.id && reaction.emoji.name === '🔁',
+      filter: (reaction, user) => filter(reaction, user, data.author),
       data,
     });
   } else {
-    await msg.channel.send(
+    await message.channel.send(
       createUserEmbed('#ff9900', `🔫 Russian Roulette 🔫`, {
         author: data.author,
       }).setDescription(`__**💀 CANNOT REPLAY SINCE YOU'RE DEAD 💀**__`),
     );
   }
 }
+
+const filter = (reaction, user, author) => {
+  console.log('bonsoir', user.id === author.id && reaction.emoji.name === '🔁');
+  return user.id === author.id && reaction.emoji.name === '🔁';
+};
 
 function createEmbedRoulette(author) {
   const rouletteResult = randomNumber(1, 6);
