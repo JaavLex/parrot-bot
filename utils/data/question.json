@@ -7,23 +7,25 @@
     },
     {
       "q": "Pourquoi  y a-t-il un trou sur les  bouchons des stylos « bic »? ",
-      "answers": ["Pour que l’encre ne sèche pas", "Par mesure de sécurité ", "Pour faire des économies de plastique"],
+      "answers": [
+        "Pour que l’encre ne sèche pas",
+        "Par mesure de sécurité ",
+        "Pour faire des économies de plastique"
+      ],
       "correct": ["Par mesure de sécurité", "mesure"]
     },
     {
-      "q": "Combien de pattes peut avoir au maximum le mille-pattes?",
+      "q": "Comment s’appelait la chienne em-barquée à bord de  « Spoutnik II » ?",
       "answers": ["Laika", "Aghas", "Malika"],
       "correct": ["Laika", "laik"]
     },
     {
-      "q": "Comment s’appelait la chienne em-barquée à bord de  « Spoutnik II » ?",
-      "answers": ["750", "115", "1350"],
-      "correct": ["750", "750"]
-    },
-    {
       "q": "Au Moyen Age quelle est l'object qu'on appelait 'tran-choir' ?",
       "answers": ["Un couteau", "Une tranche de pain", "Une hache"],
-      "correct": ["Une tranche de pain sur laquelle on posait la viande et la sauce", "tranch"]
+      "correct": [
+        "Une tranche de pain sur laquelle on posait la viande et la sauce",
+        "tranch"
+      ]
     },
     {
       "q": "Combien de pattes peut avoir au maximum le mille-pattes?",

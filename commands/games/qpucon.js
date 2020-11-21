@@ -56,7 +56,7 @@ class QuestionForDumb {
 
     messageCollector(this.channel, onCollect, {
       filter: msg => msg.author.id === this.player.id,
-      time: 1000 * 10,
+      time: 1000 * 15,
       onEnd: this.onEnd.bind(this),
       data: {
         game: this.game[this.state],
@@ -77,7 +77,19 @@ class QuestionForDumb {
     const points = this.game.filter(g => g.isCorrect).length;
 
     this.game.forEach(g => {
-      embed.addField(g.question.q, `Ta réponse : ${g.answer}`);
+      const [correctSentence, re] = g.question.correct;
+      const reggex = new RegExp(re, 'i');
+
+      const correctIndex = g.question.answers.findIndex(a => a.match(reggex));
+
+      const win = isAnswerCorrect(g.answer, correctIndex, reggex);
+
+      embed.addField(
+        g.question.q,
+        `Ta réponse : ${g.answer} ${win ? '✅' : '❌'} ${
+          !win ? correctSentence : ''
+        }`,
+      );
     });
 
     embed.setDescription(
@@ -96,8 +108,22 @@ class QuestionForDumb {
   }
 }
 
+function isAnswerCorrect(content, correctIndex, reggex) {
+  if (!Number.isNaN(Number(content))) {
+    const contentNumber = Number(content);
+
+    if (correctIndex + 1 === contentNumber) {
+      return true;
+    }
+  }
+
+  if (content.match(reggex)) {
+    return true;
+  }
+  return false;
+}
+
 function onCollect({ message, data, stop }) {
-  let wine = false;
   const { content } = message;
   const {
     game: {
@@ -107,24 +133,14 @@ function onCollect({ message, data, stop }) {
   } = data;
   const [, re] = correct;
   const reggex = new RegExp(re, 'i');
+
   const correctIndex = answers.findIndex(a => a.match(reggex));
 
-  if (!Number.isNaN(Number(content))) {
-    const contentNumber = Number(content);
+  const win = isAnswerCorrect(content, correctIndex, reggex);
 
-    if (correctIndex + 1 === contentNumber) {
-      message.channel.send('Winner by number');
-      wine = true;
-    }
-  }
-
-  if (content.match(reggex)) {
-    message.channel.send('Winner by string');
-    wine = true;
-  }
-
-  !wine && message.channel.send('Nul ta perdu !\n----------\n');
-  setGameState({ answer: content, isCorrect: wine });
+  !win && message.channel.send("Nul t'as perdu !\n----------\n");
+  win && message.channel.send('Bravo tu as gagné !\n----------\n');
+  setGameState({ answer: content, isCorrect: win });
   stop();
 }
 
