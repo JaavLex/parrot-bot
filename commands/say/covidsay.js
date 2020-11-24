@@ -7,7 +7,8 @@ const generateSayText = require('../../utils/services/sayServices');
 
 async function run(client, message, args) {
   const sentence =
-    replaceDiscordTag(args.join(' '), message.guild) || 'Pandemic';
+    replaceDiscordTag(args.join(' '), message.guild) ||
+    "I'm gonna get you to hell ¨¨";
 
   const embed = createUserEmbed(
     '#20bf6b',
@@ -15,7 +16,7 @@ async function run(client, message, args) {
     { author: message.author },
   );
 
-  const fox = `
+  const covid = `
    \\
     \\   q
     o .-o-. o 
@@ -25,7 +26,7 @@ async function run(client, message, args) {
   `;
 
   embed.setDescription(
-    createMdBlock(generateSayText(sentence, fox.length) + fox),
+    createMdBlock(generateSayText(sentence, covid.length) + covid),
   );
 
   await message.channel.send(embed);
@@ -34,6 +35,14 @@ async function run(client, message, args) {
 const covidSay = {
   name: 'covidsay',
   category: 'say',
+  aliases: [
+    'coronasay',
+    'covid19say',
+    'covsay',
+    'covisay',
+    'covid19s',
+    'covids',
+  ],
   description: 'You invoke a covid to make it say what you want!',
   autoMessageDeletion: true,
   run,
