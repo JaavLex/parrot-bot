@@ -13,7 +13,7 @@ async function run(client, message, args) {
     '#16a085',
     `🐸 ${message.author.username} invoked **Greegrree**`,
     { author: message.author },
-  ).setImage(message.author.avatarURL());
+  );
 
   const frog = `
       \\  (.)(.)
