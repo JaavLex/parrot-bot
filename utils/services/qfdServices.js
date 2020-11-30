@@ -1,18 +1,16 @@
-const { createUserEmbed, createEmbed } = require('../../utils/discordUtils');
-const questions = require('../../utils/data/question.json');
-const { randomNumber, invisibleChar } = require('../../utils/utils');
-const { messageCollector } = require('../../utils/reactionsUtils');
-
-async function run(client, message) {
-  const questionForDumb = new QuestionForDumb(message.channel, message.author);
-  questionForDumb.startGame();
-}
+const { createUserEmbed, createEmbed } = require('../discordUtils');
+const { messageCollector } = require('../reactionsUtils');
+const { invisibleChar, randomNumber } = require('../utils');
+const questions = require('../data/question.json');
 
 const QuestionForDumbStates = Object.freeze({
   FIRST: 0,
   SECOND: 1,
   THIRD: 2,
 });
+
+const CurrentTrad = 'FR';
+const I18n = questions[`${CurrentTrad}_RULES`];
 
 class QuestionForDumb {
   constructor(channel, author) {
@@ -25,12 +23,27 @@ class QuestionForDumb {
 
   startGame() {
     this.channel.send(
-      createUserEmbed('#009432', 'Début de QQPRun con').setDescription(
-        'Le but est de répondre juste aux 3 question blabla donner les règles du jeu',
+      createUserEmbed('#009432', I18n.start_title).setDescription(
+        I18n.start_desc,
       ),
     );
 
-    this.answerQuestion();
+    messageCollector(
+      this.channel,
+      ({ stop }) => {
+        stop();
+        this.answerQuestion();
+      },
+      {
+        filter: msg => msg.author.id === this.player.id,
+        time: 1000 * 10,
+        onEnd: this.onEnd.bind(this),
+        data: {
+          game: this.game[this.state],
+          setGameState: this.setGameState.bind(this),
+        },
+      },
+    );
   }
 
   async answerQuestion() {
@@ -68,15 +81,21 @@ class QuestionForDumb {
   onEnd({ collects }) {
     if (collects.size !== 0) return;
 
-    this.channel.send('Le temps est terminé! Tu as perdu!');
+    this.channel.send(`${I18n.time_up}\n\n--- Next ---`);
     this.setGameState({ answer: 'null', isCorrect: false });
   }
 
   endGame() {
-    const embed = createEmbed('#111111', 'Recap');
+    const embed = createEmbed('#111111', I18n.recap_title);
     const points = this.game.filter(g => g.isCorrect).length;
 
     this.game.forEach(g => {
+      if (!g.question) {
+        // eslint-disable-next-line no-console
+        console.error('Invalid game :', g);
+        return;
+      }
+
       const [correctSentence, re] = g.question.correct;
       const reggex = new RegExp(re, 'i');
 
@@ -93,7 +112,7 @@ class QuestionForDumb {
     });
 
     embed.setDescription(
-      points === 3 ? 'Tu as gagné bg !' : `Tu as perdu ${points}/3 !`,
+      points === 3 ? I18n.recap_win : `${I18n.recap_loose} (${points}/3)`,
     );
 
     this.channel.send(embed);
@@ -138,8 +157,11 @@ function onCollect({ message, data, stop }) {
 
   const win = isAnswerCorrect(content, correctIndex, reggex);
 
-  !win && message.channel.send("Nul t'as perdu !\n----------\n");
-  win && message.channel.send('Bravo tu as gagné !\n----------\n');
+  if (win) {
+    message.channel.send(`${I18n.win}\n\n--- Next ---`);
+  } else {
+    message.channel.send(`${I18n.loose}\n\n--- Next ---`);
+  }
   setGameState({ answer: content, isCorrect: win });
   stop();
 }
@@ -152,7 +174,7 @@ function createQuestionEmbed(state, step) {
   } = state;
 
   const embed = createEmbed(colors[step], `Question : ${q}`).setDescription(
-    "Pour répondre envoie un message dans le channel. Attention, tu ne peux envoyé qu'un message, avec la réponse ou le numéro de la réponse ! Tu as 10 secondes.",
+    I18n.question_rules,
   );
   addAnswers(answers, embed);
   return embed;
@@ -164,25 +186,18 @@ const addAnswers = (answers, embed) =>
   );
 
 function getNewQuestion(gameQuestionsId) {
-  let randomIndex = randomNumber(0, questions.FR.length - 1);
+  let randomIndex = randomNumber(0, questions[CurrentTrad].length - 1);
 
   while (gameQuestionsId.includes(randomIndex))
-    randomIndex = randomNumber(0, questions.FR.length - 1);
+    randomIndex = randomNumber(0, questions[CurrentTrad].length - 1);
 
-  return { index: randomIndex, question: questions.FR[randomIndex] };
+  return { index: randomIndex, question: questions[CurrentTrad][randomIndex] };
 }
 
 function getNewState(qfud) {
   return QuestionForDumbStates[Object.keys(QuestionForDumbStates)[qfud + 1]];
 }
 
-const russianrouletteCommand = {
-  name: 'qprcon',
-  category: 'games',
-  aliases: ['qu'],
-  description: '1 out of 6 chance to shoot yourself be careful !',
-  autoMessageDeletion: true,
-  run,
+module.exports = {
+  QuestionForDumb,
 };
-
-module.exports = russianrouletteCommand;
