@@ -19,6 +19,7 @@ function reactionCollector(
     data,
   },
 ) {
+  const selectedCollect = alwaysCollect ? onCollect : onRemove;
   const collector = message.createReactionCollector(filter || defaultFilter, {
     time, // time after the collector end
     dispose: alwaysCollect || Boolean(selectedCollect),
@@ -34,7 +35,6 @@ function reactionCollector(
     }),
   );
 
-  const selectedCollect = alwaysCollect ? onCollect : onRemove;
   collector.on('remove', (reaction, msg) =>
     selectedCollect({
       emoji: reaction.emoji,

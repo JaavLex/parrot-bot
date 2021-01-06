@@ -33,7 +33,6 @@ async function onCollect({ message, data }) {
 }
 
 const filter = (reaction, user, author) => {
-  console.log('bonsoir', user.id === author.id && reaction.emoji.name === '🔁');
   return user.id === author.id && reaction.emoji.name === '🔁';
 };
 
