@@ -1,6 +1,10 @@
+const { createError } = require('../../utils/errorUtils');
+
 const approvedList = ['ap', 'approuved', 'a', 'done'];
 const requestChangeList = [
   'rc',
+  'nc',
+  'nr',
   'requestchange',
   'needchange',
   'change',
@@ -21,8 +25,10 @@ async function run(client, message, args) {
   const reviewResult = args[0];
   const reviewId = args[1];
 
+  if (!reviewResult) throw createError('Invalid `reviewId` value.');
+
   let textMessage = getPullRequestTextReview(reviewResult, message);
-  textMessage += reviewId || reviewResult;
+  textMessage += reviewId || Number(reviewResult) || '?';
 
   await message.channel.send(textMessage);
 }
@@ -34,7 +40,7 @@ const gayrateCommand = {
   description: `For developer inform review of pull request.
 
   if approved review result can be : \`['ap', 'approuved', 'a', 'done']\`
-  if request change result can be : \`['rc', 'requestchange', 'needchange', 'change', 'edit']\`
+  if request change result can be : \`['rc', 'nc', 'nr', 'requestchange', 'needchange', 'change', 'edit']\`
   if just comment result can be what you want.
 
   if you don't put the \`reviewId\` the message can be bug.`,
