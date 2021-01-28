@@ -1,7 +1,7 @@
 const { createUserEmbed } = require('../../utils/discordUtils');
 
 async function run(client, message, args) {
-  const link = args.join(' ') || 'Hi from parrot bot in qrcode :o !';
+  const link = args.join(' ') || 'https://yoyo.ch';
 
   await message.channel.send(
     createUserEmbed('#8e44ad', '👌 Your qrcode here 💪', {
