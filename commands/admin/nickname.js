@@ -13,7 +13,7 @@ async function run(client, message, args) {
     );
   }
 
-  if (userMentioned.hasPermission("MANAGE_NICKNAMES")) {
+  if (userMentioned.hasPermission(Permissions.MANAGE_NICKNAMES.name)) {
     throw createError(
       'Can\'t nickname this user.',
       'This user has admin permissions. Please remove them before trying again.'

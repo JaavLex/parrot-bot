@@ -12,7 +12,7 @@ async function run(client, message, args) {
     );
   }
 
-  if (userMentioned.hasPermission("KICK_MEMBERS")) {
+  if (userMentioned.hasPermission(Permissions.KICK_MEMBERS.name)) {
     throw createError(
       'Can\'t kick this user.',
       'This user has admin permissions. Please remove them before trying again.'

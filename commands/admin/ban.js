@@ -13,7 +13,7 @@ async function run(client, message, args) {
     );
   }
 
-  if (userMentioned.hasPermission("BAN_MEMBERS")) {
+  if (userMentioned.hasPermission(Permissions.BAN_MEMBERS.name)) {
     throw createError(
       'Can\'t ban this user.',
       'This user has admin permissions. Please remove them before trying again.'
