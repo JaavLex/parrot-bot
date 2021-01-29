@@ -6,7 +6,7 @@ async function run(client, message, args) {
   const userMentioned = message.guild.member(message.mentions.users.first());
 
   if (userMentioned) {
-    if (userMentioned.hasPermission("BAN_MEMBERS")) {
+    if (userMentioned.hasPermission("KICK_MEMBERS")) {
       throw createError(
         'Can\'t kick this user.',
         'This user has admin permissions. Please remove them before trying again.'
@@ -18,7 +18,7 @@ async function run(client, message, args) {
         createUserEmbed('#8e44ad', "👋 User has been kicked 👋", {
           author: message.author,
         })
-          .setDescription(`User ${userMentioned.username} has been kicked`),
+          .setDescription(`User ${userMentioned.user.username} has been kicked`),
       );
     }
   } else {

@@ -19,7 +19,7 @@ async function run(client, message, args) {
         createUserEmbed('#8e44ad', "👋 User has been banned 👋", {
           author: message.author,
         })
-          .setDescription(`User ${userMentioned.username} has been banned for reason : ${banReason}`),
+          .setDescription(`User ${userMentioned.user.username} has been banned for reason : ${banReason}`),
       );
     }
   } else {
