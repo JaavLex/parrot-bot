@@ -1,0 +1,98 @@
+{
+  "FR_RULES": {
+    "start_title": "🌟 Début du QPUC !",
+    "start_desc": "Le but est de répondre correctement à 3 questions 🤝.\nTu peux répondre avec la réponse 📝 ou le nombre 🔢 associer à celle-ci.\nEnvoie n'importe quoi pour commencer.",
+    "time_up": "💣 Le temps est terminer, tu as perdu ❌.",
+    "recap_title": "📈 Recap 📉",
+    "recap_win": "✅ Tu as gagné 🎉",
+    "recap_loose": "❌ Tu as perdu 😢",
+    "question_rules": "📖 Envoie un message dans le channel pour répondre. Tu as 15 secondes et qu'un seul chance.",
+    "loose": "❌ Perdu 😳",
+    "win": "✅ Gagné 😆"
+  },
+  "EN_RULES": {
+    "start_title": "🌟 Start of QFD !",
+    "start_desc": "The goal is to answer 3 questions correctly.\nYou can answer with the answer 📝 or the number 🔢 associated with it. Send anything to start.",
+    "time_up": "💣 Time up! You loose ❌.",
+    "recap_title": "📈 Summary 📉",
+    "recap_win": "✅ You win 🎉",
+    "recap_loose": "❌ You loose 😢",
+    "question_rules": "📖 Sends a message in the channel to reply. You have 15 seconds and only one chance.",
+    "loose": "❌ Loose 😳",
+    "win": "✅ Win 😆"
+  },
+  "FR": [
+    {
+      "q": "Quelle est la somme de deux faces opposées sur un dé à jouer ?",
+      "answers": ["7", "9", "Dépend des faces"],
+      "correct": ["7", "7"]
+    },
+    {
+      "q": "Pourquoi  y a-t-il un trou sur les  bouchons des stylos « bic »? ",
+      "answers": [
+        "Pour que l’encre ne sèche pas",
+        "Par mesure de sécurité ",
+        "Pour faire des économies de plastique"
+      ],
+      "correct": ["Par mesure de sécurité", "mesure"]
+    },
+    {
+      "q": "Comment s’appelait la chienne em-barquée à bord de  « Spoutnik II » ?",
+      "answers": ["Laika", "Aghas", "Malika"],
+      "correct": ["Laika", "laik"]
+    },
+    {
+      "q": "Au Moyen Age quelle est l'object qu'on appelait 'tran-choir' ?",
+      "answers": ["Un couteau", "Une tranche de pain", "Une hache"],
+      "correct": [
+        "Une tranche de pain sur laquelle on posait la viande et la sauce",
+        "tranch"
+      ]
+    },
+    {
+      "q": "Combien de pattes peut avoir au maximum le mille-pattes?",
+      "answers": ["750", "115", "1350"],
+      "correct": ["750", "750"]
+    },
+    {
+      "q": "Quel bâtiment de Rome est habité par des centaines de chats?",
+      "answers": ["Le Panthéon", "Le Vatican ", "Le Colisée"],
+      "correct": ["Le Colisée", "colis"]
+    },
+    {
+      "q": "Qui a offert la statue de la liberté aux Etats-Unis ?",
+      "answers": ["La France", "Le Vatican ", "Le Royaume Uni"],
+      "correct": ["Le France", "franc"]
+    },
+    {
+      "q": "Où vit le Petit Prince ?",
+      "answers": ["Sur La lune", "Sur l'astéroide B 612", "Sur Mars"],
+      "correct": ["Sur l'astéroide B 612", "ast"]
+    },
+    {
+      "q": "Laquelle de ces villes n’est pas une capitale ?",
+      "answers": ["Vaduz", "Chisnau", "Cracovie"],
+      "correct": ["Cracovie", "crac"]
+    },
+    {
+      "q": "Que signifie \"bigorexie\" ?",
+      "answers": [
+        "Addiction à la nourriture",
+        "Addiction au sport",
+        "Addiction au téléphone"
+      ],
+      "correct": ["Addiction au sport", "sport"]
+    },
+    {
+      "q": "Quel personnage de jeux vidéos vient d'entrer dans le dictionnaire ?",
+      "answers": ["Mario", "Sonic", "Adibou"],
+      "correct": ["Mario", "mario"]
+    },
+    {
+      "q": "La zythologie est la science de ...",
+      "answers": ["La Vodka", "La Bière", "Du Cognac"],
+      "correct": ["La Bière", "bi"]
+    }
+  ],
+  "EN": []
+}

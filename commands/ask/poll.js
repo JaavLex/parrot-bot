@@ -3,7 +3,7 @@ const {
   replaceDiscordTag,
 } = require('../../utils/discordUtils');
 const { prefix, createMdBlock } = require('../../utils/utils');
-const { createCollectorMessage } = require('../../utils/reactionsUtils');
+const { reactionCollector } = require('../../utils/reactionsUtils');
 const {
   checkPoll,
   addAnswers,
@@ -47,16 +47,22 @@ async function run(client, message, args) {
   addReactions(answers, sendingMessage);
 
   const usedEmojies = emojies.slice(0, pollKinds.length);
-  createCollectorMessage(sendingMessage, onCollect, {
+
+  reactionCollector(sendingMessage, onCollect, {
     alwaysCollect: true,
-    onEnd: (emoji, msg) => onEnd(msg, embed, question, message.author),
+    onEnd: ({ message: msg }) => onEnd(msg, embed, question, message.author),
     time: minutes * 60000,
     filter: (reaction, user) =>
       usedEmojies.includes(reaction.emoji.name) && !user.bot,
   });
 
-  async function onCollect(emoji, msg, users) {
-    const fields = getEditedFields(emoji, msg, users, msg.embeds[0]);
+  async function onCollect({ emoji, reaction, message: msg, users }) {
+    const fields = getEditedFields(
+      emoji,
+      msg,
+      reaction.users.cache.filter(u => !u.bot),
+      msg.embeds[0],
+    );
     embed.fields = fields;
     // need to send original embed idk why
     await msg.edit(embed);
