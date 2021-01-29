@@ -7,25 +7,24 @@ async function run(client, message, args) {
   const banReason = args.slice(1).join(' ') || 'You have been banned from this server.';
 
   if (userMentioned) {
-    if (userMentioned.hasPermission("BAN_MEMBERS")) {
-      throw createError(
-        'Can\'t ban this user.',
-        'This user has admin permissions. Please remove them before trying again.'
-      );
-    } else {
-      userMentioned.ban({reason: banReason})
-
-      await message.channel.send(
-        createUserEmbed('#8e44ad', "👋 User has been banned 👋", {
-          author: message.author,
-        })
-          .setDescription(`User ${userMentioned.user.username} has been banned for reason : ${banReason}`),
-      );
-    }
-  } else {
     throw createError(
       'Can\'t ban this user.',
       'No existing user has been mentionned in your ban command'
+    );
+  }
+
+  if (userMentioned.hasPermission("BAN_MEMBERS")) {
+    throw createError(
+      'Can\'t ban this user.',
+      'This user has admin permissions. Please remove them before trying again.'
+    );
+  } else {
+    userMentioned.ban({reason: banReason})
+    await message.channel.send(
+      createUserEmbed('#8e44ad', "👋 User has been banned 👋", {
+        author: message.author,
+      })
+        .setDescription(`User ${userMentioned.user.username} has been banned for reason : ${banReason}`),
     );
   }
 }
