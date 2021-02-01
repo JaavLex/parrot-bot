@@ -17,15 +17,15 @@ async function run(client, message, args) {
       'Can\'t kick this user.',
       'This user has admin permissions. Please remove them before trying again.'
     );
-  } else {
-    userMentioned.kick()
-    await message.channel.send(
-      createUserEmbed('#8e44ad', "👋 User has been kicked 👋", {
-        author: message.author,
-      })
-        .setDescription(`User ${userMentioned.user.username} has been kicked`),
-    );
   }
+
+  userMentioned.kick()
+  await message.channel.send(
+    createUserEmbed('#8e44ad', "👋 User has been kicked 👋", {
+      author: message.author,
+    })
+    .setDescription(`User ${userMentioned.user.username} has been kicked`),
+  );
 }
 
 const kickCommand = {
