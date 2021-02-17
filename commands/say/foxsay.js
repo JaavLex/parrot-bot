@@ -38,7 +38,7 @@ async function run(client, message, args) {
 const foxsayCommand = {
   name: 'foxsay',
   category: 'say',
-  description: 'You invoke a fox to make it say what you want!',
+  description: 'Invokes a fox to make it say what you want!',
   autoMessageDeletion: true,
   run,
 };

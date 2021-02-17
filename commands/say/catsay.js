@@ -7,7 +7,7 @@ const generateSayText = require('../../utils/services/sayServices');
 
 async function run(client, message, args) {
   const sentence =
-    replaceDiscordTag(args.join(' '), message.guild) || 'Sweet dreamy Miaou ';
+    replaceDiscordTag(args.join(' '), message.guild) || 'Sweet dreamy Meow ';
 
   const embed = createUserEmbed(
     '#2c3e50',
@@ -39,7 +39,7 @@ const catsayCommand = {
   name: 'catsay',
   category: 'say',
   aliases: ['casay'],
-  description: 'You invoke a cat to say what you want!',
+  description: 'Invokes a cat to say what you want!',
   autoMessageDeletion: true,
   run,
 };

@@ -37,7 +37,7 @@ const monkeysayCommand = {
   name: 'monkeysay',
   category: 'say',
   aliases: ['monkysay', 'monksay'],
-  description: 'You invoke a monkey to make it say what you want!',
+  description: 'Invokes a monkey to make it say what you want!',
   autoMessageDeletion: true,
   run,
 };

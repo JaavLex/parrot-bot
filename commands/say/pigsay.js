@@ -31,7 +31,7 @@ async function run(client, message, args) {
 const pigsayCommand = {
   name: 'pigsay',
   category: 'say',
-  description: 'You invoke a pig to make it say what you want!',
+  description: 'Invokes a pig to make it say what you want!',
   autoMessageDeletion: true,
   run,
 };

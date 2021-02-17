@@ -16,9 +16,9 @@ function getPullRequestTextReview(result, message) {
     return `✅ ${message.author.username} approved the Pull Request #`;
   }
   if (requestChangeList.includes(result)) {
-    return `❌ ${message.author.username} request change to the Pull Request #`;
+    return `❌ ${message.author.username} requested changes on the Pull Request #`;
   }
-  return `🎬 ${message.author.username} comment the Pull Request #`;
+  return `🎬 ${message.author.username} commented on the Pull Request #`;
 }
 
 async function run(client, message, args) {
@@ -37,13 +37,13 @@ const gayrateCommand = {
   name: 'review',
   aliases: ['re', 'review-done', 'rev', 'revi', 'revie'],
   category: 'dev',
-  description: `For developer inform review of pull request.
+  description: `A developper's command to inform about the review of a pull-request on github.
 
-  if approved review result can be : \`['ap', 'approuved', 'a', 'done']\`
-  if request change result can be : \`['rc', 'nc', 'nr', 'requestchange', 'needchange', 'change', 'edit']\`
-  if just comment result can be what you want.
+  If you approved a pull request use the following args : \`['ap', 'approuved', 'a', 'done']\`
+  If you requested changes on a pull request use the following args : \`['rc', 'nc', 'nr', 'requestchange', 'needchange', 'change', 'edit']\`
+  If you just commented on the pull request, the arg can be anything you want.
 
-  if you don't put the \`reviewId\` the message can be bug.`,
+  if you don't put the \`reviewId\` the message can be buggy.`,
   usage: '[reviewResult or reviewId] [reviewId]',
   autoMessageDeletion: true,
   customDescription: true,

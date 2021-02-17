@@ -36,7 +36,7 @@ const penguinsayCommand = {
   name: 'penguinsay',
   category: 'say',
   aliases: ['pingusay'],
-  description: 'You invoke a penguin to make it say what you want!',
+  description: 'Invokes a penguin to make it say what you want!',
   autoMessageDeletion: true,
   run,
 };

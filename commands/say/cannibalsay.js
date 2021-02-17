@@ -44,7 +44,7 @@ const cannibalsayCommand = {
   name: 'cannibalsay',
   aliases: ['saycanni', 'cannisay'],
   category: 'say',
-  description: 'You invoke a cannibal to say what you want !',
+  description: 'Invokes a cannibal to say what you want !',
   autoMessageDeletion: true,
   run,
 };
