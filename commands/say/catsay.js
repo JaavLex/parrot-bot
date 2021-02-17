@@ -39,7 +39,7 @@ const catsayCommand = {
   name: 'catsay',
   category: 'say',
   aliases: ['casay'],
-  description: 'Invokes a cat to say what you want!',
+  description: 'Invokes a cat to make it say what you want!',
   autoMessageDeletion: true,
   run,
 };
