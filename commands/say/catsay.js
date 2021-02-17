@@ -7,7 +7,7 @@ const generateSayText = require('../../utils/services/sayServices');
 
 async function run(client, message, args) {
   const sentence =
-    replaceDiscordTag(args.join(' '), message.guild) || 'Sweet dreamy Meow ';
+    replaceDiscordTag(args.join(' '), message.guild) || 'Sweet dreams Meow ';
 
   const embed = createUserEmbed(
     '#2c3e50',
