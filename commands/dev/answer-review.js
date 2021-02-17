@@ -5,9 +5,11 @@ async function run(client, message, args) {
 
   if (!reviewLink) throw createError('Invalid `reviewLink` value.');
 
-  await message.channel.send(
-    `ℹ️ @everyone ${message.author.username} need you're review in ${reviewLink} 🚀`,
+  const msg = await message.channel.send(
+    `ℹ️ @everyone ${message.author.username} needs your review in ${reviewLink} 🚀`,
   );
+
+  msg.suppressEmbeds(true);
 }
 
 const gayrateCommand = {
