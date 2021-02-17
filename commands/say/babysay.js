@@ -35,7 +35,7 @@ const babysayCommand = {
   name: 'babysay',
   aliases: ['basay', 'bysay'],
   category: 'say',
-  description: 'You invoke a baby to say what you want !',
+  description: 'Invokes a baby to make it say what you want!',
   autoMessageDeletion: true,
   run,
 };

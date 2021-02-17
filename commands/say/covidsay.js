@@ -43,7 +43,7 @@ const covidSay = {
     'covid19s',
     'covids',
   ],
-  description: 'You invoke a covid to make it say what you want!',
+  description: 'Invokes a covid to make it say what you want!',
   autoMessageDeletion: true,
   run,
 };

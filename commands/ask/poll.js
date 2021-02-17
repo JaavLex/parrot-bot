@@ -74,12 +74,12 @@ const pollCommand = {
   aliases: ['pol', 'pl', 'question', 'form', 'survey', 'surve'],
   category: 'ask',
   description: `
-Simply create a poll (survey) !
+Simply creates a poll (survey) !
 
-You can choose after how long it ends.
+You can choose when the poll's timer finishes !
 Exemple :
 ${createMdBlock(`${prefix}poll 10; Do you like me ?; yes; no`)}
-10 will be the time of the survey.
+10 will be the time until the end of the survey.
 
 🔴 Maximum **${maxMinutes}** minutes.
 🟡 Default **${defaultMinutes}** minutes.

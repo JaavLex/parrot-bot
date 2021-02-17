@@ -37,7 +37,7 @@ const mousesayCommand = {
   name: 'mousesay',
   category: 'say',
   aliases: ['micesay', 'stuartsay'],
-  description: 'You invoke a mouse to make it say what you want!',
+  description: 'Invokes a mouse to make it say what you want!',
   autoMessageDeletion: true,
   run,
 };

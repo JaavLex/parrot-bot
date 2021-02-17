@@ -22,7 +22,7 @@ const avatarCommand = {
   name: 'avatar',
   category: 'info',
   aliases: ['pic', 'pp'],
-  description: 'Display the avatar of mentioned user',
+  description: 'Displays the avatar of mentioned user',
   autoMessageDeletion: false,
   run,
 };

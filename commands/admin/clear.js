@@ -10,7 +10,7 @@ const clearCommand = {
   name: 'clear',
   aliases: ['purge'],
   category: 'admin',
-  description: 'Delete the last 10 messages',
+  description: 'Deletes the last 10 messages',
   autoMessageDeletion: false,
   permissions: [Permissions.MANAGE_CHANNELS],
   run,
